@@ -288,6 +288,13 @@ body {
   height: 24px;
 }
 
+/* Número de telefone abaixo do botão WhatsApp
+   (extraído de inline style para permitir CSP sem unsafe-inline) */
+.cta-phone {
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
 /* ============================================================
    SEÇÃO 5: RESPONSIVIDADE (Media Queries)
    ============================================================
