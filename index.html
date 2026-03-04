@@ -173,6 +173,85 @@
         <footer class="footer">
             <p>&copy; 2026 Salgados da Elza - Feito com carinho em Blumenau, SC</p>
         </footer>
+
+        <!-- Schema.org JSON-LD: dados estruturados para Google Rich Results
+             type="application/ld+json" é tratado como DADOS, não código executável,
+             portanto NÃO é bloqueado pela CSP com script-src 'none'. -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Salgados da Elza",
+                "description": "Salgados assados artesanais feitos com carinho em Blumenau, SC",
+                "url": "https://tiagoeduardobr.github.io/salgados_da_elza/",
+                "telephone": "+55-47-99220-3893",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Blumenau",
+                    "addressRegion": "SC",
+                    "addressCountry": "BR"
+                },
+                "hasMenu": {
+                    "@type": "Menu",
+                    "hasMenuSection": {
+                        "@type": "MenuSection",
+                        "name": "Cardápio",
+                        "hasMenuItem": [
+                            {
+                                "@type": "MenuItem",
+                                "name": "Pizza Gourmet",
+                                "description": "Massa macia e dourada com queijo, presunto, tomate seco e orégano",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "12.00",
+                                    "priceCurrency": "BRL"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Assado de Frango",
+                                "description": "Frango desfiado temperado envolto em massa leve e dourada",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "10.00",
+                                    "priceCurrency": "BRL"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Dogão Assado",
+                                "description": "Salsicha premium, queijo derretido e molho especial em massa assada",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "10.00",
+                                    "priceCurrency": "BRL"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Pastel Assado",
+                                "description": "Massa crocante com recheios variados: 4 Queijos, Calabresa, Carne, Carne c/ Ovo, Frango, Pizza",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "8.00",
+                                    "priceCurrency": "BRL"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Croissant Doce",
+                                "description": "Massa folhada artesanal nos sabores Chocolate e Coco",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "10.00",
+                                    "priceCurrency": "BRL"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        </script>
     </body>
 
 </html>
