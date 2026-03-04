@@ -247,41 +247,47 @@ salgados_da_elza/
 
 ### TODO-A11Y-01 🟡 Implementar HTML semântico
 
+> ✅ **Concluído em:** 2026-03-03 às 22:42 (UTC-3)
+
 **Descrição:** Substituir `<div>` genéricos por elementos semânticos HTML5.
 
 **Critérios de aceitação:**
 
-- [ ] `<main>` envolvendo conteúdo principal
-- [ ] `<section>` para cada grupo de conteúdo com `aria-label`
-- [ ] `<article>` para cada card de produto
-- [ ] `<header>` e `<footer>` mantidos (já existem)
-- [ ] Hierarquia de headings correta: único `<h1>`, `<h2>` por seção, `<h3>` por produto
+- [x] `<main>` envolvendo conteúdo principal
+- [x] `<section>` para cada grupo de conteúdo com `aria-label`
+- [x] `<article>` para cada card de produto
+- [x] `<header>` e `<footer>` mantidos (já existem)
+- [x] Hierarquia de headings correta: único `<h1>`, `<h2>` por seção, `<h3>` por produto
 
 ---
 
 ### TODO-A11Y-02 🟡 Melhorar atributos de acessibilidade
 
+> ✅ **Concluído em:** 2026-03-03 às 22:42 (UTC-3)
+
 **Descrição:** Adicionar atributos ARIA e melhorar textos alternativos.
 
 **Critérios de aceitação:**
 
-- [ ] Atributos `alt` descritivos em todas as imagens (ex: "Salgado Pizza Gourmet assado dourado")
-- [ ] `aria-label` nos links de navegação e CTA
-- [ ] `role="img"` no SVG do ícone WhatsApp com `aria-hidden="true"`
-- [ ] Foco visível mantido em elementos interativos
+- [x] Atributos `alt` descritivos em todas as imagens (ex: "Salgado Pizza Gourmet assado dourado")
+- [x] `aria-label` nos links de navegação e CTA
+- [x] `role="img"` no SVG do ícone WhatsApp com `aria-hidden="true"`
+- [x] Foco visível mantido em elementos interativos
 
 ---
 
 ### TODO-SEO-01 🟡 Adicionar meta tags avançadas
 
+> ✅ **Concluído em:** 2026-03-03 às 22:47 (UTC-3)
+
 **Descrição:** Implementar Open Graph, Twitter Cards e meta description.
 
 **Critérios de aceitação:**
 
-- [ ] `<meta name="description">` com descrição otimizada
-- [ ] Tags Open Graph: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`
-- [ ] Tags Twitter: `twitter:card`, `twitter:title`, `twitter:description`
-- [ ] `<link rel="canonical">` adicionado
+- [x] `<meta name="description">` com descrição otimizada
+- [x] Tags Open Graph: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`
+- [x] Tags Twitter: `twitter:card`, `twitter:title`, `twitter:description`
+- [x] `<link rel="canonical">` adicionado
 
 ---
 
