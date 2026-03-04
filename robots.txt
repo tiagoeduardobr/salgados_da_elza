@@ -1,0 +1,8 @@
+# robots.txt — Salgados da Elza
+# Permite que todos os crawlers indexem todo o conteúdo do site.
+# O Sitemap indica ao Google onde encontrar a lista de páginas.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://tiagoeduardobr.github.io/salgados_da_elza/sitemap.xml
