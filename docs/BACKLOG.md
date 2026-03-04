@@ -30,6 +30,14 @@
      - Formato: <tipo>(<escopo>): <descrição>
        Tipos: feat, fix, docs, style, refactor, perf, chore
 
+     📌 REGRAS DE DOCUMENTAÇÃO MARKDOWN
+     - Tabelas: SEMPRE usar espaços ao redor dos pipes e alinhadores.
+       Correto:   | Header | Header |
+                  | :--- | :--- |
+       Incorreto: |:---|:---|
+     - Blocos de código: SEMPRE especificar a linguagem (text, html, css, etc).
+     - Manter uma linha em branco antes e depois de headings, listas e blocos.
+
      ====================================================================== -->
 
 # 🥟 Salgados da Elza — Backlog de Profissionalização
@@ -41,7 +49,7 @@
 ## 🤖 Contexto do Projeto (para referência de IA)
 
 | Diretriz | Descrição |
-|:---------|:----------|
+| :--- | :--- |
 | **Perfil** | Usuário em aprendizado de programação — projeto pessoal com teor acadêmico |
 | **Explicações** | Sempre explicar **o porquê** de cada implementação e decisão técnica |
 | **Comentários** | Código deve conter comentários **didáticos e detalhados** em pt-BR |
@@ -52,6 +60,7 @@
 | **Commits** | Semânticos (Conventional Commits), **sempre em inglês** |
 | **Branches** | Uma branch por TODO — criar no início, merge + push + cleanup no final |
 | **Git** | **Nunca empilhar** comandos git (um por vez) |
+| **Markdown** | Tabelas com espaços nos pipes, blocos de código com linguagem especificada |
 
 ---
 
@@ -60,7 +69,7 @@
 ### Conventional Commits (sempre em inglês)
 
 | Tipo | Uso |
-|:-----|:----|
+| :--- | :--- |
 | `feat` | Nova funcionalidade |
 | `fix` | Correção de bug |
 | `docs` | Alteração em documentação |
@@ -95,7 +104,7 @@
 ## 📋 Legenda
 
 | Símbolo | Significado |
-|:-------:|:------------|
+| :---: | :--- |
 | 🔴 | Prioridade **Crítica** |
 | 🟡 | Prioridade **Alta** |
 | 🟢 | Prioridade **Média** |
@@ -114,7 +123,7 @@
 
 **Estrutura alvo:**
 
-```
+```text
 salgados_da_elza/
 ├── assets/
 │   └── images/           # Imagens dos produtos
@@ -368,7 +377,7 @@ salgados_da_elza/
 ## Resumo de Prioridades
 
 | Prioridade | Itens | Fase |
-|:----------:|:------|:-----|
+| :---: | :--- | :--- |
 | 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03 | Segurança |
 | 🟡 Alta | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02 | Estrutura, A11Y, SEO, Perf, UI |
 | 🟢 Média | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04 | SEO, Perf, UI |
