@@ -293,24 +293,28 @@ salgados_da_elza/
 
 ### TODO-SEO-02 🟢 Adicionar dados estruturados Schema.org
 
+> ✅ **Concluído em:** 2026-03-03 às 22:52 (UTC-3)
+
 **Descrição:** Implementar JSON-LD com schemas `LocalBusiness` e `Menu`.
 
 **Critérios de aceitação:**
 
-- [ ] Script JSON-LD `LocalBusiness` com nome, endereço, telefone, URL
-- [ ] Script JSON-LD `Menu` com itens e preços do cardápio
-- [ ] JSON validado no [Rich Results Test](https://search.google.com/test/rich-results)
+- [x] Script JSON-LD `LocalBusiness` com nome, endereço, telefone, URL
+- [x] Script JSON-LD `Menu` com itens e preços do cardápio
+- [x] JSON validado no [Rich Results Test](https://search.google.com/test/rich-results)
 
 ---
 
 ### TODO-SEO-03 🟢 Criar robots.txt e sitemap.xml
 
+> ✅ **Concluído em:** 2026-03-03 às 22:53 (UTC-3)
+
 **Descrição:** Adicionar arquivos de diretivas para crawlers e mapa do site.
 
 **Critérios de aceitação:**
 
-- [ ] `robots.txt` com `Allow: /` e referência ao sitemap
-- [ ] `sitemap.xml` com URL principal e data de última modificação
+- [x] `robots.txt` com `Allow: /` e referência ao sitemap
+- [x] `sitemap.xml` com URL principal e data de última modificação
 
 ---
 
