@@ -188,48 +188,56 @@ salgados_da_elza/
 
 ### TODO-SEC-01 🔴 Implementar Content Security Policy (CSP)
 
+> ✅ **Concluído em:** 2026-03-03 às 22:17 (UTC-3)
+
 **Descrição:** Adicionar CSP via `<meta>` tag para mitigar XSS e data injection (OWASP A03 — Injection).
 
 **Critérios de aceitação:**
 
-- [ ] Meta tag CSP adicionada ao `<head>` com diretivas `default-src`, `style-src`, `img-src`, `font-src`
-- [ ] Apenas origens confiáveis permitidas (self, Google Fonts, WhatsApp API)
-- [ ] Nenhum `unsafe-inline` desnecessário (exceto estilos necessários)
+- [x] Meta tag CSP adicionada ao `<head>` com diretivas `default-src`, `style-src`, `img-src`, `font-src`
+- [x] Apenas origens confiáveis permitidas (self, Google Fonts, WhatsApp API)
+- [x] Nenhum `unsafe-inline` desnecessário (exceto estilos necessários)
 
 ---
 
 ### TODO-SEC-02 🔴 Adicionar security headers via meta tags
 
+> ✅ **Concluído em:** 2026-03-03 às 22:19 (UTC-3)
+
 **Descrição:** Configurar headers de segurança para defesa em profundidade (OWASP A05 — Security Misconfiguration).
 
 **Critérios de aceitação:**
 
-- [ ] `X-Content-Type-Options: nosniff` configurado
-- [ ] `Referrer-Policy: strict-origin-when-cross-origin` configurado
-- [ ] `Permissions-Policy` configurado (restringir camera, microphone, geolocation)
+- [x] `X-Content-Type-Options: nosniff` configurado
+- [x] `Referrer-Policy: strict-origin-when-cross-origin` configurado
+- [x] `Permissions-Policy` configurado (restringir camera, microphone, geolocation)
 
 ---
 
 ### TODO-SEC-03 🔴 Eliminar dependências externas não confiáveis
 
+> ✅ **Concluído em:** 2026-03-03 às 22:22 (UTC-3)
+
 **Descrição:** Substituir URLs S3 externas por imagens locais (OWASP A08 — Software and Data Integrity Failures).
 
 **Critérios de aceitação:**
 
-- [ ] Todas as 4 URLs `agi-prod-file-upload-public-main-use1.s3.amazonaws.com` substituídas por caminhos locais
-- [ ] Imagens servidas exclusivamente do repositório local
-- [ ] Nenhuma referência a domínios S3 remanescente no código
+- [x] Todas as 4 URLs `agi-prod-file-upload-public-main-use1.s3.amazonaws.com` substituídas por caminhos locais
+- [x] Imagens servidas exclusivamente do repositório local
+- [x] Nenhuma referência a domínios S3 remanescente no código
 
 ---
 
 ### TODO-SEC-04 🟡 Sanitizar links externos
 
+> ✅ **Concluído em:** 2026-03-03 às 22:22 (UTC-3)
+
 **Descrição:** Garantir que todos os links para domínios externos usem atributos de segurança.
 
 **Critérios de aceitação:**
 
-- [ ] Todos os `<a>` com `target="_blank"` possuem `rel="noopener noreferrer"`
-- [ ] Links WhatsApp validados e seguros
+- [x] Todos os `<a>` com `target="_blank"` possuem `rel="noopener noreferrer"`
+- [x] Links WhatsApp validados e seguros
 
 ---
 
