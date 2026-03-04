@@ -1,0 +1,335 @@
+/* ============================================================
+   SEÇÃO 1: VARIÁVEIS (Custom Properties / Design Tokens)
+   ============================================================
+   Por quê? Centralizar cores e fontes em variáveis CSS facilita
+   a manutenção. Se quisermos mudar uma cor, alteramos em UM lugar
+   e toda a página reflete a mudança automaticamente.
+
+   Como funciona? O :root é o elemento raiz do HTML (<html>).
+   Variáveis definidas aqui ficam disponíveis em TODO o CSS
+   usando var(--nome-da-variavel).
+   ============================================================ */
+
+:root {
+  --color-primary: #8b7355;
+  --color-secondary: #d4af77;
+  --color-background: #faf7f2;
+  --color-surface: #ffffff;
+  --color-text: #3e2723;
+  --color-text-secondary: #6d4c41;
+  --font-main: "Georgia", serif;
+  --font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ============================================================
+   SEÇÃO 2: RESET & BASE
+   ============================================================
+   Por quê? Cada navegador aplica seus próprios estilos padrão
+   (margens, paddings, tamanhos de fonte). O reset garante que
+   nosso site tenha a MESMA aparência em todos os navegadores.
+
+   O que faz? Remove margens e paddings padrão e define
+   box-sizing: border-box para que padding e border sejam
+   incluídos no tamanho total do elemento (mais intuitivo).
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-secondary);
+  background: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   SEÇÃO 3: LAYOUT (Header, Container, Footer)
+   ============================================================
+   Por quê? Estas regras definem a estrutura geral da página —
+   como o conteúdo é organizado em grandes blocos visuais.
+
+   .header  → Barra superior com título e subtítulo
+   .container → Limita a largura do conteúdo e centraliza
+   .footer  → Rodapé com créditos
+   ============================================================ */
+
+/* --- Header: gradiente com as cores da marca --- */
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  color: white;
+  text-align: center;
+  padding: 48px 20px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-family: var(--font-main);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.header p {
+  font-size: 1rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* --- Container: centraliza o conteúdo com largura máxima --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* --- Footer: texto centralizado e discreto --- */
+.footer {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   SEÇÃO 4: COMPONENTES (Intro, Product Cards, CTA, WhatsApp)
+   ============================================================
+   Por quê? Componentes são blocos reutilizáveis de interface.
+   Separar seus estilos facilita encontrar e modificar cada
+   parte da página de forma independente.
+   ============================================================ */
+
+/* --- Intro: bloco de apresentação no topo --- */
+.intro {
+  background: var(--color-surface);
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.intro p {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Destaque visual para palavras-chave no texto de introdução */
+.intro .highlight {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* --- Product Cards: seções de produto com foto e texto ---
+   Usam flexbox para colocar imagem e texto lado a lado.
+   A classe .reverse inverte a ordem (texto-esquerda, foto-direita). */
+.product-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 60px;
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.product-section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Imagem do produto: ocupa 45% da largura do card */
+.product-image {
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+
+/* object-fit: cover garante que a imagem preencha o espaço
+   sem distorcer, cortando o excesso se necessário */
+.product-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Conteúdo textual do produto: flex: 1 ocupa o espaço restante */
+.product-content {
+  flex: 1;
+}
+
+.product-title {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* --- Sabores: caixa com lista de sabores disponíveis ---
+   border-left cria uma borda lateral decorativa */
+.product-flavors {
+  background: var(--color-background);
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid var(--color-secondary);
+}
+
+.product-flavors h4 {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.product-flavors ul {
+  list-style: none;
+  padding: 0;
+}
+
+.product-flavors li {
+  padding: 6px 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Pseudo-elemento ::before adiciona o bullet personalizado
+   antes de cada item da lista */
+.product-flavors li::before {
+  content: "• ";
+  color: var(--color-secondary);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* --- CTA (Call to Action): seção de pedido via WhatsApp --- */
+.cta-section {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  color: white;
+  padding: 48px 32px;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 60px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-section h2 {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  opacity: 0.95;
+}
+
+/* --- Botão WhatsApp: destaque verde com efeito hover ---
+   transition suaviza a mudança de cor e posição ao passar o mouse */
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25d366;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+/* Efeito hover: cor mais escura + sobe 2px + sombra maior */
+.whatsapp-btn:hover {
+  background: #22be5b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+/* Ícone SVG do WhatsApp dentro do botão */
+.whatsapp-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================================
+   SEÇÃO 5: RESPONSIVIDADE (Media Queries)
+   ============================================================
+   Por quê? Garante que o site funcione bem em telas menores
+   (celulares e tablets). Usamos @media para aplicar regras
+   CSS SOMENTE quando a largura da tela é menor que 768px.
+
+   O que muda no mobile?
+   - Título menor (2.5rem → 1.8rem)
+   - Cards empilhados (flex-direction: column)
+   - Imagens ocupam 100% da largura
+   - Preços e subtítulos com fontes menores
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .product-section,
+  .product-section.reverse {
+    flex-direction: column;
+  }
+
+  .product-image {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .product-image img {
+    height: 280px;
+  }
+
+  .product-title {
+    font-size: 1.6rem;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+}
