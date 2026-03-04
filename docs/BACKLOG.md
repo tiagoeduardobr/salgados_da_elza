@@ -48,19 +48,19 @@
 
 ## 🤖 Contexto do Projeto (para referência de IA)
 
-| Diretriz | Descrição |
-| :--- | :--- |
-| **Perfil** | Usuário em aprendizado de programação — projeto pessoal com teor acadêmico |
-| **Explicações** | Sempre explicar **o porquê** de cada implementação e decisão técnica |
-| **Comentários** | Código deve conter comentários **didáticos e detalhados** em pt-BR |
-| **Idioma docs** | Documentação, planejamento e comentários no código em **pt-BR** |
-| **Idioma código** | Código-fonte, variáveis, classes CSS e termos técnicos em **inglês** |
-| **Segurança** | Seguir **OWASP Top 10** e boas práticas de segurança web |
-| **Qualidade** | Código profissional, limpo, bem estruturado e justificado |
-| **Commits** | Semânticos (Conventional Commits), **sempre em inglês** |
-| **Branches** | Uma branch por TODO — criar no início, merge + push + cleanup no final |
-| **Git** | **Nunca empilhar** comandos git (um por vez) |
-| **Markdown** | Tabelas com espaços nos pipes, blocos de código com linguagem especificada |
+| Diretriz          | Descrição                                                                  |
+| :---------------- | :------------------------------------------------------------------------- |
+| **Perfil**        | Usuário em aprendizado de programação — projeto pessoal com teor acadêmico |
+| **Explicações**   | Sempre explicar **o porquê** de cada implementação e decisão técnica       |
+| **Comentários**   | Código deve conter comentários **didáticos e detalhados** em pt-BR         |
+| **Idioma docs**   | Documentação, planejamento e comentários no código em **pt-BR**            |
+| **Idioma código** | Código-fonte, variáveis, classes CSS e termos técnicos em **inglês**       |
+| **Segurança**     | Seguir **OWASP Top 10** e boas práticas de segurança web                   |
+| **Qualidade**     | Código profissional, limpo, bem estruturado e justificado                  |
+| **Commits**       | Semânticos (Conventional Commits), **sempre em inglês**                    |
+| **Branches**      | Uma branch por TODO — criar no início, merge + push + cleanup no final     |
+| **Git**           | **Nunca empilhar** comandos git (um por vez)                               |
+| **Markdown**      | Tabelas com espaços nos pipes, blocos de código com linguagem especificada |
 
 ---
 
@@ -68,15 +68,15 @@
 
 ### Conventional Commits (sempre em inglês)
 
-| Tipo | Uso |
-| :--- | :--- |
-| `feat` | Nova funcionalidade |
-| `fix` | Correção de bug |
-| `docs` | Alteração em documentação |
-| `style` | Formatação, sem mudança de lógica |
+| Tipo       | Uso                                      |
+| :--------- | :--------------------------------------- |
+| `feat`     | Nova funcionalidade                      |
+| `fix`      | Correção de bug                          |
+| `docs`     | Alteração em documentação                |
+| `style`    | Formatação, sem mudança de lógica        |
 | `refactor` | Refatoração sem mudança de comportamento |
-| `perf` | Melhoria de performance |
-| `chore` | Tarefas de manutenção, build, configs |
+| `perf`     | Melhoria de performance                  |
+| `chore`    | Tarefas de manutenção, build, configs    |
 
 **Formato:** `<tipo>(<escopo>): <descrição>`
 **Exemplo:** `feat(structure): reorganize project directory layout`
@@ -94,21 +94,40 @@
 8. git merge feat/TODO-XX-NN
 9. git push origin main
 10. git branch -d feat/TODO-XX-NN
-11. git push origin --delete feat/TODO-XX-NN
+11. Marcar o TODO como concluído no BACKLOG.md (ver regra abaixo)
 ```
 
 > ⚠️ **NUNCA empilhar comandos git** — executar um por vez, aguardar conclusão.
+
+### Marcação de TODO concluído
+
+Ao finalizar um TODO, **antes de iniciar o próximo**, marcar no BACKLOG.md:
+
+1. Trocar todos os `- [ ]` dos critérios de aceitação por `- [x]`
+2. Adicionar uma linha de conclusão logo após o título do TODO:
+
+```markdown
+> ✅ **Concluído em:** AAAA-MM-DD às HH:MM (fuso local)
+```
+
+**Exemplo:**
+
+```markdown
+### TODO-S-01 🟡 Criar estrutura de diretórios profissional
+
+> ✅ **Concluído em:** 2026-03-03 às 21:42 (UTC-3)
+```
 
 ---
 
 ## 📋 Legenda
 
-| Símbolo | Significado |
-| :---: | :--- |
-| 🔴 | Prioridade **Crítica** |
-| 🟡 | Prioridade **Alta** |
-| 🟢 | Prioridade **Média** |
-| 🔵 | Prioridade **Baixa** |
+|   Símbolo   | Significado                 |
+| :---------: | :-------------------------- |
+|     🔴      | Prioridade **Crítica**      |
+|     🟡      | Prioridade **Alta**         |
+|     🟢      | Prioridade **Média**        |
+|     🔵      | Prioridade **Baixa**        |
 | `TODO-X-##` | Identificador único do item |
 
 ---
@@ -118,6 +137,8 @@
 > Organizar a base de código para manutenibilidade e escalabilidade.
 
 ### TODO-S-01 🟡 Criar estrutura de diretórios profissional
+
+> ✅ **Concluído em:** 2026-03-03 às 21:42 (UTC-3)
 
 **Descrição:** Reorganizar arquivos do projeto em uma estrutura limpa e escalável.
 
@@ -140,9 +161,9 @@ salgados_da_elza/
 
 **Critérios de aceitação:**
 
-- [ ] Diretórios `assets/images/` e `styles/` criados
-- [ ] Imagens `.jpeg` movidas da raiz para `assets/images/`
-- [ ] Nomes de arquivos de imagem normalizados (sem espaços, lowercase)
+- [x] Diretórios `assets/images/` e `styles/` criados
+- [x] Imagens `.jpeg` movidas da raiz para `assets/images/`
+- [x] Nomes de arquivos de imagem normalizados (sem espaços, lowercase)
 
 ---
 
@@ -376,11 +397,11 @@ salgados_da_elza/
 
 ## Resumo de Prioridades
 
-| Prioridade | Itens | Fase |
-| :---: | :--- | :--- |
-| 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03 | Segurança |
-| 🟡 Alta | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02 | Estrutura, A11Y, SEO, Perf, UI |
-| 🟢 Média | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04 | SEO, Perf, UI |
+| Prioridade | Itens                                                                                                            | Fase                           |
+| :--------: | :--------------------------------------------------------------------------------------------------------------- | :----------------------------- |
+| 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03                                                                            | Segurança                      |
+|  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02 | Estrutura, A11Y, SEO, Perf, UI |
+|  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04                                     | SEO, Perf, UI                  |
 
 ---
 
