@@ -36,6 +36,9 @@
       "Dogão",
       "variavel",
       "whatsapp",
+      "urlset",
+      "lastmod",
+      "changefreq",
     ],
     "emmet.includeLanguages": {
       "html": "html",
