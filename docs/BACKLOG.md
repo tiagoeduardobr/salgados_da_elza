@@ -169,14 +169,16 @@ salgados_da_elza/
 
 ### TODO-S-02 🟡 Extrair CSS inline para arquivo externo
 
+> ✅ **Concluído em:** 2026-03-03 às 22:08 (UTC-3)
+
 **Descrição:** Separar todo o CSS do bloco `<style>` em `index.html` para `styles/main.css`.
 
 **Critérios de aceitação:**
 
-- [ ] Arquivo `styles/main.css` criado com todo o CSS extraído
-- [ ] Bloco `<style>` removido do `index.html`
-- [ ] `<link rel="stylesheet" href="styles/main.css">` adicionado ao `<head>`
-- [ ] CSS organizado em seções com comentários: Reset, Layout, Components, Responsive
+- [x] Arquivo `styles/main.css` criado com todo o CSS extraído
+- [x] Bloco `<style>` removido do `index.html`
+- [x] `<link rel="stylesheet" href="styles/main.css">` adicionado ao `<head>`
+- [x] CSS organizado em seções com comentários: Reset, Layout, Components, Responsive
 
 ---
 
