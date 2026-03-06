@@ -17,8 +17,27 @@
   --color-surface: #ffffff;
   --color-text: #3e2723;
   --color-text-secondary: #6d4c41;
-  --font-main: "Georgia", serif;
-  --font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Fontes premium do Google Fonts (carregadas no index.html)
+     Playfair Display: serifa elegante para títulos
+     Inter: sans-serif moderna e legível para texto corrido
+     Fallbacks: fontes do sistema para exibição imediata (Flash of Unstyled Text) */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Escala tipográfica modular (ratio 1.25 — "Major Third")
+     Cada nível é 1.25× maior que o anterior, criando uma
+     hierarquia visual harmoniosa e profissional.
+     Base: 1rem (16px) */
+  --text-xs: 0.8rem; /* 12.8px — labels, captions */
+  --text-sm: 0.9rem; /* 14.4px — texto secundário */
+  --text-base: 1rem; /* 16px   — corpo do texto */
+  --text-md: 1.1rem; /* 17.6px — texto de destaque */
+  --text-lg: 1.25rem; /* 20px   — subtítulos */
+  --text-xl: 1.563rem; /* 25px   — títulos de seção (h3) */
+  --text-2xl: 1.953rem; /* 31.2px — títulos principais (h2) */
+  --text-3xl: 2.441rem; /* 39px   — título hero (h1) */
 }
 
 /* ============================================================
@@ -40,7 +59,7 @@
 }
 
 body {
-  font-family: var(--font-secondary);
+  font-family: var(--font-body);
   background: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
@@ -94,15 +113,15 @@ a:focus-visible {
 }
 
 .header h1 {
-  font-family: var(--font-main);
-  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin-bottom: 12px;
 }
 
 .header p {
-  font-size: 1rem;
+  font-size: var(--text-md);
   opacity: 0.95;
   max-width: 600px;
   margin: 0 auto;
@@ -121,7 +140,7 @@ a:focus-visible {
   text-align: center;
   padding: 32px 20px;
   color: var(--color-text-secondary);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
 }
 
 /* ============================================================
@@ -143,7 +162,7 @@ a:focus-visible {
 }
 
 .intro p {
-  font-size: 1.05rem;
+  font-size: var(--text-md);
   color: var(--color-text-secondary);
   line-height: 1.7;
 }
@@ -194,15 +213,15 @@ a:focus-visible {
 }
 
 .product-title {
-  font-family: var(--font-main);
-  font-size: 2rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
   color: var(--color-primary);
   margin-bottom: 16px;
   font-weight: 400;
 }
 
 .product-description {
-  font-size: 1rem;
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
   margin-bottom: 20px;
   line-height: 1.7;
@@ -225,7 +244,7 @@ a:focus-visible {
 }
 
 .product-flavors h4 {
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   color: var(--color-text);
   margin-bottom: 12px;
   text-transform: uppercase;
@@ -241,7 +260,7 @@ a:focus-visible {
 .product-flavors li {
   padding: 6px 0;
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
 }
 
 /* Pseudo-elemento ::before adiciona o bullet personalizado
@@ -269,14 +288,14 @@ a:focus-visible {
 }
 
 .cta-section h2 {
-  font-family: var(--font-main);
-  font-size: 2rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
   margin-bottom: 16px;
   font-weight: 400;
 }
 
 .cta-section p {
-  font-size: 1.1rem;
+  font-size: var(--text-md);
   margin-bottom: 28px;
   opacity: 0.95;
 }
@@ -292,7 +311,7 @@ a:focus-visible {
   padding: 16px 32px;
   border-radius: 50px;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: var(--text-md);
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
@@ -315,7 +334,7 @@ a:focus-visible {
    (extraído de inline style para permitir CSP sem unsafe-inline) */
 .cta-phone {
   margin-top: 20px;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
 }
 
 /* ============================================================
@@ -334,7 +353,7 @@ a:focus-visible {
 
 @media (max-width: 768px) {
   .header h1 {
-    font-size: 1.8rem;
+    font-size: var(--text-2xl);
   }
 
   .product-section,
@@ -352,14 +371,14 @@ a:focus-visible {
   }
 
   .product-title {
-    font-size: 1.6rem;
+    font-size: var(--text-xl);
   }
 
   .product-price {
-    font-size: 1.5rem;
+    font-size: var(--text-xl);
   }
 
   .cta-section h2 {
-    font-size: 1.5rem;
+    font-size: var(--text-xl);
   }
 }
