@@ -1,453 +1,103 @@
-<!-- ======================================================================
-     🤖 CONTEXTO PARA IA — Instruções para assistentes em novos chats
-     ======================================================================
+# 🥟 Salgados da Elza — E-commerce Backlog
 
-     📌 PERFIL DO USUÁRIO
-     - O usuário está aprendendo programação.
-     - Este projeto tem uso pessoal E teor acadêmico.
-     - SEMPRE explique O PORQUÊ de cada implementação e decisão técnica.
-     - Adicione comentários DIDÁTICOS e detalhados no código para facilitar
-       o aprendizado (o que faz, por que faz, como funciona).
-
-     📌 CONVENÇÕES DE IDIOMA
-     - Documentação e planejamento: pt-BR
-     - Código-fonte, nomes de variáveis, classes CSS e termos técnicos: inglês
-     - Comentários no código: pt-BR (para fins didáticos)
-
-     📌 DIRETRIZES DE DESENVOLVIMENTO
-     - Seguir OWASP Top 10 e boas práticas de segurança.
-     - Código profissional, limpo e bem estruturado.
-     - Priorizar acessibilidade (WCAG 2.1) e SEO.
-     - Cada mudança deve ser justificada e explicada.
-
-     📌 REGRAS DE VERSIONAMENTO (GIT)
-     - Commits semânticos (Conventional Commits) SEMPRE em inglês.
-     - NUNCA empilhar comandos git (um comando por vez).
-     - Criar uma branch separada para CADA TODO (ex: feat/TODO-S-01).
-     - Criar a branch no INÍCIO do TODO.
-     - Fazer merge na main e push no FINAL do TODO.
-     - Deletar a branch local e remota após o merge.
-     - Formato: <tipo>(<escopo>): <descrição>
-       Tipos: feat, fix, docs, style, refactor, perf, chore
-
-     📌 REGRAS DE DOCUMENTAÇÃO MARKDOWN
-     - Tabelas: SEMPRE usar espaços ao redor dos pipes e alinhadores.
-       Correto:   | Header | Header |
-                  | :--- | :--- |
-       Incorreto: |:---|:---|
-     - Blocos de código: SEMPRE especificar a linguagem (text, html, css, etc).
-     - Manter uma linha em branco antes e depois de headings, listas e blocos.
-
-     ====================================================================== -->
-
-# 🥟 Salgados da Elza — Backlog de Profissionalização
-
-> **Objetivo:** Elevar o projeto de landing page estática a nível profissional, aplicando OWASP Top 10, acessibilidade WCAG 2.1, SEO avançado, performance e design premium.
+> **Objetivo:** Evoluir a landing page estática (MVP) em uma plataforma E-commerce funcional, com integrações de pagamento (Mercado Pago), carrinho dinâmico e um painel de administração completo (CMS, Controle de Estoque e Dashboard Financeiro).
 >
-> **Convenção de idioma:** Documentação em pt-BR · Código e termos técnicos em inglês
-
-## 🤖 Contexto do Projeto (para referência de IA)
-
-| Diretriz          | Descrição                                                                  |
-| :---------------- | :------------------------------------------------------------------------- |
-| **Perfil**        | Usuário em aprendizado de programação — projeto pessoal com teor acadêmico |
-| **Explicações**   | Sempre explicar **o porquê** de cada implementação e decisão técnica       |
-| **Comentários**   | Código deve conter comentários **didáticos e detalhados** em pt-BR         |
-| **Idioma docs**   | Documentação, planejamento e comentários no código em **pt-BR**            |
-| **Idioma código** | Código-fonte, variáveis, classes CSS e termos técnicos em **inglês**       |
-| **Segurança**     | Seguir **OWASP Top 10** e boas práticas de segurança web                   |
-| **Qualidade**     | Código profissional, limpo, bem estruturado e justificado                  |
-| **Commits**       | Semânticos (Conventional Commits), **sempre em inglês**                    |
-| **Branches**      | Uma branch por TODO — criar no início, merge + push + cleanup no final     |
-| **Git**           | **Nunca empilhar** comandos git (um por vez)                               |
-| **Markdown**      | Tabelas com espaços nos pipes, blocos de código com linguagem especificada |
+> 🤖 **Nota para IA:** Leia as regras e diretrizes de desenvolvimento no arquivo `docs/AI_CONTEXT.md` antes de atuar.
 
 ---
 
-## 🔀 Regras de Versionamento (Git)
+## Fase 1: Fundação do Sistema Dinâmico (Backend & Frontend Framework)
 
-### Conventional Commits (sempre em inglês)
+### TODO-ECO-01 🔴 Setup do Repositório Frontend e Backend
 
-| Tipo       | Uso                                      |
-| :--------- | :--------------------------------------- |
-| `feat`     | Nova funcionalidade                      |
-| `fix`      | Correção de bug                          |
-| `docs`     | Alteração em documentação                |
-| `style`    | Formatação, sem mudança de lógica        |
-| `refactor` | Refatoração sem mudança de comportamento |
-| `perf`     | Melhoria de performance                  |
-| `chore`    | Tarefas de manutenção, build, configs    |
+**Descrição:** Migrar o HTML/CSS atual para um framework SPA (ex: Next.js) e criar a base do backend (ex: Node.js/NestJS ou servidor Serverless).
 
-**Formato:** `<tipo>(<escopo>): <descrição>`
-**Exemplo:** `feat(structure): reorganize project directory layout`
+- [ ] Inicializar boilerplate web moderno (Next.js/React).
+- [ ] Portar os componentes estáticos do MVP (Header, Cards, Footer) para componentes React.
+- [ ] Inicializar estrutura de rotas da API/Backend.
+- [ ] Configurar ORM (Prisma/TypeORM) e banco de dados relacional (PostgreSQL).
 
-### Workflow por TODO
+### TODO-ECO-02 🔴 Autenticação e Segurança
 
-```text
-1. git checkout main
-2. git pull origin main
-3. git checkout -b feat/TODO-XX-NN
-4. ... (implementar o TODO)
-5. git add <arquivos>
-6. git commit -m "tipo(escopo): descrição"
-7. git checkout main
-8. git merge feat/TODO-XX-NN
-9. git push origin main
-10. git branch -d feat/TODO-XX-NN
-11. Marcar o TODO como concluído no BACKLOG.md (ver regra abaixo)
-```
+**Descrição:** Implementar sistema de login seguro para acessar a área de administração.
 
-> ⚠️ **NUNCA empilhar comandos git** — executar um por vez, aguardar conclusão.
-
-### Marcação de TODO concluído
-
-Ao finalizar um TODO, **antes de iniciar o próximo**, marcar no BACKLOG.md:
-
-1. Trocar todos os `- [ ]` dos critérios de aceitação por `- [x]`
-2. Adicionar uma linha de conclusão logo após o título do TODO:
-
-```markdown
-> ✅ **Concluído em:** AAAA-MM-DD às HH:MM (fuso local)
-```
-
-**Exemplo:**
-
-```markdown
-### TODO-S-01 🟡 Criar estrutura de diretórios profissional
-
-> ✅ **Concluído em:** 2026-03-03 às 21:42 (UTC-3)
-```
+- [ ] Implementar fluxo JWT com Refresh Tokens.
+- [ ] Proteger rotas da API de administração.
+- [ ] Configurar hashing seguro de senhas (Argon2/Bcrypt) e proteções de força bruta.
 
 ---
 
-## 📋 Legenda
+## Fase 2: Gestão de Catálogo (Admin CMS)
 
-|   Símbolo   | Significado                 |
-| :---------: | :-------------------------- |
-|     🔴      | Prioridade **Crítica**      |
-|     🟡      | Prioridade **Alta**         |
-|     🟢      | Prioridade **Média**        |
-|     🔵      | Prioridade **Baixa**        |
-| `TODO-X-##` | Identificador único do item |
+### TODO-ECO-03 🟡 CRUD de Produtos
 
----
+**Descrição:** Interface administrativa para que a Elza gerencie o catálogo de salgados.
 
-## Fase 1 — Reestruturação do Projeto
+- [ ] Modelagem do banco de dados para `Products` e `Categories`.
+- [ ] API endpoints para Criar, Ler, Atualizar e Deletar produtos.
+- [ ] Interface visual do Admin para listar produtos com filtros/paginação.
+- [ ] Formulário integrado de edição avançada (com upload em bucket S3/Cloudinary).
 
-> Organizar a base de código para manutenibilidade e escalabilidade.
+### TODO-ECO-04 🟡 Controle de Estoque
 
-### TODO-S-01 🟡 Criar estrutura de diretórios profissional
+**Descrição:** Rastreamento dinâmico do número de salgados disponíveis.
 
-> ✅ **Concluído em:** 2026-03-03 às 21:42 (UTC-3)
-
-**Descrição:** Reorganizar arquivos do projeto em uma estrutura limpa e escalável.
-
-**Estrutura alvo:**
-
-```text
-salgados_da_elza/
-├── assets/
-│   └── images/           # Imagens dos produtos
-├── docs/
-│   └── BACKLOG.md        # Este arquivo
-├── styles/
-│   └── main.css          # Stylesheet principal
-├── index.html            # Página principal
-├── robots.txt            # Diretivas para crawlers
-├── sitemap.xml           # Mapa do site
-├── manifest.json         # Web App manifest
-└── README.md
-```
-
-**Critérios de aceitação:**
-
-- [x] Diretórios `assets/images/` e `styles/` criados
-- [x] Imagens `.jpeg` movidas da raiz para `assets/images/`
-- [x] Nomes de arquivos de imagem normalizados (sem espaços, lowercase)
+- [ ] Adicionar entidade de estoque aos salgados com status (Ativo/Esgotado).
+- [ ] Regras de decréscimo automático mediante reserva em carrinho ou confirmação de compra.
+- [ ] Alertas visuais de "Estoque Baixo" no dashboard.
 
 ---
 
-### TODO-S-02 🟡 Extrair CSS inline para arquivo externo
+## Fase 3: Personalização e CMS Global (Admin)
 
-> ✅ **Concluído em:** 2026-03-03 às 22:08 (UTC-3)
+### TODO-ECO-05 🟡 Configurações e White-label Customization
 
-**Descrição:** Separar todo o CSS do bloco `<style>` em `index.html` para `styles/main.css`.
+**Descrição:** Área do admin para alterar aspectos visuais e de texto do frontend, evitando deploy a cada mudança.
 
-**Critérios de aceitação:**
-
-- [x] Arquivo `styles/main.css` criado com todo o CSS extraído
-- [x] Bloco `<style>` removido do `index.html`
-- [x] `<link rel="stylesheet" href="styles/main.css">` adicionado ao `<head>`
-- [x] CSS organizado em seções com comentários: Reset, Layout, Components, Responsive
+- [ ] Painel para alterar textos dinâmicos (Frase de Introdução, Termos, Horários).
+- [ ] Seção para customizar variáveis globais (Cor Primária, Cor de Destaque).
+- [ ] Salvar essas preferências de forma global no banco de dados e aplicar no SSR do frontend.
 
 ---
 
-## Fase 2 — Segurança (OWASP Top 10)
+## Fase 4: Experiência do Usuário (Cliente)
 
-> Aplicar hardening de segurança relevante para sites estáticos.
+### TODO-ECO-06 🟢 Sistema de Carrinho de Compras
 
-### TODO-SEC-01 🔴 Implementar Content Security Policy (CSP)
+**Descrição:** Capacidade do cliente visualizar e agrupar diferentes salgados na sua sessão.
 
-> ✅ **Concluído em:** 2026-03-03 às 22:17 (UTC-3)
-
-**Descrição:** Adicionar CSP via `<meta>` tag para mitigar XSS e data injection (OWASP A03 — Injection).
-
-**Critérios de aceitação:**
-
-- [x] Meta tag CSP adicionada ao `<head>` com diretivas `default-src`, `style-src`, `img-src`, `font-src`
-- [x] Apenas origens confiáveis permitidas (self, Google Fonts, WhatsApp API)
-- [x] Nenhum `unsafe-inline` desnecessário (exceto estilos necessários)
+- [ ] Implementar state management local do carrinho.
+- [ ] Sidebar animada exibindo itens do carrinho, quantidades e sub-total.
+- [ ] Persistência de carrinho na sessão do usuário ou Storage.
 
 ---
 
-### TODO-SEC-02 🔴 Adicionar security headers via meta tags
+## Fase 5: Checkout e Integração Financeira
 
-> ✅ **Concluído em:** 2026-03-03 às 22:19 (UTC-3)
+### TODO-ECO-07 🔴 Integração Mercado Pago
 
-**Descrição:** Configurar headers de segurança para defesa em profundidade (OWASP A05 — Security Misconfiguration).
+**Descrição:** Integração pesada para receber pagamentos via PIX e Cartões nativamente, sem sair do site.
 
-**Critérios de aceitação:**
+- [ ] Gerar Access Token e registrar Webhooks da API do Mercado Pago.
+- [ ] Fluxo backend de geração de PIX copia-e-cola / QR Code transparente.
+- [ ] Fluxo frontend do Checkout Transparente (Cartões de Crédito).
+- [ ] Listener no webhooks do MP para atualizar o status do pedido `(Pending -> Paid)`.
 
-- [x] `X-Content-Type-Options: nosniff` configurado
-- [x] `Referrer-Policy: strict-origin-when-cross-origin` configurado
-- [x] `Permissions-Policy` configurado (restringir camera, microphone, geolocation)
+### TODO-ECO-08 🟡 Fluxo de Notificações
 
----
+**Descrição:** Alertar o cliente e a dona Elza quando vendas são concluídas.
 
-### TODO-SEC-03 🔴 Eliminar dependências externas não confiáveis
-
-> ✅ **Concluído em:** 2026-03-03 às 22:22 (UTC-3)
-
-**Descrição:** Substituir URLs S3 externas por imagens locais (OWASP A08 — Software and Data Integrity Failures).
-
-**Critérios de aceitação:**
-
-- [x] Todas as 4 URLs `agi-prod-file-upload-public-main-use1.s3.amazonaws.com` substituídas por caminhos locais
-- [x] Imagens servidas exclusivamente do repositório local
-- [x] Nenhuma referência a domínios S3 remanescente no código
+- [ ] Envio automático de E-mail ou WhatsApp transacional.
+- [ ] Tela visualística de acompanhamento de pedido ("Seu pedido está no forno").
 
 ---
 
-### TODO-SEC-04 🟡 Sanitizar links externos
+## Fase 6: Analytics Empresarial (Admin)
 
-> ✅ **Concluído em:** 2026-03-03 às 22:22 (UTC-3)
+### TODO-ECO-09 🟢 Dashboard de Vendas e Fluxo de Caixa
 
-**Descrição:** Garantir que todos os links para domínios externos usem atributos de segurança.
+**Descrição:** Gráficos e tabelas na área de administração para resumir a saúde financeira.
 
-**Critérios de aceitação:**
-
-- [x] Todos os `<a>` com `target="_blank"` possuem `rel="noopener noreferrer"`
-- [x] Links WhatsApp validados e seguros
-
----
-
-## Fase 3 — Acessibilidade (WCAG 2.1) & SEO
-
-> Tornar o site acessível e otimizado para mecanismos de busca.
-
-### TODO-A11Y-01 🟡 Implementar HTML semântico
-
-> ✅ **Concluído em:** 2026-03-03 às 22:42 (UTC-3)
-
-**Descrição:** Substituir `<div>` genéricos por elementos semânticos HTML5.
-
-**Critérios de aceitação:**
-
-- [x] `<main>` envolvendo conteúdo principal
-- [x] `<section>` para cada grupo de conteúdo com `aria-label`
-- [x] `<article>` para cada card de produto
-- [x] `<header>` e `<footer>` mantidos (já existem)
-- [x] Hierarquia de headings correta: único `<h1>`, `<h2>` por seção, `<h3>` por produto
-
----
-
-### TODO-A11Y-02 🟡 Melhorar atributos de acessibilidade
-
-> ✅ **Concluído em:** 2026-03-03 às 22:42 (UTC-3)
-
-**Descrição:** Adicionar atributos ARIA e melhorar textos alternativos.
-
-**Critérios de aceitação:**
-
-- [x] Atributos `alt` descritivos em todas as imagens (ex: "Salgado Pizza Gourmet assado dourado")
-- [x] `aria-label` nos links de navegação e CTA
-- [x] `role="img"` no SVG do ícone WhatsApp com `aria-hidden="true"`
-- [x] Foco visível mantido em elementos interativos
-
----
-
-### TODO-SEO-01 🟡 Adicionar meta tags avançadas
-
-> ✅ **Concluído em:** 2026-03-03 às 22:47 (UTC-3)
-
-**Descrição:** Implementar Open Graph, Twitter Cards e meta description.
-
-**Critérios de aceitação:**
-
-- [x] `<meta name="description">` com descrição otimizada
-- [x] Tags Open Graph: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`
-- [x] Tags Twitter: `twitter:card`, `twitter:title`, `twitter:description`
-- [x] `<link rel="canonical">` adicionado
-
----
-
-### TODO-SEO-02 🟢 Adicionar dados estruturados Schema.org
-
-> ✅ **Concluído em:** 2026-03-03 às 22:52 (UTC-3)
-
-**Descrição:** Implementar JSON-LD com schemas `LocalBusiness` e `Menu`.
-
-**Critérios de aceitação:**
-
-- [x] Script JSON-LD `LocalBusiness` com nome, endereço, telefone, URL
-- [x] Script JSON-LD `Menu` com itens e preços do cardápio
-- [x] JSON validado no [Rich Results Test](https://search.google.com/test/rich-results)
-
----
-
-### TODO-SEO-03 🟢 Criar robots.txt e sitemap.xml
-
-> ✅ **Concluído em:** 2026-03-03 às 22:53 (UTC-3)
-
-**Descrição:** Adicionar arquivos de diretivas para crawlers e mapa do site.
-
-**Critérios de aceitação:**
-
-- [x] `robots.txt` com `Allow: /` e referência ao sitemap
-- [x] `sitemap.xml` com URL principal e data de última modificação
-
----
-
-## Fase 4 — Performance & PWA
-
-> Otimizar carregamento e experiência mobile.
-
-### TODO-PERF-01 🟡 Otimizar carregamento de imagens
-
-> ✅ **Concluído em:** 2026-03-05 às 21:50 (UTC-3)
-
-**Descrição:** Implementar lazy loading e dimensionamento adequado.
-
-**Critérios de aceitação:**
-
-- [x] `loading="lazy"` em todas as imagens (exceto above-the-fold)
-- [x] `width` e `height` explícitos para evitar CLS (Cumulative Layout Shift)
-- [x] Atributo `decoding="async"` adicionado
-
----
-
-### TODO-PERF-02 🟢 Criar Web App manifest
-
-> ✅ **Concluído em:** 2026-03-05 às 22:04 (UTC-3)
-
-**Descrição:** Adicionar `manifest.json` para experiência PWA-like.
-
-**Critérios de aceitação:**
-
-- [x] `manifest.json` com `name`, `short_name`, `theme_color`, `background_color`, `display`
-- [x] `<link rel="manifest">` adicionado ao `<head>`
-- [x] `<meta name="theme-color">` configurado
-
----
-
-### TODO-PERF-03 🟢 Otimizar carregamento de fontes
-
-> ✅ **Concluído em:** 2026-03-05 às 22:10 (UTC-3)
-
-**Descrição:** Implementar preconnect e font-display para Google Fonts.
-
-**Critérios de aceitação:**
-
-- [x] `<link rel="preconnect">` para `fonts.googleapis.com` e `fonts.gstatic.com`
-- [x] `font-display: swap` aplicado para evitar FOIT (Flash of Invisible Text)
-
----
-
-## Fase 5 — Design Premium
-
-> Elevar o visual a padrão profissional com design moderno.
-
-### TODO-UI-01 🟡 Implementar tipografia premium
-
-> ✅ **Concluído em:** 2026-03-05 às 22:28 (UTC-3)
-
-**Descrição:** Substituir fontes genéricas por Google Fonts curadas.
-
-**Critérios de aceitação:**
-
-- [x] **Playfair Display** para headings (elegância, serifa)
-- [x] **Inter** para body text (legibilidade, sans-serif moderna)
-- [x] Escala tipográfica harmoniosa (modular scale)
-- [x] Font fallbacks adequados definidos
-
----
-
-### TODO-UI-02 🟡 Refinar paleta de cores e visual
-
-> ✅ **Concluído em:** 2026-03-05 às 22:35 (UTC-3)
-
-**Descrição:** Criar uma paleta mais sofisticada e aplicar tratamento visual premium.
-
-**Critérios de aceitação:**
-
-- [x] Paleta refinada com tons quentes e acolhedores usando HSL
-- [x] Gradientes suaves aplicados em header e CTA
-- [x] Sombras em camadas (layered box-shadows) para profundidade
-- [x] Glassmorphism sutil nos cards de produto
-
----
-
-### TODO-UI-03 🟢 Adicionar animações e micro-interações
-
-> ✅ **Concluído em:** 2026-03-05 às 23:30 (UTC-3)
-
-**Descrição:** Implementar animações CSS puras para uma experiência dinâmica e envolvente.
-
-**Critérios de aceitação:**
-
-- [x] Animações `fade-in` / `slide-up` nos cards (via `@keyframes` + `animation`)
-- [x] Hover effects nos cards de produto (scale, shadow elevation)
-- [x] Pulse animation no botão WhatsApp
-- [x] Transições suaves em todos os elementos interativos
-- [x] `prefers-reduced-motion` respeitado para acessibilidade
-
----
-
-### TODO-UI-04 🟢 Melhorar responsividade mobile-first
-
-> ✅ **Concluído em:** 2026-03-06 às 00:30 (UTC-3)
-
-**Descrição:** Refatorar CSS para abordagem mobile-first com breakpoints otimizados.
-
-**Critérios de aceitação:**
-
-- [x] Base CSS para mobile (< 768px)
-- [x] Breakpoint padronizado `min-width: 768px` e `max-width` no container
-- [x] Cards empilhados no mobile, lado-a-lado no desktop
-- [x] Touch targets mínimo 44×44px
-
----
-
-## Resumo de Prioridades
-
-| Prioridade | Itens                                                                                                            | Fase                           |
-| :--------: | :--------------------------------------------------------------------------------------------------------------- | :----------------------------- |
-| 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03                                                                            | Segurança                      |
-|  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02 | Estrutura, A11Y, SEO, Perf, UI |
-|  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04                                     | SEO, Perf, UI                  |
-
----
-
-## Plano de Verificação
-
-### Testes no Browser
-
-- Abrir `index.html` no browser e validar renderização desktop + mobile
-- Verificar carregamento de imagens locais (nenhum request externo S3)
-- Confirmar CSP e headers de segurança via DevTools
-
-### Validação Externa
-
-- Validar HTML no [W3C Validator](https://validator.w3.org/)
-- Testar Schema.org no [Rich Results Test](https://search.google.com/test/rich-results)
-- Verificar Lighthouse scores (Performance ≥ 90, SEO ≥ 90, Accessibility ≥ 90)
+- [ ] Cards de métricas diárias, semanais e mensais (Receita Bruta x Ticket Médio).
+- [ ] Tabela cronológica dos pedidos detalhados.
+- [ ] Integração de gráficos estatísticos do fluxo de vendas (ex: Recharts).
