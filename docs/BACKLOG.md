@@ -384,14 +384,16 @@ salgados_da_elza/
 
 ### TODO-UI-02 🟡 Refinar paleta de cores e visual
 
+> ✅ **Concluído em:** 2026-03-05 às 22:35 (UTC-3)
+
 **Descrição:** Criar uma paleta mais sofisticada e aplicar tratamento visual premium.
 
 **Critérios de aceitação:**
 
-- [ ] Paleta refinada com tons quentes e acolhedores usando HSL
-- [ ] Gradientes suaves aplicados em header e CTA
-- [ ] Sombras em camadas (layered box-shadows) para profundidade
-- [ ] Glassmorphism sutil nos cards de produto
+- [x] Paleta refinada com tons quentes e acolhedores usando HSL
+- [x] Gradientes suaves aplicados em header e CTA
+- [x] Sombras em camadas (layered box-shadows) para profundidade
+- [x] Glassmorphism sutil nos cards de produto
 
 ---
 
