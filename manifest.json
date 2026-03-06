@@ -1,0 +1,9 @@
+{
+  "name": "Salgados da Elza",
+  "short_name": "Salgados Elza",
+  "description": "Salgados assados artesanais feitos com carinho em Blumenau, SC",
+  "start_url": "/salgados_da_elza/",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#8b7355"
+}
