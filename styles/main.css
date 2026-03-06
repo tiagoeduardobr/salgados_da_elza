@@ -69,8 +69,8 @@
   /* Glassmorphism — efeito vidro fosco para cards de produto
      backdrop-filter: blur desfoca o fundo atrás do elemento
      background semi-transparente cria o efeito de vidro */
-  --glass-background: hsla(0, 0%, 100%, 0.85);
-  --glass-border: 1px solid hsla(0, 0%, 100%, 0.5);
+  --glass-background: hsla(35, 40%, 97%, 0.7);
+  --glass-border: 1px solid hsla(35, 50%, 95%, 0.5);
 
   /* Fontes premium do Google Fonts (carregadas no index.html)
      Playfair Display: serifa elegante para títulos
@@ -114,7 +114,16 @@
 
 body {
   font-family: var(--font-body);
-  background: var(--color-background);
+  /* Gradiente de fundo sutil para ressaltar o efeito vidro dos cards */
+  background: linear-gradient(
+    160deg,
+    hsl(35, 25%, 92%) 0%,
+    hsl(30, 30%, 80%) 30%,
+    hsl(28, 25%, 75%) 55%,
+    hsl(33, 30%, 82%) 80%,
+    hsl(35, 25%, 90%) 100%
+  );
+  min-height: 100vh;
   color: var(--color-text);
   line-height: 1.6;
 }
