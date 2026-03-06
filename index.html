@@ -5,9 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Salgados da Elza - Cardápio</title>
-        <!-- CSP: Bloqueia scripts, objetos e conexões externas para mitigar XSS (OWASP A03) -->
+        <!-- CSP: Bloqueia scripts, objetos e conexões externas para mitigar XSS (OWASP A03)
+             style-src e font-src permitem Google Fonts (fonts.googleapis.com e fonts.gstatic.com) -->
         <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; script-src 'none'; object-src 'none'">
+            content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'none'; script-src 'none'; object-src 'none'">
         <!-- Security Headers: defesa em profundidade contra MIME sniffing e vazamento de dados (OWASP A05) -->
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -33,6 +34,14 @@
         <!-- PWA: manifest para experiência app-like e cor da barra de status mobile -->
         <link rel="manifest" href="manifest.json">
         <meta name="theme-color" content="#8b7355">
+        <!-- Fontes: preconnect para Google Fonts (economia de ~100-200ms no carregamento)
+             crossorigin é necessário pois fonts.gstatic.com serve fontes via CORS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Google Fonts: display=swap evita FOIT (Flash of Invisible Text) —
+             o texto aparece imediatamente com fonte fallback e troca quando a fonte carrega -->
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap">
         <link rel="stylesheet" href="styles/main.css">
     </head>
 
