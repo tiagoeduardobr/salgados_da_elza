@@ -324,13 +324,15 @@ salgados_da_elza/
 
 ### TODO-PERF-01 🟡 Otimizar carregamento de imagens
 
+> ✅ **Concluído em:** 2026-03-05 às 21:50 (UTC-3)
+
 **Descrição:** Implementar lazy loading e dimensionamento adequado.
 
 **Critérios de aceitação:**
 
-- [ ] `loading="lazy"` em todas as imagens (exceto above-the-fold)
-- [ ] `width` e `height` explícitos para evitar CLS (Cumulative Layout Shift)
-- [ ] Atributo `decoding="async"` adicionado
+- [x] `loading="lazy"` em todas as imagens (exceto above-the-fold)
+- [x] `width` e `height` explícitos para evitar CLS (Cumulative Layout Shift)
+- [x] Atributo `decoding="async"` adicionado
 
 ---
 
