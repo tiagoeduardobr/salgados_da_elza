@@ -352,12 +352,14 @@ salgados_da_elza/
 
 ### TODO-PERF-03 🟢 Otimizar carregamento de fontes
 
+> ✅ **Concluído em:** 2026-03-05 às 22:10 (UTC-3)
+
 **Descrição:** Implementar preconnect e font-display para Google Fonts.
 
 **Critérios de aceitação:**
 
-- [ ] `<link rel="preconnect">` para `fonts.googleapis.com` e `fonts.gstatic.com`
-- [ ] `font-display: swap` aplicado para evitar FOIT (Flash of Invisible Text)
+- [x] `<link rel="preconnect">` para `fonts.googleapis.com` e `fonts.gstatic.com`
+- [x] `font-display: swap` aplicado para evitar FOIT (Flash of Invisible Text)
 
 ---
 
