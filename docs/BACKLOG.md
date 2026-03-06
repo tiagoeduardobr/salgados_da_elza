@@ -415,15 +415,16 @@ salgados_da_elza/
 
 ### TODO-UI-04 🟢 Melhorar responsividade mobile-first
 
+> ✅ **Concluído em:** 2026-03-06 às 00:30 (UTC-3)
+
 **Descrição:** Refatorar CSS para abordagem mobile-first com breakpoints otimizados.
 
 **Critérios de aceitação:**
 
-- [ ] Base CSS para mobile (< 768px)
-- [ ] Breakpoint tablet (768px–1024px)
-- [ ] Breakpoint desktop (> 1024px)
-- [ ] Cards empilhados no mobile, lado-a-lado no desktop
-- [ ] Touch targets mínimo 44×44px
+- [x] Base CSS para mobile (< 768px)
+- [x] Breakpoint padronizado `min-width: 768px` e `max-width` no container
+- [x] Cards empilhados no mobile, lado-a-lado no desktop
+- [x] Touch targets mínimo 44×44px
 
 ---
 

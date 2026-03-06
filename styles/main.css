@@ -167,16 +167,16 @@ a:focus-visible {
   background: var(--gradient-brand);
   color: white;
   text-align: center;
-  padding: 48px 20px 40px;
+  padding: 32px 16px;
   box-shadow: var(--shadow-lg);
 }
 
 .header h1 {
   font-family: var(--font-heading);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: 400;
-  letter-spacing: 3px;
-  margin-bottom: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
 
 .header p {
@@ -191,7 +191,7 @@ a:focus-visible {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 24px 16px;
 }
 
 /* --- Footer: texto centralizado e discreto --- */
@@ -213,9 +213,9 @@ a:focus-visible {
 /* --- Intro: bloco de apresentação no topo --- */
 .intro {
   background: var(--color-surface);
-  padding: 32px;
+  padding: 24px;
   border-radius: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   box-shadow: var(--shadow-sm);
   text-align: center;
 }
@@ -237,16 +237,17 @@ a:focus-visible {
    A classe .reverse inverte a ordem (texto-esquerda, foto-direita). */
 .product-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 40px;
-  margin-bottom: 60px;
+  gap: 24px;
+  margin-bottom: 40px;
   /* Glassmorphism: fundo semi-transparente com blur */
   background: var(--glass-background);
   border: var(--glass-border);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 32px;
+  padding: 24px;
   box-shadow: var(--shadow-md);
   transition:
     box-shadow 0.3s ease,
@@ -254,20 +255,20 @@ a:focus-visible {
 }
 
 .product-section.reverse {
-  flex-direction: row-reverse;
+  flex-direction: column;
 }
 
 /* Imagem do produto: ocupa 45% da largura do card */
 .product-image {
-  flex: 0 0 45%;
-  max-width: 45%;
+  flex: none;
+  max-width: 100%;
 }
 
 /* object-fit: cover garante que a imagem preencha o espaço
    sem distorcer, cortando o excesso se necessário */
 .product-image img {
   width: 100%;
-  height: 350px;
+  height: 250px;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: var(--shadow-md);
@@ -280,9 +281,9 @@ a:focus-visible {
 
 .product-title {
   font-family: var(--font-heading);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   color: var(--color-primary);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-weight: 400;
 }
 
@@ -294,10 +295,10 @@ a:focus-visible {
 }
 
 .product-price {
-  font-size: 1.8rem;
+  font-size: var(--text-xl);
   color: var(--color-accent);
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* --- Sabores: caixa com lista de sabores disponíveis ---
@@ -342,17 +343,17 @@ a:focus-visible {
 .cta-section {
   background: var(--gradient-brand);
   color: white;
-  padding: 48px 32px;
+  padding: 32px 20px;
   border-radius: 16px;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 40px;
   box-shadow: var(--shadow-xl);
 }
 
 .cta-section h2 {
   font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  margin-bottom: 16px;
+  font-size: var(--text-xl);
+  margin-bottom: 12px;
   font-weight: 400;
 }
 
@@ -508,35 +509,64 @@ a:focus-visible {
    - Preços e subtítulos com fontes menores
    ============================================================ */
 
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: var(--text-2xl);
+@media (min-width: 768px) {
+  .header {
+    padding: 48px 20px 40px;
   }
 
-  .product-section,
+  .header h1 {
+    font-size: var(--text-3xl);
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .container {
+    padding: 40px 20px;
+  }
+
+  .intro {
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+
+  .product-section {
+    flex-direction: row;
+    gap: 40px;
+    padding: 32px;
+    margin-bottom: 60px;
+  }
+
   .product-section.reverse {
-    flex-direction: column;
+    flex-direction: row-reverse;
   }
 
   .product-image {
-    flex: 1;
-    max-width: 100%;
+    flex: 0 0 45%;
+    max-width: 45%;
   }
 
   .product-image img {
-    height: 280px;
+    height: 350px;
   }
 
   .product-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
+    margin-bottom: 16px;
   }
 
   .product-price {
-    font-size: var(--text-xl);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .cta-section {
+    padding: 48px 32px;
+    margin-top: 60px;
   }
 
   .cta-section h2 {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
+    margin-bottom: 16px;
   }
 }
 
