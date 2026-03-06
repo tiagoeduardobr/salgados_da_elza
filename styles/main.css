@@ -400,14 +400,109 @@ a:focus-visible {
 }
 
 /* ============================================================
-   SEÇÃO 5: RESPONSIVIDADE (Media Queries)
+   SEÇÃO 5: ANIMAÇÕES E MICRO-INTERAÇÕES
+   ============================================================
+   Por quê? Animações sutis tornam a interface mais dinâmica
+   e envolvente. Elas guiam a atenção do usuário e dão feedback
+   visual nas interações (hover, scroll, clique).
+
+   Regra de ouro: animações devem ser RÁPIDAS (200-500ms) e
+   SUTIS — o objetivo é melhorar a UX, não distrair.
+   ============================================================ */
+
+/* --- @keyframes: definições das animações ---
+   fade-in-up: elemento aparece subindo (usado nos cards ao carregar) */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Animação de entrada nos cards de produto ---
+   Cada card aparece com fade + slide-up ao carregar a página.
+   animation-fill-mode: both mantém o estado final da animação.
+   Delays escalonados criam efeito cascata (1°, 2°, 3°...) */
+.product-section {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+.product-section:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.product-section:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.product-section:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.product-section:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.product-section:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+/* --- Animação de entrada na seção intro --- */
+.intro {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+/* --- Hover effect nos cards de produto ---
+   Ao passar o mouse, o card sobe 4px e a sombra aumenta,
+   criando a ilusão de que o card "flutua" sobre a página */
+.product-section:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- Hover effect nas imagens dos produtos ---
+   Scale sutil na imagem ao passar o mouse no card */
+.product-image img {
+  transition: transform 0.3s ease;
+}
+
+.product-section:hover .product-image img {
+  transform: scale(1.03);
+}
+
+/* --- Pulse animation no botão WhatsApp ---
+   @keyframes pulse cria um anel verde pulsante ao redor do botão,
+   chamando atenção para a ação principal (CTA) */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-btn {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* --- Animação de entrada na seção CTA --- */
+.cta-section {
+  animation: fade-in-up 0.6s ease-out 0.3s both;
+}
+
+/* ============================================================
+   SEÇÃO 6: RESPONSIVIDADE (Media Queries)
    ============================================================
    Por quê? Garante que o site funcione bem em telas menores
    (celulares e tablets). Usamos @media para aplicar regras
    CSS SOMENTE quando a largura da tela é menor que 768px.
 
    O que muda no mobile?
-   - Título menor (2.5rem → 1.8rem)
+   - Título menor
    - Cards empilhados (flex-direction: column)
    - Imagens ocupam 100% da largura
    - Preços e subtítulos com fontes menores
@@ -442,5 +537,26 @@ a:focus-visible {
 
   .cta-section h2 {
     font-size: var(--text-xl);
+  }
+}
+
+/* ============================================================
+   SEÇÃO 7: ACESSIBILIDADE — Movimento Reduzido
+   ============================================================
+   Por quê? Alguns usuários sofrem de enjoo ou desconforto com
+   animações (vestibular disorders). A media query
+   prefers-reduced-motion respeita a preferência do sistema
+   operacional do usuário e desativa todas as animações.
+
+   Isso é requisito WCAG 2.1 nível AAA (critério 2.3.3).
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
