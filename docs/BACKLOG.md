@@ -338,13 +338,15 @@ salgados_da_elza/
 
 ### TODO-PERF-02 🟢 Criar Web App manifest
 
+> ✅ **Concluído em:** 2026-03-05 às 22:04 (UTC-3)
+
 **Descrição:** Adicionar `manifest.json` para experiência PWA-like.
 
 **Critérios de aceitação:**
 
-- [ ] `manifest.json` com `name`, `short_name`, `theme_color`, `background_color`, `display`
-- [ ] `<link rel="manifest">` adicionado ao `<head>`
-- [ ] `<meta name="theme-color">` configurado
+- [x] `manifest.json` com `name`, `short_name`, `theme_color`, `background_color`, `display`
+- [x] `<link rel="manifest">` adicionado ao `<head>`
+- [x] `<meta name="theme-color">` configurado
 
 ---
 
