@@ -369,14 +369,16 @@ salgados_da_elza/
 
 ### TODO-UI-01 🟡 Implementar tipografia premium
 
+> ✅ **Concluído em:** 2026-03-05 às 22:28 (UTC-3)
+
 **Descrição:** Substituir fontes genéricas por Google Fonts curadas.
 
 **Critérios de aceitação:**
 
-- [ ] **Playfair Display** para headings (elegância, serifa)
-- [ ] **Inter** para body text (legibilidade, sans-serif moderna)
-- [ ] Escala tipográfica harmoniosa (modular scale)
-- [ ] Font fallbacks adequados definidos
+- [x] **Playfair Display** para headings (elegância, serifa)
+- [x] **Inter** para body text (legibilidade, sans-serif moderna)
+- [x] Escala tipográfica harmoniosa (modular scale)
+- [x] Font fallbacks adequados definidos
 
 ---
 
