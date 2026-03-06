@@ -399,15 +399,17 @@ salgados_da_elza/
 
 ### TODO-UI-03 🟢 Adicionar animações e micro-interações
 
+> ✅ **Concluído em:** 2026-03-05 às 23:30 (UTC-3)
+
 **Descrição:** Implementar animações CSS puras para uma experiência dinâmica e envolvente.
 
 **Critérios de aceitação:**
 
-- [ ] Animações `fade-in` / `slide-up` nos cards (via `@keyframes` + `animation`)
-- [ ] Hover effects nos cards de produto (scale, shadow elevation)
-- [ ] Pulse animation no botão WhatsApp
-- [ ] Transições suaves em todos os elementos interativos
-- [ ] `prefers-reduced-motion` respeitado para acessibilidade
+- [x] Animações `fade-in` / `slide-up` nos cards (via `@keyframes` + `animation`)
+- [x] Hover effects nos cards de produto (scale, shadow elevation)
+- [x] Pulse animation no botão WhatsApp
+- [x] Transições suaves em todos os elementos interativos
+- [x] `prefers-reduced-motion` respeitado para acessibilidade
 
 ---
 
