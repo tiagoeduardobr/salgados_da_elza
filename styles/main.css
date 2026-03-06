@@ -11,12 +11,66 @@
    ============================================================ */
 
 :root {
-  --color-primary: #8b7355;
-  --color-secondary: #d4af77;
-  --color-background: #faf7f2;
-  --color-surface: #ffffff;
-  --color-text: #3e2723;
-  --color-text-secondary: #6d4c41;
+  /* Paleta refinada em HSL — tons quentes e acolhedores
+     HSL (Hue, Saturation, Lightness) facilita ajustes finos:
+     - Hue: 30-35° = tons dourados/caramelo (identidade da marca)
+     - Saturation: controla a vivacidade da cor
+     - Lightness: controla claro/escuro */
+  --color-primary: hsl(30, 25%, 44%); /* Marrom quente — cor principal */
+  --color-primary-dark: hsl(
+    30,
+    30%,
+    32%
+  ); /* Versão escura para hover/profundidade */
+  --color-primary-light: hsl(
+    30,
+    25%,
+    55%
+  ); /* Versão clara para destaques sutis */
+  --color-secondary: hsl(33, 55%, 65%); /* Dourado caramelo — cor de destaque */
+  --color-secondary-light: hsl(
+    33,
+    60%,
+    78%
+  ); /* Dourado claro para bordas/decorações */
+  --color-accent: hsl(28, 70%, 55%); /* Laranja quente — CTA e preços */
+  --color-background: hsl(35, 33%, 97%); /* Bege claro — fundo da página */
+  --color-surface: hsl(0, 0%, 100%); /* Branco — superfície dos cards */
+  --color-text: hsl(15, 25%, 18%); /* Marrom escuro — texto principal */
+  --color-text-secondary: hsl(
+    15,
+    20%,
+    35%
+  ); /* Marrom médio — texto secundário */
+
+  /* Gradientes premium — direção 135° para dinamismo visual */
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  --gradient-brand-hover: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary-light) 100%
+  );
+
+  /* Sombras em camadas (layered shadows) — criam profundidade realista
+     Múltiplas sombras com diferentes intensidades simulam luz natural */
+  --shadow-sm:
+    0 1px 3px hsla(30, 25%, 20%, 0.08), 0 1px 2px hsla(30, 25%, 20%, 0.06);
+  --shadow-md:
+    0 4px 6px hsla(30, 25%, 20%, 0.07), 0 2px 4px hsla(30, 25%, 20%, 0.06);
+  --shadow-lg:
+    0 10px 25px hsla(30, 25%, 20%, 0.1), 0 4px 10px hsla(30, 25%, 20%, 0.05);
+  --shadow-xl:
+    0 20px 40px hsla(30, 25%, 20%, 0.12), 0 8px 16px hsla(30, 25%, 20%, 0.06);
+
+  /* Glassmorphism — efeito vidro fosco para cards de produto
+     backdrop-filter: blur desfoca o fundo atrás do elemento
+     background semi-transparente cria o efeito de vidro */
+  --glass-background: hsla(0, 0%, 100%, 0.85);
+  --glass-border: 1px solid hsla(0, 0%, 100%, 0.5);
 
   /* Fontes premium do Google Fonts (carregadas no index.html)
      Playfair Display: serifa elegante para títulos
@@ -101,15 +155,11 @@ a:focus-visible {
 
 /* --- Header: gradiente com as cores da marca --- */
 .header {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
+  background: var(--gradient-brand);
   color: white;
   text-align: center;
   padding: 48px 20px 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .header h1 {
@@ -157,7 +207,7 @@ a:focus-visible {
   padding: 32px;
   border-radius: 12px;
   margin-bottom: 40px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
   text-align: center;
 }
 
@@ -169,7 +219,7 @@ a:focus-visible {
 
 /* Destaque visual para palavras-chave no texto de introdução */
 .intro .highlight {
-  color: var(--color-primary);
+  color: var(--color-accent);
   font-weight: 600;
 }
 
@@ -181,10 +231,17 @@ a:focus-visible {
   align-items: center;
   gap: 40px;
   margin-bottom: 60px;
-  background: var(--color-surface);
+  /* Glassmorphism: fundo semi-transparente com blur */
+  background: var(--glass-background);
+  border: var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .product-section.reverse {
@@ -204,7 +261,7 @@ a:focus-visible {
   height: 350px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 /* Conteúdo textual do produto: flex: 1 ocupa o espaço restante */
@@ -229,7 +286,7 @@ a:focus-visible {
 
 .product-price {
   font-size: 1.8rem;
-  color: var(--color-primary);
+  color: var(--color-accent);
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -240,7 +297,7 @@ a:focus-visible {
   background: var(--color-background);
   padding: 20px;
   border-radius: 8px;
-  border-left: 4px solid var(--color-secondary);
+  border-left: 4px solid var(--color-secondary-light);
 }
 
 .product-flavors h4 {
@@ -274,17 +331,13 @@ a:focus-visible {
 
 /* --- CTA (Call to Action): seção de pedido via WhatsApp --- */
 .cta-section {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
+  background: var(--gradient-brand);
   color: white;
   padding: 48px 32px;
   border-radius: 16px;
   text-align: center;
   margin-top: 60px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-xl);
 }
 
 .cta-section h2 {
