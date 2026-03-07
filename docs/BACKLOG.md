@@ -31,36 +31,41 @@
 
 ---
 
-## Fase 2: Gestão de Catálogo (Admin CMS)
+## Fase 2: Gestão de Catálogo (Admin CMS Avançado)
 
-### TODO-ECO-03 🟡 CRUD de Produtos
+### TODO-ECO-03 🟡 CRUD de Produtos (Gestão de Catálogo)
 
-**Descrição:** Interface administrativa para que a Elza gerencie o catálogo de salgados.
+**Descrição:** Interface administrativa intuitiva para que a dona da loja gerencie o catálogo de produtos e variações de forma independente.
 
-- [ ] Modelagem do banco de dados para `Products` e `Categories`.
-- [ ] API endpoints para Criar, Ler, Atualizar e Deletar produtos.
-- [ ] Interface visual do Admin para listar produtos com filtros/paginação.
-- [ ] Formulário integrado de edição avançada (com upload em bucket S3/Cloudinary).
+- [ ] Modelagem do banco de dados (Prisma): Tabelas `Products`, `Categories` e `ProductTags` ("Mais Vendido", "Novidade").
+- [ ] API Endpoints seguros (`/api/admin/products`) para Criar, Ler, Atualizar e Deletar produtos via Server Actions.
+- [ ] Formulário Criativo:
+  - Campos descritivos com suporte a Markdown/Rich Text básico.
+  - Upload Dinâmico de Imagens: Integração com o Storage do Supabase (com crop em tempo real antes do upload e geração de WebP na nuvem).
+- [ ] Listagem Administrativa (Table Flow): Tabela com Filtros combinados (Categoria + Status), Ordenação e Paginação Server-side (para lidar com catálogos grandes no futuro).
 
-### TODO-ECO-04 🟡 Controle de Estoque
+### TODO-ECO-04 🟡 Controle de Estoque Inteligente
 
-**Descrição:** Rastreamento dinâmico do número de salgados disponíveis.
+**Descrição:** Rastreamento dinâmico que previne vendas furadas e facilita o balanço diário.
 
-- [ ] Adicionar entidade de estoque aos salgados com status (Ativo/Esgotado).
-- [ ] Regras de decréscimo automático mediante reserva em carrinho ou confirmação de compra.
-- [ ] Alertas visuais de "Estoque Baixo" no dashboard.
+- [ ] Adicionar entidade relacional de estoque ou campo `stockCount` à tabela de Produtos.
+- [ ] Lógica de Prevenção de Concorrência: Redução temporária do estoque ("em reserva") no momento em que um pedido entra em "Processando Pagamento" (lock de 15 minutos).
+- [ ] Alertas Coloridos no Admin Panel: Produtos próximos a acabar ficam com tag `Warning` (Laranja) e os esgotados com tag `Danger` (Vermelho).
 
 ---
 
-## Fase 3: Personalização e CMS Global (Admin)
+## Fase 3: Personalização e CMS Global (White-label Engine)
 
-### TODO-ECO-05 🟡 Configurações e White-label Customization
+### TODO-ECO-05 🟡 Configurações e Customização (Storefront Settings)
 
-**Descrição:** Área do admin para alterar aspectos visuais e de texto do frontend, evitando deploy a cada mudança.
+**Descrição:** Área do admin para alterar aspectos visuais e de texto do frontend de forma autônoma, sem necessidade de tocar no código ou fazer novo deploy.
 
-- [ ] Painel para alterar textos dinâmicos (Frase de Introdução, Termos, Horários).
-- [ ] Seção para customizar variáveis globais (Cor Primária, Cor de Destaque).
-- [ ] Salvar essas preferências de forma global no banco de dados e aplicar no SSR do frontend.
+- [ ] Modelagem (Prisma): Tabela única (Singleton) `StoreSettings` para armazenar as preferências dinâmicas da loja.
+- [ ] Módulo Visual de Theming (Admin):
+  - Color Picker nativo para a dona escolher a **Cor Primária** (Ex: O laranja característico da Elza, ou Azul caso o clone seja para outro cliente).
+  - Opção de troca de Tipografia Global selecionando de uma lista de Google Fonts pré-carregadas.
+- [ ] Módulo de Textos Institucionais: Inputs para alterar a "Frase Hero" principal, as "Regras de Entrega" e a "Mensagem do WhatsApp" do rodapé.
+- [ ] Ingestão de Contexto: O frontend Next.js fará o fetching (com caching agressivo para performance) destas configurações e injetará no `ThemeProvider` (conforme criado no TODO-ECO-02).
 
 ---
 
