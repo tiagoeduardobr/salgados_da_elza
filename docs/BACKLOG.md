@@ -6,24 +6,28 @@
 
 ---
 
-## Fase 1: Fundação do Sistema Dinâmico (Backend & Frontend Framework)
+## Fase 1: Fundação do Sistema Dinâmico (Arquitetura White-label)
 
-### TODO-ECO-01 🔴 Setup do Repositório Frontend e Backend
+### TODO-ECO-01 🔴 Setup do Repositório Frontend e Backend (Zero Downtime)
 
-**Descrição:** Migrar o HTML/CSS atual para um framework SPA (ex: Next.js) e criar a base do backend (ex: Node.js/NestJS ou servidor Serverless).
+**Descrição:** Configurar a base do monorepo Next.js de forma isolada, garantindo que a landing page estática (produção atual) permaneça inalterada até que a nova plataforma esteja validada.
 
-- [ ] Inicializar boilerplate web moderno (Next.js/React).
+- [ ] Criar branch paralela (`feat/ecommerce-v1`) a partir da main.
+- [ ] Limpar arquivos legados (HTML/CSS) NA NOVA BRANCH e inicializar boilerplate web moderno (Next.js App Router).
 - [ ] Portar os componentes estáticos do MVP (Header, Cards, Footer) para componentes React.
-- [ ] Inicializar estrutura de rotas da API/Backend.
-- [ ] Configurar ORM (Prisma/TypeORM) e banco de dados relacional (PostgreSQL).
+- [ ] Inicializar estrutura de rotas da API/Backend no Next.js (API Routes/Server Actions).
+- [ ] Configurar conexão com o Supabase (Database e Auth).
+- [ ] Configurar Prisma ORM para gerenciar as "migrations" (esquema do banco).
+- [ ] Criar `.env.example` documentado para facilitar a clonagem da plataforma para novos clientes.
 
-### TODO-ECO-02 🔴 Autenticação e Segurança
+### TODO-ECO-02 🔴 Autenticação, Segurança e Theming Global
 
-**Descrição:** Implementar sistema de login seguro para acessar a área de administração.
+**Descrição:** Implementar sistema de segurança do Admin e a infraestrutura que permitirá a troca de cores/estilos dinamicamente sem alterar código (conceito de White-label).
 
-- [ ] Implementar fluxo JWT com Refresh Tokens.
-- [ ] Proteger rotas da API de administração.
-- [ ] Configurar hashing seguro de senhas (Argon2/Bcrypt) e proteções de força bruta.
+- [ ] Implementar fluxo de Login nativo via Supabase Auth.
+- [ ] Proteger rotas da API e da pasta (app/admin) usando Middleware do Next.js.
+- [ ] Inicializar a base do Design System no `globals.css` usando Variáveis CSS (Tokens).
+- [ ] Criar Provider (Contexto React) para ingestão do tema no frontend (preparando terreno para o futuro TODO-ECO-05).
 
 ---
 
@@ -60,44 +64,53 @@
 
 ---
 
-## Fase 4: Experiência do Usuário (Cliente)
+## Fase 4: Experiência do Usuário e Carrinho (Frontend)
 
-### TODO-ECO-06 🟢 Sistema de Carrinho de Compras
+### TODO-ECO-06 🟢 Sistema de Carrinho Avançado e UX (Zustand/Context)
 
-**Descrição:** Capacidade do cliente visualizar e agrupar diferentes salgados na sua sessão.
+**Descrição:** Implementação de um carrinho super fluido, sem recarregamento da página (SPA), mantendo o usuário engajado.
 
-- [ ] Implementar state management local do carrinho.
-- [ ] Sidebar animada exibindo itens do carrinho, quantidades e sub-total.
-- [ ] Persistência de carrinho na sessão do usuário ou Storage.
-
----
-
-## Fase 5: Checkout e Integração Financeira
-
-### TODO-ECO-07 🔴 Integração Mercado Pago
-
-**Descrição:** Integração pesada para receber pagamentos via PIX e Cartões nativamente, sem sair do site.
-
-- [ ] Gerar Access Token e registrar Webhooks da API do Mercado Pago.
-- [ ] Fluxo backend de geração de PIX copia-e-cola / QR Code transparente.
-- [ ] Fluxo frontend do Checkout Transparente (Cartões de Crédito).
-- [ ] Listener no webhooks do MP para atualizar o status do pedido `(Pending -> Paid)`.
-
-### TODO-ECO-08 🟡 Fluxo de Notificações
-
-**Descrição:** Alertar o cliente e a dona Elza quando vendas são concluídas.
-
-- [ ] Envio automático de E-mail ou WhatsApp transacional.
-- [ ] Tela visualística de acompanhamento de pedido ("Seu pedido está no forno").
+- [ ] Implementar state management contínuo do carrinho (ex: Zustand ou Redux Toolkit) para atualizações instantâneas.
+- [ ] Criar Sidebar Animada (Drawer) para o Carrinho mostrando: Subtotal dinâmico, Input de Quantidade (com botões + / - funcionais) e botão de remoção rápida.
+- [ ] Persistência segura na camada Cliente (`localStorage`) sincronizada via Zustand para não perder itens ao fechar a aba.
+- [ ] UX/UI Boost: Animações de microinteração ao adicionar itens (ex: feedback visual no botão, ícone do carrinho balançando) usando Framer Motion ou animações CSS nativas.
+- [ ] Lógica de Validação: Prevenir fechamento de pedido com carrinho vazio, ou itens esgotados (verificando estoque dinamicamente no clique do "Ir para o Pagamento").
 
 ---
 
-## Fase 6: Analytics Empresarial (Admin)
+## Fase 5: Checkout e Integração Financeira (Mercado Pago)
 
-### TODO-ECO-09 🟢 Dashboard de Vendas e Fluxo de Caixa
+### TODO-ECO-07 🔴 Checkout Transparente via Cartão de Crédito e PIX
 
-**Descrição:** Gráficos e tabelas na área de administração para resumir a saúde financeira.
+**Descrição:** Um processo de finalização de compra sem redirecionamento externo (White-label), aumentando a taxa de conversão.
 
-- [ ] Cards de métricas diárias, semanais e mensais (Receita Bruta x Ticket Médio).
-- [ ] Tabela cronológica dos pedidos detalhados.
-- [ ] Integração de gráficos estatísticos do fluxo de vendas (ex: Recharts).
+- [ ] Tela de Checkout em Etapas (Stepper): 1. Identificação -> 2. Endereço -> 3. Pagamento.
+- [ ] Integração do SDK Frontend do Mercado Pago (`@mercadopago/sdk-react`) para captura segura dos dados de cartão (Tokenization), garantindo que os dados não passem em claro pelo nosso backend.
+- [ ] Fluxo Backend PIX: Chamada à API MP para gerar Copia e Cola instantâneo e QR Code base64, exibindo no Front com contagem regressiva de validade (ex: 30 minutos).
+- [ ] Salvar a "Transaction" no nosso banco de dados (Prisma) atrelada ao "User" e ao respectivo "Order", guardando o `payment_id` externo.
+
+### TODO-ECO-08 🟡 Webhooks e Notificações (Orquestração de Pedidos)
+
+**Descrição:** Sistema reativo que escuta as atualizações de pagamento para dar andamento automatizado ao pedido.
+
+- [ ] Criar endpoint `api/webhooks/mercadopago` assinado com HMAC (verificação de integridade).
+- [ ] Listener no Webhook: Se retorno for "Aprovado", atualizar tabela `Orders` para "PAGO_RECEBIDO" e disparar evento de decréscimo de Estoque real.
+- [ ] Integração com AWS SES (ou Resend) para envio de E-mail Transacional formatado em HTML: "Seu Pedido #XXXX foi confirmado!".
+- [ ] (Opcional Futuro) Integração via API de WhatsApp (Evolution API / Baileys) para a dona Elza receber msg: "Novo pedido Pago!".
+
+---
+
+## Fase 6: Analytics e Dashboard Administrativo
+
+### TODO-ECO-09 🟢 Dashboard Gerencial (Painel do Administrador)
+
+**Descrição:** Uma sala de controle rica em dados para o gestor ter controle total do fluxo do negócio, usando bibliotecas de gráficos (Ex: Recharts ou Chart.js).
+
+- [ ] Layout do Admin Dashboard com Sidebar Lateral (Navegação: Visão Geral, Pedidos, Catálogo, Configurações).
+- [ ] **Visão Geral (Cards de KPI):**
+  - Faturamento Diário / Mensal (Calculado on the fly pelo Banco).
+  - Ticket Médio por Venda.
+  - Produtos mais vendidos (Ranking Top 5).
+- [ ] **Fluxo de Caixa Visual (Gráficos):** Gráfico de linha mostrando a evolução de vendas (`Receita` x `Dias da Semana`).
+- [ ] **Gestor de Pedidos em Tempo Real:** Tabela dinâmica estilo Kanban para o Status de Preparo: `[Recebido] -> [Em Preparo] -> [Saiu para Entrega] -> [Entregue]`.
+- [ ] Backend Server-Actions (Next.js) para mover os pedidos entre essas colunas, atualizando a "Timeline" de rastreio que o cliente final poderá ver via link.
