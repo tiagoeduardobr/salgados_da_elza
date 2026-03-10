@@ -364,7 +364,8 @@ a:focus-visible {
 }
 
 /* --- Botão WhatsApp: destaque verde com efeito hover ---
-   transition suaviza a mudança de cor e posição ao passar o mouse */
+   transition suaviza a mudança de cor e posição ao passar o mouse.
+   animation: pulse aplica o anel pulsante definido nos @keyframes abaixo. */
 .whatsapp-btn {
   display: inline-flex;
   align-items: center;
@@ -378,6 +379,7 @@ a:focus-visible {
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  animation: pulse 2s infinite;
 }
 
 /* Efeito hover: cor mais escura + sobe 2px + sombra maior */
@@ -460,16 +462,18 @@ a:focus-visible {
 
 /* --- Pulse animation no botão WhatsApp ---
    @keyframes pulse cria um anel verde pulsante ao redor do botão,
-   chamando atenção para a ação principal (CTA) */
+   chamando atenção para a ação principal (CTA).
+   A sombra base (0 4px 12px) é mantida em todos os keyframes para
+   não desaparecer enquanto a animação está ativa. */
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3), 0 0 0 0 rgba(37, 211, 102, 0.5);
   }
   70% {
-    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3), 0 0 0 12px rgba(37, 211, 102, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3), 0 0 0 0 rgba(37, 211, 102, 0);
   }
 }
 
