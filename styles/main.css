@@ -412,11 +412,11 @@ a:focus-visible {
    ============================================================ */
 
 /* --- @keyframes: definições das animações ---
-   fade-in-up: elemento aparece subindo (usado nos cards ao carregar) */
+   fade-in-up: elemento aparece subindo sutilmente no mobile */
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -424,51 +424,38 @@ a:focus-visible {
   }
 }
 
-/* --- Animação de entrada nos cards de produto ---
-   Cada card aparece com fade + slide-up ao carregar a página.
-   animation-fill-mode: both mantém o estado final da animação.
-   Delays escalonados criam efeito cascata (1°, 2°, 3°...) */
-.product-section {
+/* --- Elementos preparados para o IntersectionObserver (JS) ---
+   Eles começam opacos e serão animados ao receberem a classe .animate-in. */
+.product-section,
+.intro,
+.cta-section {
+  opacity: 0;
+  transform: translateY(15px);
+  /* Fallback caso JS falhe na execução ou prefers-reduced-motion ative */
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.animate-in {
+  opacity: 1;
+  transform: translateY(0);
   animation: fade-in-up 0.6s ease-out both;
 }
 
-.product-section:nth-child(2) {
-  animation-delay: 0.1s;
-}
-.product-section:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.product-section:nth-child(4) {
-  animation-delay: 0.3s;
-}
-.product-section:nth-child(5) {
-  animation-delay: 0.4s;
-}
-.product-section:nth-child(6) {
-  animation-delay: 0.5s;
-}
+/* --- Efeitos de Hover protegidos para dispositivos com "mouse" real ---
+   Evita o temido "sticky hover" em touch screens. */
+@media (hover: hover) and (pointer: fine) {
+  /* Ao passar o mouse, o card sobe 4px e a sombra aumenta */
+  .product-section:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
 
-/* --- Animação de entrada na seção intro --- */
-.intro {
-  animation: fade-in-up 0.6s ease-out both;
-}
-
-/* --- Hover effect nos cards de produto ---
-   Ao passar o mouse, o card sobe 4px e a sombra aumenta,
-   criando a ilusão de que o card "flutua" sobre a página */
-.product-section:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* --- Hover effect nas imagens dos produtos ---
-   Scale sutil na imagem ao passar o mouse no card */
-.product-image img {
-  transition: transform 0.3s ease;
-}
-
-.product-section:hover .product-image img {
-  transform: scale(1.03);
+  /* Scale sutil na imagem ao passar o mouse no card */
+  .product-section:hover .product-image img {
+    transform: scale(1.03);
+  }
 }
 
 /* --- Pulse animation no botão WhatsApp ---
@@ -486,13 +473,13 @@ a:focus-visible {
   }
 }
 
-.whatsapp-btn {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* --- Animação de entrada na seção CTA --- */
-.cta-section {
-  animation: fade-in-up 0.6s ease-out 0.3s both;
+/* Efeito hover apenas em dispositivos que possuem cursor */
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-btn:hover {
+    background: #22be5b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  }
 }
 
 /* ============================================================

@@ -8,7 +8,7 @@
         <!-- CSP: Bloqueia scripts, objetos e conexões externas para mitigar XSS (OWASP A03)
              style-src e font-src permitem Google Fonts (fonts.googleapis.com e fonts.gstatic.com) -->
         <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'none'; script-src 'none'; object-src 'none'">
+            content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'none'; script-src 'self'; object-src 'none'">
         <!-- Security Headers: defesa em profundidade contra MIME sniffing e vazamento de dados (OWASP A05) -->
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -270,6 +270,8 @@
                 }
             }
         </script>
+        <!-- Importação da lógica de animações baseada em scroll (TODO-UI-05) -->
+        <script src="assets/js/animations.js"></script>
     </body>
 
 </html>

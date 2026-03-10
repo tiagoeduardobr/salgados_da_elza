@@ -373,14 +373,16 @@ salgados_da_elza/
 
 ### TODO-UI-05 🟢 Melhorar animações mobile-first (Scroll)
 
+> ✅ **Concluído em:** 2026-03-09 às 21:50 (UTC-3)
+
 **Descrição:** Refinar animações para dispositivos móveis usando IntersectionObserver e removendo "sticky hovers".
 
 **Critérios de aceitação:**
 
-- [ ] Ajustar keyframes e delays de CSS para uma entrada mais rápida no mobile
-- [ ] Aplicar `@media (hover: hover)` para prevenir "sticky hover" em botões e cards (touch)
-- [ ] Implementar IntersectionObserver via JS para engatilhar as animações ao rolar a página
-- [ ] Garantir acessibilidade contínua (`prefers-reduced-motion`)
+- [x] Ajustar keyframes e delays de CSS para uma entrada mais rápida no mobile
+- [x] Aplicar `@media (hover: hover)` para prevenir "sticky hover" em botões e cards (touch)
+- [x] Implementar IntersectionObserver via JS para engatilhar as animações ao rolar a página
+- [x] Garantir acessibilidade contínua (`prefers-reduced-motion`)
 
 ---
 
