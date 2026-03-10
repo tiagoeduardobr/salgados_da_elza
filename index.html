@@ -171,7 +171,7 @@
                 </article>
             </section>
 
-            <!-- CTA: seção de chamada para ação com link WhatsApp -->
+            <!-- CTA: seção de chamada para ação com link WhatsApp e pagamento Pix -->
             <section class="cta-section" aria-label="Fazer pedido">
                 <h2>Faça seu Pedido!</h2>
                 <p>Entre em contato via WhatsApp e garanta seus salgados fresquinhos</p>
@@ -185,6 +185,63 @@
                     Pedir pelo WhatsApp
                 </a>
                 <p class="cta-phone">(47) 9 9220-3893</p>
+
+                <!-- Divisor visual entre WhatsApp e Pix -->
+                <div class="cta-divider" aria-hidden="true">
+                    <span>ou pague com</span>
+                </div>
+
+                <!-- Card Pix: permite copiar a chave e exibe o QR Code para pagamento -->
+                <div class="pix-card" role="region" aria-label="Pagamento via Pix">
+                    <!-- Cabeçalho do card com logo e título Pix -->
+                    <div class="pix-card-header">
+                        <img src="assets/images/pix-logo.svg" alt="Logo Pix" class="pix-logo" width="40" height="40">
+                        <div class="pix-card-title">
+                            <span class="pix-label">Pague com Pix</span>
+                            <span class="pix-subtitle">Rápido, seguro e sem taxas</span>
+                        </div>
+                    </div>
+
+                    <!-- Área central: chave Pix + QR Code lado a lado -->
+                    <div class="pix-card-body">
+                        <!-- Coluna esquerda: chave para copiar -->
+                        <div class="pix-key-area">
+                            <p class="pix-key-type">Chave Pix (Telefone)</p>
+                            <!-- Exibe a chave Pix em destaque visual; o texto formatado é legível por leitores de tela -->
+                            <p class="pix-key-value" id="pix-key-display">
+                                +55 47 99220-3893
+                            </p>
+                            <!-- Botão que copia a chave para a área de transferência do dispositivo -->
+                            <button class="pix-copy-btn" id="pix-copy-btn"
+                                aria-label="Copiar chave Pix para a área de transferência"
+                                data-pix-key="+5547992203893">
+                                <!-- Ícone de copiar (SVG inline: não precisa de img-src) -->
+                                <svg class="pix-copy-icon" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copiar chave
+                            </button>
+                            <!-- Mensagem de feedback: aparece após a cópia bem-sucedida -->
+                            <p class="pix-copy-feedback" id="pix-copy-feedback" aria-live="polite" aria-atomic="true">
+                                ✅ Chave copiada!
+                            </p>
+                        </div>
+
+                        <!-- Coluna direita: QR Code Pix para escanear -->
+                        <div class="pix-qr-area">
+                            <p class="pix-qr-label">Escaneie com o app do banco</p>
+                            <!-- QR Code gerado localmente com o payload Pix EMV BR Code -->
+                            <img src="assets/images/pix-qrcode.png"
+                                alt="QR Code Pix — escaneie com o aplicativo do seu banco para pagar"
+                                class="pix-qrcode"
+                                width="160" height="160"
+                                loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
 

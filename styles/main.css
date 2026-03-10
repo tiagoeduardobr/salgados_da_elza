@@ -402,6 +402,216 @@ a:focus-visible {
   font-size: var(--text-sm);
 }
 
+/* --- Divisor visual entre WhatsApp e Pix ---
+   Linha horizontal com texto centralizado para guiar o olhar do usuário */
+.cta-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px auto 24px;
+  max-width: 340px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--text-sm);
+}
+
+/* Linhas decorativas antes e depois do texto "ou pague com" */
+.cta-divider::before,
+.cta-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ============================================================
+   SEÇÃO: PIX — Card de pagamento via Pix
+   ============================================================
+   Por quê? Oferecer o Pix como opção de pagamento aumenta a
+   conversão, pois é instantâneo, gratuito e amplamente adotado
+   no Brasil. O card agrupa a chave para cópia e o QR Code.
+   ============================================================ */
+
+/* Card principal do Pix: fundo branco semi-transparente (glassmorphism)
+   para contrastar com o gradiente da CTA section */
+.pix-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 24px 20px;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Reset dos <p> dentro do card Pix: cancela o estilo genérico .cta-section p
+   (que define opacity: 0.95 e margin-bottom: 28px para toda a seção CTA) */
+.pix-card p {
+  opacity: 1;
+  margin-bottom: 0;
+  font-size: inherit;
+}
+
+/* Cabeçalho do card: logo Pix + título + subtítulo em linha */
+.pix-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+/* Logo do Pix: tamanho fixo para não distorcer o SVG */
+.pix-logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* Agrupa o label "Pague com Pix" e o subtítulo em coluna */
+.pix-card-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Título principal do card Pix */
+.pix-label {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+/* Subtítulo descritivo abaixo do título */
+.pix-subtitle {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Corpo do card: chave à esquerda, QR Code à direita (mobile: coluna) */
+.pix-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Área da chave Pix: tipo, valor em destaque e botão de copiar */
+.pix-key-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Rótulo discreto indicando o tipo da chave (Telefone) */
+.pix-key-type {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Valor da chave Pix em destaque: fonte grande e bem legível */
+.pix-key-value {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.04em;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace; /* Monospace para facilitar leitura */
+}
+
+/* Botão "Copiar chave": estilo teal do Pix, bordas arredondadas */
+.pix-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #32BCAD; /* Cor oficial do Pix */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(50, 188, 173, 0.4);
+}
+
+/* Estado hover (apenas em dispositivos com cursor real) */
+@media (hover: hover) and (pointer: fine) {
+  .pix-copy-btn:hover {
+    background: #27a698; /* Tom mais escuro para feedback de hover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(50, 188, 173, 0.5);
+  }
+}
+
+/* Estado "copiado": muda para verde de sucesso ao clicar */
+.pix-copy-btn.copied {
+  background: #22be5b; /* Verde de sucesso — consistente com WhatsApp */
+  box-shadow: 0 3px 10px rgba(34, 190, 91, 0.4);
+}
+
+/* Ícone SVG dentro do botão de copiar */
+.pix-copy-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Mensagem de feedback "✅ Chave copiada!" — oculta por padrão.
+   Usa seletor .pix-card .pix-copy-feedback para superar a especificidade de
+   .cta-section p (que define opacity: 0.95 em todos os <p> da CTA).
+   aria-live="polite" garante que leitores de tela anunciem a mudança. */
+.pix-card .pix-copy-feedback {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  opacity: 0;
+  /* A transição suave evita que a mensagem apareça bruscamente */
+  transition: opacity 0.3s ease;
+  /* min-height evita layout shift ao mostrar/ocultar a mensagem */
+  min-height: 1.4em;
+  font-weight: 600;
+}
+
+/* Classe adicionada via JS após copiar: torna a mensagem visível */
+.pix-card .pix-copy-feedback.visible {
+  opacity: 1;
+}
+
+/* Área do QR Code: borda branca ao redor para destacar no fundo colorido */
+.pix-qr-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Rótulo instrutivo acima do QR Code */
+.pix-qr-label {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  text-align: center;
+}
+
+/* Imagem do QR Code: bordas arredondadas e fundo branco garantem leitura */
+.pix-qrcode {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+  background: white;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
 /* ============================================================
    SEÇÃO 5: ANIMAÇÕES E MICRO-INTERAÇÕES
    ============================================================
@@ -558,6 +768,20 @@ a:focus-visible {
   .cta-section h2 {
     font-size: var(--text-2xl);
     margin-bottom: 16px;
+  }
+
+  /* No desktop, a área do corpo do card Pix fica em linha:
+     chave à esquerda e QR Code à direita */
+  .pix-card-body {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  /* Chave e botão alinhados à esquerda no layout desktop */
+  .pix-key-area {
+    align-items: flex-start;
   }
 }
 
