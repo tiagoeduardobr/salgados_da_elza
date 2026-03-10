@@ -371,13 +371,26 @@ salgados_da_elza/
 
 ---
 
+### TODO-UI-05 🟢 Melhorar animações mobile-first (Scroll)
+
+**Descrição:** Refinar animações para dispositivos móveis usando IntersectionObserver e removendo "sticky hovers".
+
+**Critérios de aceitação:**
+
+- [ ] Ajustar keyframes e delays de CSS para uma entrada mais rápida no mobile
+- [ ] Aplicar `@media (hover: hover)` para prevenir "sticky hover" em botões e cards (touch)
+- [ ] Implementar IntersectionObserver via JS para engatilhar as animações ao rolar a página
+- [ ] Garantir acessibilidade contínua (`prefers-reduced-motion`)
+
+---
+
 ## Resumo de Prioridades
 
 | Prioridade | Itens                                                                                                            | Fase                           |
 | :--------: | :--------------------------------------------------------------------------------------------------------------- | :----------------------------- |
 | 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03                                                                            | Segurança                      |
 |  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02 | Estrutura, A11Y, SEO, Perf, UI |
-|  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04                                     | SEO, Perf, UI                  |
+|  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04, TODO-UI-05                         | SEO, Perf, UI                  |
 
 ---
 
