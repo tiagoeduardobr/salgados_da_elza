@@ -42,24 +42,28 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 | :---------------------------------------------------------------------------------------------------------------: | :-------------------------------------- |
 |         ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)          | Estrutura e conteúdo semântico          |
 |           ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)           | Estilização, responsividade e animações |
+|  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)  | Interatividade e Lazy Loading visual    |
 | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat-square&logo=github&logoColor=white) | Hospedagem estática                     |
 
 ## 📂 Estrutura do Projeto
 
 ```text
 salgados_da_elza/
-├── docs/                   # Documentação
+├── assets/                 # Arquivos estáticos
+│   ├── images/             # Imagens otimizadas dos produtos
+│   └── js/                 # Scripts auxiliares (Animations)
+├── docs/                   # Documentação detalhada
+│   ├── AI_CONTEXT.md       # Diretrizes de contribuição IA
 │   ├── BACKLOG_MVP.md      # Histórico de entregas do MVP (Landing Page)
 │   ├── BACKLOG.md          # Planejamento da evolução para E-commerce
-│   └── PROJECT_OVERVIEW.md # Visão geral técnica e mapa evolutivo
-├── index.html              # Página principal (cardápio)
+│   └── PROJECT_OVERVIEW.md # Visão geral detalhada
 ├── styles/                 # Folhas de estilo (Mobile-first, Premium UI)
-├── Assado de frango.jpeg   # Foto do produto
-├── Assado pizza gourmet.jpeg
-├── Croissant.jpeg
-├── Dogão.jpeg
-├── Pastel assado.jpeg
-└── README.md               # Documentação principal
+│   └── main.css
+├── index.html              # Página principal (cardápio)
+├── manifest.json           # Web App Manifest (PWA)
+├── robots.txt              # Diretivas para crawlers
+├── sitemap.xml             # Sitemap para indexação SEO
+└── README.md               # Este arquivo de documentação
 ```
 
 ## 🚀 Próximos Passos (Evolução para E-commerce)
