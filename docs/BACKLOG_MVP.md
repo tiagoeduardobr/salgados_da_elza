@@ -386,6 +386,20 @@ salgados_da_elza/
 
 ---
 
+### TODO-UI-06 🟢 Melhorar UI do Card Pix
+
+> ✅ **Concluído em:** 2026-03-10 às 21:35 (UTC-3)
+
+**Descrição:** Redesenhar o visual do card Pix adicionado recentemente para adequá-lo melhor ao restante da landing page.
+
+**Critérios de aceitação:**
+
+- [x] Aumentar o tamanho do logo Pix (SVG/PNG) para ter mais destaque.
+- [x] Melhorar alinhamento e peso da fonte do título principal.
+- [x] Ajustar espaçamentos entre a chave e o QR Code no layout desktop e mobile.
+
+---
+
 ## Resumo de Prioridades
 
 | Prioridade | Itens                                                                                                            | Fase                           |

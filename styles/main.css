@@ -431,16 +431,15 @@ a:focus-visible {
    no Brasil. O card agrupa a chave para cópia e o QR Code.
    ============================================================ */
 
-/* Card principal do Pix: fundo branco semi-transparente (glassmorphism)
-   para contrastar com o gradiente da CTA section */
+/* Card principal do Pix: fundo branco semi-transparente (glassmorphism) */
 .pix-card {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
-  padding: 24px 20px;
-  max-width: 480px;
+  padding: 32px 24px;
+  max-width: 520px;
   margin: 0 auto;
   text-align: left;
 }
@@ -457,27 +456,29 @@ a:focus-visible {
 .pix-card-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-/* Logo do Pix: tamanho fixo para não distorcer o SVG */
+/* Logo do Pix: tamanho maior para mais destaque */
 .pix-logo {
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 /* Agrupa o label "Pague com Pix" e o subtítulo em coluna */
 .pix-card-title {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 /* Título principal do card Pix */
 .pix-label {
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
   font-weight: 700;
   color: white;
   line-height: 1.2;
@@ -603,11 +604,11 @@ a:focus-visible {
 
 /* Imagem do QR Code: bordas arredondadas e fundo branco garantem leitura */
 .pix-qrcode {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   border-radius: 12px;
   background: white;
-  padding: 8px;
+  padding: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   display: block;
 }
