@@ -3,7 +3,7 @@
 > **Status:** Este backlog representa a Fase 1 à Fase 5 do projeto original, entregando a Landing Page (MVP). Ele foi **100% concluído**.
 > Para as próximas evoluções (E-commerce), consulte o arquivo `BACKLOG.md` regular.
 >
-> 🤖 **Nota para IA:** Leia as regras e diretrizes de desenvolvimento no arquivo `docs/AI_CONTEXT.md` antes de atuar.
+> 🤖 **Nota para IA:** Leia as regras e diretrizes de desenvolvimento no arquivo `AGENTS.md` antes de atuar.
 
 ---
 

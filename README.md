@@ -53,7 +53,6 @@ salgados_da_elza/
 │   ├── images/             # Imagens otimizadas dos produtos
 │   └── js/                 # Scripts auxiliares (Animations)
 ├── docs/                   # Documentação detalhada
-│   ├── AI_CONTEXT.md       # Diretrizes de contribuição IA
 │   ├── BACKLOG_MVP.md      # Histórico de entregas do MVP (Landing Page)
 │   ├── BACKLOG.md          # Planejamento da evolução para E-commerce
 │   └── PROJECT_OVERVIEW.md # Visão geral detalhada
@@ -63,6 +62,7 @@ salgados_da_elza/
 ├── manifest.json           # Web App Manifest (PWA)
 ├── robots.txt              # Diretivas para crawlers
 ├── sitemap.xml             # Sitemap para indexação SEO
+├── AGENTS.md               # Diretrizes de contribuição IA
 └── README.md               # Este arquivo de documentação
 ```
 
