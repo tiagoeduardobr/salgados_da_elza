@@ -2,6 +2,8 @@
 
 > **Objetivo:** Evoluir a landing page estática (MVP) em uma plataforma E-commerce funcional, com integrações de pagamento (Mercado Pago), carrinho dinâmico e um painel de administração completo (CMS, Controle de Estoque e Dashboard Financeiro).
 >
+> 🤖 **Nota para IA (STATUS)**: Este E-commerce ainda está estritamente em **fase de planejamento**. NÃO sugira nem inicie a implementação de nenhum dos TODOs abaixo até que o usuário solicite explicitamente.
+>
 > 🤖 **Nota para IA:** Leia as regras e diretrizes de desenvolvimento no arquivo `AGENTS.md` antes de atuar.
 
 ---
