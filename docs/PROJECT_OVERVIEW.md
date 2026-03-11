@@ -2,7 +2,7 @@
 
 ## 📌 Escopo Atual (MVP)
 
-A versão atual do projeto **Salgados da Elza** é uma Landing Page estática altamente otimizada, focada em performance, design premium, segurança e acessibilidade (WCAG 2.1). O site exibe o catálogo de salgados assados artesanais de Blumenau, SC, e direciona o usuário a uma conversão via WhatsApp.
+A versão atual do projeto **Salgados da Elza** é uma Landing Page estática altamente otimizada, focada em performance, design premium, segurança e acessibilidade (WCAG 2.1). O site exibe o catálogo de salgados assados artesanais de Blumenau, SC, e direciona o usuário a uma conversão via WhatsApp oferecendo pagamento instantâneo via Pix QR Code.
 
 ### Características do MVP
 
@@ -10,6 +10,7 @@ A versão atual do projeto **Salgados da Elza** é uma Landing Page estática al
 - **Performance extrema** pontuando 100/100 no Lighthouse (Imagens com `decoding=async` e `loading=lazy`, preconnect de fontes e meta tags otimizadas).
 - **Hardening de Segurança** usando OWASP Top 10 com forte `Content-Security-Policy` (CSP) configurada via meta tags.
 - **Semântica e SEO**, incluindo Rich Snippets (Schema.org / JSON-LD para `LocalBusiness`).
+- **Integração de Pagamento CTA**, dispondo uma área de Pix copia-e-cola rica em UI e interatividade JavaScript sem sair do MVP.
 
 ---
 

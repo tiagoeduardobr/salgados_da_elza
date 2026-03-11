@@ -400,6 +400,51 @@ salgados_da_elza/
 
 ---
 
+## Adições Pós-Conclusão (Evoluções do MVP)
+
+> Pequenas melhorias integradas após a finalização da landing page original, documentadas para fins de histórico.
+
+### TODO-FEAT-01 🟢 Atualizar Sabores e Nomenclatura dos Croissants
+
+> ✅ **Concluído em:** 2026-03-09 às 23:12 (UTC-3) - PR #1
+
+**Descrição:** Atualizar o card de Croissants para refletir as novidades no cardápio de doces e salgados.
+
+**Critérios de aceitação:**
+
+- [x] Renomear o título de "Croissant Doce" para "Croissants" no `index.html`.
+- [x] Adicionar a opção de sabor "Frango" na lista de Sabores Disponíveis.
+
+---
+
+### TODO-FEAT-02 🟢 Corrigir e Restaurar Animação do WhatsApp
+
+> ✅ **Concluído em:** 2026-03-09 às 23:28 (UTC-3) - PR #2
+
+**Descrição:** A animação de `pulse` no botão CTA do WhatsApp que havia sido desativada ou apresentava bugs precisa ser restaurada e polida.
+
+**Critérios de aceitação:**
+
+- [x] Ajustar e recolocar os `@keyframes pulse` no `styles/main.css`.
+- [x] Garantir que o botão no CTA atraia a atenção do usuário com o efeito de pulsar sem causar *layout shift*.
+
+---
+
+### TODO-FEAT-03 🟡 Integrar Opção de Pagamento Via Pix na CTA
+
+> ✅ **Concluído em:** 2026-03-10 às 20:10 (UTC-3) - PR #3 e PR #5
+
+**Descrição:** O método de pagamento via Pix tornou-se essencial. O usuário deve conseguir ver a chave e o QR Code diretamente na Landing Page, próximo ao botão do WhatsApp.
+
+**Critérios de aceitação:**
+
+- [x] Adicionar nova estrutura HTML (`.pix-card`) no `index.html`.
+- [x] Incluir botão "Copiar chave" funcional com script JavaScript em `assets/js/animations.js`.
+- [x] Inserir QR Code gerado contendo a chave Pix da Dona Elza.
+- [x] Corrigir/atualizar os logos oficiais do Pix.
+
+---
+
 ## Resumo de Prioridades
 
 | Prioridade | Itens                                                                                                            | Fase                           |

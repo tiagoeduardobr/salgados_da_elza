@@ -20,7 +20,7 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 
 - 🎨 **Design Elegante** — Layout moderno com paleta de cores acolhedora e tipografia refinada
 - 📱 **Totalmente Responsivo** — Adaptado para celulares, tablets e desktops
-- 💬 **Integração com WhatsApp** — Botão de pedido direto com mensagem pré-preenchida
+- 💬 **Integração com WhatsApp e Pix** — Botão de pedido integrado e card de pagamento instantâneo via Pix
 - ⚡ **Rápido e Leve** — Página única sem dependências externas, carregamento instantâneo
 - 🔍 **SEO Otimizado** — Meta tags e estrutura semântica em português
 
@@ -32,7 +32,7 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 | 🍗 Assado de Frango | R$ 10,00 | Frango desfiado temperado                                |
 | 🌭 Dogão Assado     | R$ 10,00 | Salsicha, queijo e molho especial                        |
 | 🥟 Pastel Assado    | R$ 8,00  | 4 Queijos, Calabresa, Carne, Carne c/ Ovo, Frango, Pizza |
-| 🥐 Croissant Doce   | R$ 10,00 | Chocolate, Coco                                          |
+| 🥐 Croissants       | R$ 10,00 | Chocolate, Coco, Frango                                  |
 
 > Todos os salgados vêm **embalados individualmente**, prontos para aquecer no micro-ondas ou na Airfryer.
 
