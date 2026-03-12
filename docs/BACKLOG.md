@@ -16,65 +16,65 @@ Os princípios abaixo se aplicam a **TODAS** as fases e devem ser seguidos rigor
 
 ### 🔒 Segurança (OWASP Top 10)
 
-| Ameaça OWASP | Mitigação Obrigatória |
-| :--- | :--- |
-| **A01 - Broken Access Control** | Middleware de autorização por rota; verificação server-side de Feature Flags e Tenant ID em toda requisição. Nunca confiar apenas no frontend. |
-| **A02 - Cryptographic Failures** | Credenciais e tokens apenas em variáveis de ambiente (`.env.local`). Dados sensíveis (CPF, e-mail) criptografados em repouso (AES-256 via Supabase Vault ou campo encrypted do Prisma). TLS/HTTPS obrigatório. |
-| **A03 - Injection** | Uso exclusivo de Prisma ORM (queries parametrizadas). Nunca concatenar input do usuário em SQL bruto. Sanitização de Rich Text (DOMPurify) contra XSS persistente. |
-| **A04 - Insecure Design** | Rate limiting em rotas de login e API pública. Threat modeling antes de cada fase. ⚠️ Implementar como **middleware reutilizável centralizado** (`rateLimit(config)`) com limites configuráveis por rota, em vez de implementações ad-hoc em cada endpoint. |
-| **A05 - Security Misconfiguration** | Headers de segurança (CSP, X-Frame-Options, Strict-Transport-Security) via `next.config.js`. `.env` no `.gitignore`. Supabase Row-Level Security (RLS) ativo em todas as tabelas. |
-| **A06 - Vulnerable Components** | `npm audit` no CI/CD. Dependabot ou Renovate para atualizações automáticas de deps. |
-| **A07 - Auth Failures** | Supabase Auth (bcrypt + salt). Tokens JWT com expiração curta (15min access + refresh token). Proteção contra força bruta via rate limit por IP. |
-| **A08 - Data Integrity Failures** | Webhook do Mercado Pago validado com assinatura HMAC-SHA256. Integridade de uploads validada (tipo MIME real, tamanho máximo). |
-| **A09 - Logging & Monitoring** | Logs estruturados (JSON) de eventos de autenticação e transações financeiras. Nunca logar dados sensíveis (senhas, tokens, CPFs completos — mascarar como `***.456.***-XX`). |
-| **A10 - SSRF** | Validação de URLs de callback/webhook. Whitelist de domínios para integrações externas. |
+| Ameaça OWASP                        | Mitigação Obrigatória                                                                                                                                                                                                                                       |
+| :---------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A01 - Broken Access Control**     | Middleware de autorização por rota; verificação server-side de Feature Flags e Tenant ID em toda requisição. Nunca confiar apenas no frontend.                                                                                                              |
+| **A02 - Cryptographic Failures**    | Credenciais e tokens apenas em variáveis de ambiente (`.env.local`). Dados sensíveis (CPF, e-mail) criptografados em repouso (AES-256 via Supabase Vault ou campo encrypted do Prisma). TLS/HTTPS obrigatório.                                              |
+| **A03 - Injection**                 | Uso exclusivo de Prisma ORM (queries parametrizadas). Nunca concatenar input do usuário em SQL bruto. Sanitização de Rich Text (DOMPurify) contra XSS persistente.                                                                                          |
+| **A04 - Insecure Design**           | Rate limiting em rotas de login e API pública. Threat modeling antes de cada fase. ⚠️ Implementar como **middleware reutilizável centralizado** (`rateLimit(config)`) com limites configuráveis por rota, em vez de implementações ad-hoc em cada endpoint. |
+| **A05 - Security Misconfiguration** | Headers de segurança (CSP, X-Frame-Options, Strict-Transport-Security) via `next.config.js`. `.env` no `.gitignore`. Supabase Row-Level Security (RLS) ativo em todas as tabelas.                                                                           |
+| **A06 - Vulnerable Components**     | `npm audit` no CI/CD. Dependabot ou Renovate para atualizações automáticas de deps.                                                                                                                                                                         |
+| **A07 - Auth Failures**             | Supabase Auth (bcrypt + salt). Tokens JWT com expiração curta (15min access + refresh token). Proteção contra força bruta via rate limit por IP.                                                                                                            |
+| **A08 - Data Integrity Failures**   | Webhook do Mercado Pago validado com assinatura HMAC-SHA256. Integridade de uploads validada (tipo MIME real, tamanho máximo).                                                                                                                              |
+| **A09 - Logging & Monitoring**      | Logs estruturados (JSON) de eventos de autenticação e transações financeiras. Nunca logar dados sensíveis (senhas, tokens, CPFs completos — mascarar como `***.456.***-XX`).                                                                                |
+| **A10 - SSRF**                      | Validação de URLs de callback/webhook. Whitelist de domínios para integrações externas.                                                                                                                                                                     |
 
 ### 🛡️ Conformidade LGPD (Lei nº 13.709/2018)
 
-| Requisito Legal | Implementação Técnica |
-| :--- | :--- |
-| **Base Legal (Art. 7)** | Coleta de dados pessoais somente com consentimento explícito (checkbox + timestamp) ou quando necessário para execução do contrato (pedido de compra). |
-| **Finalidade e Minimização (Art. 6)** | Coletar apenas os dados estritamente necessários para a operação (nome, e-mail, telefone, endereço de entrega). Não coletar dados extras "por precaução". |
-| **Transparência (Art. 9)** | Página de Política de Privacidade acessível via footer. Informar claramente quais dados são coletados e para que servem antes do envio de qualquer formulário. |
-| **Direito de Acesso e Exclusão (Art. 18)** | Endpoint `/api/user/my-data` para exportação dos dados em JSON. Endpoint `/api/user/delete-account` para anonimização completa (soft-delete com hash irreversível dos dados pessoais). |
-| **Retenção e Descarte (Art. 16)** | Definir política de retenção: dados de pedidos mantidos por 5 anos (obrigação fiscal). Dados de conta inativa anonimizados após 2 anos sem login. |
-| **Incidentes (Art. 48)** | Procedimento documentado para notificação à ANPD e ao titular em caso de vazamento, no prazo legal. |
-| **Encarregado (DPO)** | Informação de contato do responsável pelos dados visível na Política de Privacidade. |
-| **Perfilamento (Art. 12, §2°)** | Se dados pessoais forem usados para gerar perfil de consumo (ex: programa de fidelidade, histórico de compras), o titular deve ser informado de forma transparente e ter direito de solicitar revisão de decisões automatizadas. |
-| **Transferência Internacional (Art. 33)** | Dados pessoais que trafeguem por serviços hospedados fora do Brasil (Supabase, Mercado Pago, Resend/SES) exigem base legal: consentimento específico, cláusulas contratuais padrão ou país com nível adequado de proteção. Documentar quais serviços processam dados e em que região. |
-| **Segurança Técnica (Art. 46)** | Medidas de segurança técnicas e administrativas devem ser adotadas para proteger dados pessoais contra acessos não autorizados, destruição, perda ou alteração. Referência cruzada: tabela OWASP Top 10 deste documento. Padrão de mascaramento em logs: CPF → `***.456.***-XX`, e-mail → `t***r@domain.com`, telefone → `(**) ****-1234`. |
-| **Privacy by Design (Art. 49)** | Sistemas devem ser concebidos desde o início com proteção de dados integrada (Privacy by Design) e com configurações de privacidade no máximo nível por padrão (Privacy by Default). |
+| Requisito Legal                            | Implementação Técnica                                                                                                                                                                                                                                                                                                                      |
+| :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Base Legal (Art. 7)**                    | Coleta de dados pessoais somente com consentimento explícito (checkbox + timestamp) ou quando necessário para execução do contrato (pedido de compra).                                                                                                                                                                                     |
+| **Finalidade e Minimização (Art. 6)**      | Coletar apenas os dados estritamente necessários para a operação (nome, e-mail, telefone, endereço de entrega). Não coletar dados extras "por precaução".                                                                                                                                                                                  |
+| **Transparência (Art. 9)**                 | Página de Política de Privacidade acessível via footer. Informar claramente quais dados são coletados e para que servem antes do envio de qualquer formulário.                                                                                                                                                                             |
+| **Direito de Acesso e Exclusão (Art. 18)** | Endpoint `/api/user/my-data` para exportação dos dados em JSON. Endpoint `/api/user/delete-account` para anonimização completa (soft-delete com hash irreversível dos dados pessoais).                                                                                                                                                     |
+| **Retenção e Descarte (Art. 16)**          | Definir política de retenção: dados de pedidos mantidos por 5 anos (obrigação fiscal). Dados de conta inativa anonimizados após 2 anos sem login.                                                                                                                                                                                          |
+| **Incidentes (Art. 48)**                   | Procedimento documentado para notificação à ANPD e ao titular em caso de vazamento, no prazo legal.                                                                                                                                                                                                                                        |
+| **Encarregado (DPO)**                      | Informação de contato do responsável pelos dados visível na Política de Privacidade.                                                                                                                                                                                                                                                       |
+| **Perfilamento (Art. 12, §2°)**            | Se dados pessoais forem usados para gerar perfil de consumo (ex: programa de fidelidade, histórico de compras), o titular deve ser informado de forma transparente e ter direito de solicitar revisão de decisões automatizadas.                                                                                                           |
+| **Transferência Internacional (Art. 33)**  | Dados pessoais que trafeguem por serviços hospedados fora do Brasil (Supabase, Mercado Pago, Resend/SES) exigem base legal: consentimento específico, cláusulas contratuais padrão ou país com nível adequado de proteção. Documentar quais serviços processam dados e em que região.                                                      |
+| **Segurança Técnica (Art. 46)**            | Medidas de segurança técnicas e administrativas devem ser adotadas para proteger dados pessoais contra acessos não autorizados, destruição, perda ou alteração. Referência cruzada: tabela OWASP Top 10 deste documento. Padrão de mascaramento em logs: CPF → `***.456.***-XX`, e-mail → `t***r@domain.com`, telefone → `(**) ****-1234`. |
+| **Privacy by Design (Art. 49)**            | Sistemas devem ser concebidos desde o início com proteção de dados integrada (Privacy by Design) e com configurações de privacidade no máximo nível por padrão (Privacy by Default).                                                                                                                                                       |
 
 ### 🗄️ Normalização de Banco de Dados (Prisma)
 
-| Forma Normal | Regra aplicada ao projeto |
-| :--- | :--- |
-| **1FN** | Nenhum campo armazenará listas separadas por vírgula. Relacionamentos N:N usam tabelas de junção (ex: `ProductTag` entre `Product` e `Tag`). |
-| **2FN** | Toda coluna não-chave depende da chave primária inteira. Tabelas como `OrderItem` terão chave composta (`orderId` + `productId`) ou PK própria, com preço unitário copiado no momento do pedido (snapshot, não referência). |
-| **3FN** | Nenhuma dependência transitiva. Exemplo: `Order` não armazena `customerName` — referencia `userId` e busca do `User`. Exceção planejada: campos de _snapshot_ financeiro (preço no momento da venda) para auditoria. |
-| **3FN — Campos Desnormalizados (Cache)** | Alguns campos são intencionalmente desnormalizados por performance (ex: `pointsBalance`, `currentUses`, `totalInCents`). Esses campos DEVEM ser tratados como **cache**: o valor autoritário é sempre a query derivada (`SUM`, `COUNT`). Documentar a justificativa em cada TODO que usar esse padrão. |
-| **Soft Deletes** | Registros críticos (Usuários, Pedidos, Transações, dados pessoais) nunca são deletados fisicamente. Usam campo `deletedAt` (nullable DateTime) filtrado por `@default(dbgenerated())`. Tabelas de referência e configuração (ex: planos, cupons, motoristas) também devem usar soft delete para manter rastreabilidade. |
-| **UUIDs** | Todas as PKs serão `UUID v4` em vez de IDs sequenciais, para impedir _enumeration attacks_ (ex: adivinhar `/api/orders/123`). Exceção: tabelas de junção N:N puras (ex: `ProductTag`) podem usar PK composta sem UUID próprio, desde que documentado. |
-| **Timestamps** | Toda tabela terá `createdAt` e `updatedAt` automáticos via Prisma (`@default(now())` / `@updatedAt`). Exceção: tabelas de auditoria append-only (ex: `OrderStatusHistory`) podem ter apenas `createdAt`, pois registros nunca são editados. |
+| Forma Normal                             | Regra aplicada ao projeto                                                                                                                                                                                                                                                                                               |
+| :--------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1FN**                                  | Nenhum campo armazenará listas separadas por vírgula. Relacionamentos N:N usam tabelas de junção (ex: `ProductTag` entre `Product` e `Tag`).                                                                                                                                                                            |
+| **2FN**                                  | Toda coluna não-chave depende da chave primária inteira. Tabelas como `OrderItem` terão chave composta (`orderId` + `productId`) ou PK própria, com preço unitário copiado no momento do pedido (snapshot, não referência).                                                                                             |
+| **3FN**                                  | Nenhuma dependência transitiva. Exemplo: `Order` não armazena `customerName` — referencia `userId` e busca do `User`. Exceção planejada: campos de _snapshot_ financeiro (preço no momento da venda) para auditoria.                                                                                                    |
+| **3FN — Campos Desnormalizados (Cache)** | Alguns campos são intencionalmente desnormalizados por performance (ex: `pointsBalance`, `currentUses`, `totalInCents`). Esses campos DEVEM ser tratados como **cache**: o valor autoritário é sempre a query derivada (`SUM`, `COUNT`). Documentar a justificativa em cada TODO que usar esse padrão.                  |
+| **Soft Deletes**                         | Registros críticos (Usuários, Pedidos, Transações, dados pessoais) nunca são deletados fisicamente. Usam campo `deletedAt` (nullable DateTime) filtrado por `@default(dbgenerated())`. Tabelas de referência e configuração (ex: planos, cupons, motoristas) também devem usar soft delete para manter rastreabilidade. |
+| **UUIDs**                                | Todas as PKs serão `UUID v4` em vez de IDs sequenciais, para impedir _enumeration attacks_ (ex: adivinhar `/api/orders/123`). Exceção: tabelas de junção N:N puras (ex: `ProductTag`) podem usar PK composta sem UUID próprio, desde que documentado.                                                                   |
+| **Timestamps**                           | Toda tabela terá `createdAt` e `updatedAt` automáticos via Prisma (`@default(now())` / `@updatedAt`). Exceção: tabelas de auditoria append-only (ex: `OrderStatusHistory`) podem ter apenas `createdAt`, pois registros nunca são editados.                                                                             |
 
 ### ✅ Definition of Done (DoD) — Checklist de Conclusão por TODO
 
 Todo TODO só pode ser considerado **"Done"** quando **TODOS** os itens abaixo forem cumpridos:
 
-| Etapa | Critério |
-| :--- | :--- |
-| **Implementação** | Todo o código da tarefa foi escrito, está limpo, modular e com comentários didáticos em pt-BR conforme `AGENTS.md`. |
-| **Validação de Linting** | Código passa sem erros no ESLint + Prettier + TypeScript (`npm run lint` e `npm run type-check`). |
-| **Testes** | Testes unitários e/ou de integração escritos para toda lógica de negócios nova. Cobertura mínima: 80% das linhas alteradas. |
-| **Segurança** | Revisão manual das mitigações OWASP listadas na tarefa. `npm audit` sem vulnerabilidades críticas ou altas. |
-| **LGPD** | Se a tarefa coleta ou processa dados pessoais, verificar conformidade com a tabela LGPD transversal deste documento. |
-| **Acessibilidade** | Componentes UI novos passam nas verificações WCAG 2.1 AA (contraste, navegação por teclado, alt texts). |
-| **Code Review** | O código foi revisado (pelo próprio dev usando diff + checklist, ou por par quando houver). |
-| **Versionamento** | Branch criada no início (`feat/TODO-XXX-XX`). Commits semânticos em inglês (`<tipo>(<escopo>): <descrição>`). Merge na `main`, push e delete da branch (local + remota). Veja o workflow em `.agents/workflows/todo-workflow.md`. |
-| **Documentação** | Se houve alteração arquitetural ou de API, o `BACKLOG.md` ou o `README.md` foram atualizados. |
-| **Error Handling** | Todo Server Action e API Route possui tratamento de erros estruturado (`try/catch`). Erros retornam respostas HTTP padronizadas (ex: `{ error: string, code: string }`). Componentes React com fetch usam Error Boundaries para isolar falhas. |
-| **Performance** | Páginas públicas atendem Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1. Bundle size monitorado com `@next/bundle-analyzer`. |
-| **UX de Estados** | Todo componente que faz fetch possui 3 estados visuais: **loading** (skeleton/shimmer/spinner), **sucesso** (dados renderizados) e **erro** (mensagem amigável + ação de retry). Nunca mostrar tela em branco ou congelada. |
+| Etapa                    | Critério                                                                                                                                                                                                                                       |
+| :----------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Implementação**        | Todo o código da tarefa foi escrito, está limpo, modular e com comentários didáticos em pt-BR conforme `AGENTS.md`.                                                                                                                            |
+| **Validação de Linting** | Código passa sem erros no ESLint + Prettier + TypeScript (`npm run lint` e `npm run type-check`).                                                                                                                                              |
+| **Testes**               | Testes unitários e/ou de integração escritos para toda lógica de negócios nova. Cobertura mínima: 80% das linhas alteradas.                                                                                                                    |
+| **Segurança**            | Revisão manual das mitigações OWASP listadas na tarefa. `npm audit` sem vulnerabilidades críticas ou altas.                                                                                                                                    |
+| **LGPD**                 | Se a tarefa coleta ou processa dados pessoais, verificar conformidade com a tabela LGPD transversal deste documento.                                                                                                                           |
+| **Acessibilidade**       | Componentes UI novos passam nas verificações WCAG 2.1 AA (contraste, navegação por teclado, alt texts).                                                                                                                                        |
+| **Code Review**          | O código foi revisado (pelo próprio dev usando diff + checklist, ou por par quando houver).                                                                                                                                                    |
+| **Versionamento**        | Branch criada no início (`feat/TODO-XXX-XX`). Commits semânticos em inglês (`<tipo>(<escopo>): <descrição>`). Merge na `main`, push e delete da branch (local + remota). Veja o workflow em `.agents/workflows/todo-workflow.md`.              |
+| **Documentação**         | Se houve alteração arquitetural ou de API, o `BACKLOG.md` ou o `README.md` foram atualizados.                                                                                                                                                  |
+| **Error Handling**       | Todo Server Action e API Route possui tratamento de erros estruturado (`try/catch`). Erros retornam respostas HTTP padronizadas (ex: `{ error: string, code: string }`). Componentes React com fetch usam Error Boundaries para isolar falhas. |
+| **Performance**          | Páginas públicas atendem Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1. Bundle size monitorado com `@next/bundle-analyzer`.                                                                                                              |
+| **UX de Estados**        | Todo componente que faz fetch possui 3 estados visuais: **loading** (skeleton/shimmer/spinner), **sucesso** (dados renderizados) e **erro** (mensagem amigável + ação de retry). Nunca mostrar tela em branco ou congelada.                    |
 
 ---
 
@@ -397,9 +397,10 @@ Todo TODO só pode ser considerado **"Done"** quando **TODOS** os itens abaixo f
 
 **♿ Acessibilidade (WCAG 2.1):**
 
-- **Modal de Confirmação:** O modal de exclusão deve ter `role="alertdialog"`, `aria-modal="true"`. O foco inicial ao abrir o modal DEVE ir direto para o botão "Cancelar" (primário e safe-action) para evitar exclusões acidentais por *enter-spam*.
+- **Modal de Confirmação:** O modal de exclusão deve ter `role="alertdialog"`, `aria-modal="true"`. O foco inicial ao abrir o modal DEVE ir direto para o botão "Cancelar" (primário e safe-action) para evitar exclusões acidentais por _enter-spam_.
 
 - **Modal de confirmação antes de deletar/desativar:** Ao clicar em deletar ou desativar produto, exibir modal: _"Tem certeza que deseja desativar [Nome do Produto]? O produto ficará invisível na loja."_ com botões "Cancelar" (primário) e "Confirmar" (secundário/destrutivo).
+
 - **Progress bar no upload de imagem:** Exibir barra de progresso durante upload de imagens grandes. Usar `XMLHttpRequest.upload.onprogress` ou equivalente do Supabase Storage client.
 - **Compressão client-side antes do upload:** Comprimir e redimensionar a imagem no navegador antes de enviar ao storage (biblioteca `browser-image-compression`). Reduz tempo de upload e custo de banda.
 
@@ -551,6 +552,7 @@ Todo TODO só pode ser considerado **"Done"** quando **TODOS** os itens abaixo f
 **♿ Acessibilidade (WCAG 2.1):**
 
 - **Indicador de Etapa (Stepper):** O item do stepper correspondente à etapa ativa deve possuir `aria-current="step"` para que usuários de tecnologias assistivas compreendam o progresso.
+- **Iframe de Pagamento:** O iframe renderizado pelo SDK do Mercado Pago DEVE possuir um atributo `title` descritivo (ex: `title="Formulário de pagamento seguro"`).
 
 ---
 
@@ -614,7 +616,7 @@ Todo TODO só pode ser considerado **"Done"** quando **TODOS** os itens abaixo f
   - Navegação: Visão Geral, Pedidos, Catálogo, Configurações, (App Store — se Fase 7 ativa).
   - Sidebar responsiva: colapsável em mobile para tela `≤ 768px`.
 - [ ] **Visão Geral (Cards de KPI):**
-  - Faturamento Diário / Semanal / Mensal (calculado via query aggregada no Prisma: `SUM(totalInCents) WHERE status = 'PAID'`).
+  - Faturamento Diário / Semanal / Mensal (calculado via query agregada no Prisma: `SUM(totalInCents) WHERE status = 'PAID'`).
   - Ticket Médio por Venda (`AVG(totalInCents)`).
   - Número total de pedidos no período.
   - Top 5 Produtos mais vendidos (ranking com `GROUP BY productId, COUNT()`).
@@ -653,6 +655,7 @@ Todo TODO só pode ser considerado **"Done"** quando **TODOS** os itens abaixo f
 **♿ Acessibilidade (WCAG 2.1):**
 
 - **Navegação por Teclado no Kanban:** A biblioteca de Drag-and-Drop deve ser totalmente operável via teclado (ex: `dnd-kit`), permitindo focar, selecionar (`Espaço`) e mover (`Setas`) os cards entre as colunas com anúncios para screen readers.
+- **Alternativa Estruturada para Gráficos:** Para cada gráfico de KPI, deve haver uma tabela invisível (`.sr-only`) ou um botão "Ver como tabela" que forneça os mesmos dados estruturados para usuários de leitor de tela.
 
 ---
 
