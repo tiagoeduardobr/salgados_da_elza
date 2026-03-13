@@ -162,29 +162,79 @@ a:focus-visible {
    .footer  → Rodapé com créditos
    ============================================================ */
 
-/* --- Header: gradiente com as cores da marca --- */
+/* --- Header: Agora com vídeo de fundo e logo (TODO-FEAT-04) ---
+   A estrutura usa position: relative para permitir que o vídeo
+   e o overlay fiquem por baixo do conteúdo textual. */
 .header {
-  background: var(--gradient-brand);
+  position: relative;
+  background: var(--color-primary-dark); /* Fallback case video fails */
   color: white;
   text-align: center;
-  padding: 32px 16px;
+  padding: 80px 16px; /* Aumentado para dar mais ar ao logo */
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
+  min-height: 60vh; /* Usa altura baseada na tela para mostrar mais do vídeo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.header h1 {
-  font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  font-weight: 400;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
+.header-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: cover;
+  object-position: center; /* Garante que o centro do vídeo seja o foco */
+}
+
+/* Overlay sutil para garantir contraste do texto e do logo sobre o vídeo */
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(139, 115, 85, 0.6) 100%
+  );
+  z-index: 2;
+}
+
+.header-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 800px;
+}
+
+.header-logo {
+  width: 100%;
+  max-width: 360px; /* Aumentado para dar mais destaque */
+  aspect-ratio: 3 / 4; /* Proporção mais vertical para incluir o texto inferior */
+  object-fit: cover;
+  object-position: center 40%; /* Ajustado para enquadrar desde o topo do arco até o texto inferior */
+  height: auto;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+  transition: transform 0.5s ease;
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
 }
 
 .header p {
-  font-size: var(--text-md);
-  opacity: 0.95;
-  max-width: 600px;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+  opacity: 1;
   margin: 0 auto;
-  line-height: 1.5;
 }
 
 /* --- Container: centraliza o conteúdo com largura máxima --- */
@@ -343,24 +393,52 @@ a:focus-visible {
 .cta-section {
   background: var(--gradient-brand);
   color: white;
-  padding: 32px 20px;
+  padding: 48px 24px;
   border-radius: 16px;
   text-align: center;
   margin-top: 40px;
   box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cta-content {
+  max-width: 600px;
+  width: 100%;
 }
 
 .cta-section h2 {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  margin-bottom: 12px;
+  font-size: var(--text-2xl);
+  margin-bottom: 8px;
   font-weight: 400;
 }
 
 .cta-section p {
   font-size: var(--text-md);
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   opacity: 0.95;
+}
+
+/* Container do vídeo do WhatsApp: cria uma moldura elegante (TODO-FEAT-04) */
+.cta-video-container {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  aspect-ratio: 9 / 16; /* Mantém proporção de vídeo mobile */
+  background: black;
+}
+
+.cta-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* --- Botão WhatsApp: destaque verde com efeito hover ---

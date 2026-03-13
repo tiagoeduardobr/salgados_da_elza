@@ -398,8 +398,6 @@ salgados_da_elza/
 - [x] Melhorar alinhamento e peso da fonte do título principal.
 - [x] Ajustar espaçamentos entre a chave e o QR Code no layout desktop e mobile.
 
----
-
 ## Adições Pós-Conclusão (Evoluções do MVP)
 
 > Pequenas melhorias integradas após a finalização da landing page original, documentadas para fins de histórico.
@@ -445,12 +443,31 @@ salgados_da_elza/
 
 ---
 
+### TODO-FEAT-04 🟡 Integrar Novos Assets (Logo e Vídeos)
+
+> ✅ **Concluído em:** 2026-03-12 às 22:12 (UTC-3) - PR #6
+
+**Descrição:** Adicionar a nova identidade visual (logo) e vídeos contextuais para aumentar o engajamento e profissionalismo da landing page.
+
+**Critérios de aceitação:**
+
+- [x] Substituir o texto do Header pelo novo logo `assets/images/Logo-Salgados-da-Elza.png`.
+- [x] Integrar `assets/videos/Video-Inicio-Site.mp4` como fundo ou vídeo de destaque na seção hero.
+- [x] Adicionar `assets/videos/Video-Whatsapp.mp4` próximo à seção de CTA do WhatsApp.
+- [x] Garantir que os vídeos iniciem automaticamente (`autoplay`) e em loop (`loop`).
+- [x] Validar acessibilidade (alt text no logo, legendas ou descrições se necessário para vídeos).
+- [x] Otimizar performance (lazy loading quando aplicável).
+- [x] Refinar enquadramento do logo via CSS (`object-fit`).
+- [x] Garantir autoplay silenciando vídeos nos navegadores.
+
+---
+
 ## Resumo de Prioridades
 
 | Prioridade | Itens                                                                                                            | Fase                           |
 | :--------: | :--------------------------------------------------------------------------------------------------------------- | :----------------------------- |
 | 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03                                                                            | Segurança                      |
-|  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02 | Estrutura, A11Y, SEO, Perf, UI |
+|  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02, TODO-FEAT-04 | Estrutura, A11Y, SEO, Perf, UI |
 |  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04, TODO-UI-05                         | SEO, Perf, UI                  |
 
 ---
