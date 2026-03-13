@@ -462,13 +462,29 @@ salgados_da_elza/
 
 ---
 
+### TODO-FEAT-05 🟡 Adicionar Card "Assado de Calabresa" ao Cardápio
+
+> ✅ **Concluído em:** 2026-03-12 às 22:35 (UTC-3) - PR #7
+
+**Descrição:** Incluir uma nova opção de salgado (Assado de Calabresa) no catálogo da vitrine virtual para expandir as opções do usuário.
+
+**Critérios de aceitação:**
+
+- [x] Inserir nova estrutura de `<article>` para o "Assado de Calabresa" na seção de Cardápio.
+- [x] Utilizar a imagem `assets/images/assado-de-calabresa.jpeg`.
+- [x] Configurar `alt` text descritivo para acessibilidade.
+- [x] Adicionar descrição atraente e preço (R$ 10,00 seguindo o padrão).
+- [x] Garantir que o novo card herde os estilos de animação e hover já implementados.
+
+---
+
 ## Resumo de Prioridades
 
-| Prioridade | Itens                                                                                                                          | Fase                           |
-| :--------: | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------------- |
-| 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03                                                                                          | Segurança                      |
-|  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02, TODO-FEAT-04 | Estrutura, A11Y, SEO, Perf, UI |
-|  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04, TODO-UI-05                                       | SEO, Perf, UI                  |
+| Prioridade | Itens                                                                                                                                        | Fase                           |
+| :--------: | :------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------- |
+| 🔴 Crítica | TODO-SEC-01, TODO-SEC-02, TODO-SEC-03                                                                                                        | Segurança                      |
+|  🟡 Alta   | TODO-S-01, TODO-S-02, TODO-SEC-04, TODO-A11Y-01, TODO-A11Y-02, TODO-SEO-01, TODO-PERF-01, TODO-UI-01, TODO-UI-02, TODO-FEAT-04, TODO-FEAT-05 | Estrutura, A11Y, SEO, Perf, UI |
+|  🟢 Média  | TODO-SEO-02, TODO-SEO-03, TODO-PERF-02, TODO-PERF-03, TODO-UI-03, TODO-UI-04, TODO-UI-05                                                     | SEO, Perf, UI                  |
 
 ---
 
