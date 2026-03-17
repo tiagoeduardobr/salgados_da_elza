@@ -40,7 +40,10 @@ Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribu
 
 - **Tabelas:** SEMPRE usar espaços de respiro ao redor dos pipes e dos marcadores de alinhamento (`| :--- |`). Não use colados (`|:---|`).
 - **Blocos de código:** SEMPRE especifique a linguagem (`text`, `javascript`, `typescript`, `css`, `bash`, etc).
-- **Legibilidade:** Manter obrigatoriamente uma linha em branco (blank line) antes e depois de listagens, _headings_ (h1, h2, h3) e file blocks.
+- **Legibilidade:** Manter obrigatoriamente uma linha em branco (blank line) antes e depois de listagens, *headings* (h1, h2, h3) e file blocks. (Evita MD032).
+- **Listas e Sublistas:** SEMPRE insira uma linha em branco (blank line) ao redor de listas e aninhamentos (nested lists) para evitar erros de linting MD032.
+- **Ênfase (Itálico):** SEMPRE use um único asterisco para itálico (`*texto*`). JAMAIS use underscore (`_texto_`), para evitar o erro MD049.
+- **Revisão Ortográfica:** Cuidado com typos e erros de grafia ao gerar o documento (ex: raízes, schemas, usuário). Preste atenção na gramática e não crie jargões quebrados.
 
 ---
 
