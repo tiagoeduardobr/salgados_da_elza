@@ -18,6 +18,28 @@
 
 ---
 
+## 🔴 FASE 2.0 — PRE-REQUISITOS DE SEGURANÇA E LGPD (PRIORIDADE CRÍTICA — FAZER ANTES DE QUALQUER EPIC)
+
+### TODO-SEC-PD-01 🔴 Implementar Política de Privacidade LGPD
+
+- [ ] Criar `privacy.html` com texto explicando: site estático, sem coleta de dados, WhatsApp/Pix públicos, Firebase só catálogo público na Fase 2.
+- [ ] Link no footer de `index.html`: `<a href="privacy.html" class="privacy-link">Política de Privacidade</a>`
+- [ ] Estilo: herda `main.css`, footer-like, mobile-first.
+- [ ] Critérios: ✓ Arquivo criado, ✓ Link no footer, ✓ Texto cobre MVP + Fase 2, ✓ Sem trackers/cookies.
+
+### TODO-SEC-PD-02 🔴 Hardening HSTS no MVP
+
+- [ ] Adicionar meta tag no `<head>` de `index.html`: `<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">`
+- [ ] Critérios: ✓ Meta adicionada, ✓ GitHub Pages HTTPS forçado validado.
+
+### TODO-SEC-PD-03 🔴 Preparar CSP para Firebase Fase 2
+
+- [ ] Atualizar CSP em `index.html`: `connect-src` adicionar `https://*.firebaseio.com https://*.googleapis.com https://*.googleusercontent.com`
+- [ ] Manter resto rígido. Testar com devtools CSP reports.
+- [ ] Critérios: ✓ CSP expandida sem quebrar fonts/WhatsApp, ✓ Nenhum `unsafe-inline` adicionado.
+
+---
+
 ## Epic 1 — Experiência de E-commerce (Front-end Dinâmico)
 
 > Evoluir a landing page estática para um comportamento de loja virtual leve no front-end, mantendo a performance e o envio via WhatsApp.
