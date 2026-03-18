@@ -1,4 +1,16 @@
 /**
+ * Carregamento Assíncrono Seguro de CSS (TODO-PERF-08)
+ * Como o site usa CSP rigorosa (que impede "onload" no HTML), injetamos a 
+ * folha de estilos não-crítica dinamicamente via JS deferido.
+ */
+(function loadNonCriticalCSS() {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "styles/main.css";
+  document.head.appendChild(link);
+})();
+
+/**
  * Intersection Observer para animações de scroll (TODO-UI-05)
  * Oculta os itens inicialmente (via CSS `.product-section`, `.intro`, etc.)
  * e adiciona a classe `.animate-in` quando entrarem no viewport.
