@@ -24,6 +24,8 @@ Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribu
 - **Qualidade de Código:** Entregar código profissional, limpo, modular, bem estruturado e altamente testável.
 - **Acessibilidade e SEO:** Priorize acessibilidade realística baseada nas normas WCAG 2.1 (A e AA no mínimo) e técnicas modernas de Technical SEO (Schema.org / Server-side rendering amigável).
 - **Manipulação de Arquivos (Uso da IA):** SEMPRE modifique arquivos e textos utilizando APENAS suas ferramentas nativas da IA (como replace_file_content). JAMAIS utilize comandos bash/terminal ou crie scripts (como Python, Node, sed, awk ou Regex em shell) para injetar strings, editar, apagar ou mudar código em arquivos do repositório.
+- **Escopo e Granularidade (Regra de Ouro da IA):** NUNCA agrupe múltiplos TODOs ou tarefas em uma mesma execução de contexto ou branch (ex: tentar resolver 4 TODOs de uma vez). Sempre aja sobre a MENOR unidade de trabalho possível — focando rigorosamente em UM TODO por vez. Isso garante que a janela de contexto da IA não quebre e impede alucinações de completude.
+- **Gestão de Backlog e Validação Cruzada:** A IA JAMAIS deve assumir macro-tarefas como concluídas indiscriminadamente. ANTES de marcar um sub-item como concluído (`[x]`) em qualquer Backlog, a IA deve fazer a validação cruzada **empírica** no código fonte buscando a implementação real e literal daquele requisito específico. O que não foi estritamente codificado deve permanecer como pendente (`[ ]`).
 - **Justificativas Técnicas:** Toda alteração de código ou setup de arquitetura deve ser embasada e previamente decidida/acordada.
 
 ## 📌 REGRAS DE VERSIONAMENTO (GIT)
