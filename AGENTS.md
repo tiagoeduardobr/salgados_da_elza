@@ -23,6 +23,7 @@ Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribu
 - **Segurança:** O projeto segue e respeita rigorosamente o **OWASP Top 10** e boas práticas de segurança web. Nomes de usuário não devem trafegar em claro, proteções de força bruta, CSRF e CSP fortes devem ser mantidas.
 - **Qualidade de Código:** Entregar código profissional, limpo, modular, bem estruturado e altamente testável.
 - **Acessibilidade e SEO:** Priorize acessibilidade realística baseada nas normas WCAG 2.1 (A e AA no mínimo) e técnicas modernas de Technical SEO (Schema.org / Server-side rendering amigável).
+- **Manipulação de Arquivos (Uso da IA):** SEMPRE modifique ou crie arquivos e textos utilizando suas ferramentas nativas adequadas (tools de I/O de código). JAMAIS utilize comandos bash/terminal (como `echo`, `cat` ou manipulação de strings via shell) para editar, apagar, injetar ou criar conteúdo em arquivos do repositório.
 - **Justificativas Técnicas:** Toda alteração de código ou setup de arquitetura deve ser embasada e previamente decidida/acordada.
 
 ## 📌 REGRAS DE VERSIONAMENTO (GIT)
