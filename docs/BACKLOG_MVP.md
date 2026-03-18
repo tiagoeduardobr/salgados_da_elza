@@ -482,23 +482,19 @@ salgados_da_elza/
 
 ### TODO-PERF-07 🟡 Otimizar imagens e vídeos para Lighthouse 100 (70→100)
 
-> ✅ **Concluído em:** 2026-03-17 às 22:58 (UTC-3)
-
 - [x] Compress todas `assets/images/*.jpeg` → <100KB (TinyPNG ou ImageOptim)
 - [x] Converter para WebP: `assets/images/*.webp` com fallback JPG (`picture` element)
-- [x] Vídeos MP4: Handbrake H.264 CRF 23, <1MB cada (Reduzido contextualmente onde possível)
-- [x] Adicionar `fetchpriority="high"` no vídeo hero e preload `as="video"`
+- [ ] Vídeos MP4: Handbrake H.264 CRF 23, <1MB cada
+- [ ] Adicionar `fetchpriority="high"` no vídeo hero e preload `as="video"`
 - [x] Critérios: Lighthouse Performance ≥98, Largest Contentful Paint ≤2.5s
 
 ---
 
 ### TODO-PERF-08 🟡 Eliminar render-blocking resources (1,910ms)
 
-> ✅ **Concluído em:** 2026-03-17 às 22:58 (UTC-3)
-
 - [x] Inline critical CSS (primeiros 10-15KB de `main.css` via `<link>` devido ao CSP restrito no `<head>`)
 - [x] Defer `animations.js`: `<script defer src="...">`
-- [x] Fonts: system font stack + `font-display:swap` já OK, mas preload woff2
+- [ ] Fonts: system font stack + `font-display:swap` já OK, mas preload woff2
 - [x] Critérios: No render-blocking warnings
 
 ---
