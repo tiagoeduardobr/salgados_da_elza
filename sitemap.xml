@@ -11,4 +11,10 @@
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
+    <url>
+        <loc>https://tiagoeduardobr.github.io/salgados_da_elza/privacy.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
 </urlset>
