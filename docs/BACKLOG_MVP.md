@@ -478,6 +478,42 @@ salgados_da_elza/
 
 ---
 
+## TODOs Performance Lighthouse 70→100
+
+### TODO-PERF-07 🟡 Otimizar imagens e vídeos para Lighthouse 100 (70→100)
+
+- [ ] Compress todas `assets/images/*.jpeg` → <100KB (TinyPNG ou ImageOptim)
+- [ ] Converter para WebP: `assets/images/*.webp` com fallback JPG (`picture` element)
+- [ ] Vídeos MP4: Handbrake H.264 CRF 23, <1MB cada
+- [ ] Adicionar `fetchpriority="high"` no vídeo hero e preload `as="video"`
+- [ ] Critérios: Lighthouse Performance ≥98, Largest Contentful Paint ≤2.5s
+
+---
+
+### TODO-PERF-08 🟡 Eliminar render-blocking resources (1,910ms)
+
+- [ ] Inline critical CSS (primeiros 10-15KB de `main.css` no `<head>`)
+- [ ] Defer `animations.js`: `<script defer src="...">`
+- [ ] Fonts: system font stack + `font-display:swap` já OK, mas preload woff2
+- [ ] Critérios: No render-blocking warnings
+
+---
+
+### TODO-PERF-09 🟡 Corrigir robots.txt e cache headers
+
+- [ ] Validar `robots.txt` formato (LF line endings, UTF-8)
+- [ ] Adicionar `sitemap.xml` atualizado com `privacy.html` nova
+- [ ] Critérios: Lighthouse SEO 100, `robots.txt` parsable
+
+---
+
+### TODO-PERF-10 🟡 Minify CSS e total payload <2MB
+
+- [ ] Minificar `main.css` (PostCSS ou online tool)
+- [ ] Critérios: Total byte weight <2MB, CSS minified
+
+---
+
 ## Resumo de Prioridades
 
 | Prioridade | Itens                                                                                                                                        | Fase                           |
