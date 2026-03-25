@@ -36,14 +36,20 @@
         <!-- PWA: manifest para experiência app-like e cor da barra de status mobile -->
         <link rel="manifest" href="manifest.json">
         <meta name="theme-color" content="#8b7355">
-        <!-- Fontes: preconnect para Google Fonts (economia de ~100-200ms no carregamento)
-             crossorigin é necessário pois fonts.gstatic.com serve fontes via CORS -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!-- Google Fonts: display=swap evita FOIT (Flash of Invisible Text) —
-             o texto aparece imediatamente com fonte fallback e troca quando a fonte carrega -->
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap">
+        <!-- Fontes: preload dos arquivos críticos woff2 (TODO-PERF-08) -->
+        <link rel="preload" as="font" type="font/woff2" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/files/inter-latin-400-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/files/playfair-display-latin-700-normal.woff2" crossorigin="anonymous">
+
+        <!-- CSS das Fontes carregado de forma não bloqueante -->
+        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.min.css">
+        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/index.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.min.css" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/index.min.css" media="print" onload="this.media='all'">
+        
+        <noscript>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/index.min.css">
+        </noscript>
         
         <!-- Preload do vídeo hero (TODO-PERF-07) -->
         <link rel="preload" as="video" href="assets/videos/Video-Inicio-Site-otimizado.mp4" type="video/mp4" fetchpriority="high">

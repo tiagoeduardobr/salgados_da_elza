@@ -494,9 +494,11 @@ salgados_da_elza/
 
 ### TODO-PERF-08 🟡 Eliminar render-blocking resources (1,910ms)
 
+> ✅ **Concluído em:** 2026-03-24 às 21:18 (UTC-3)
+
 - [x] Inline critical CSS (primeiros 10-15KB de `main.css` via `<link>` devido ao CSP restrito no `<head>`)
 - [x] Defer `animations.js`: `<script defer src="...">`
-- [ ] Fonts: system font stack + `font-display:swap` já OK, mas preload woff2
+- [x] Fonts: system font stack + `font-display:swap` já OK, mas preload woff2
 - [x] Critérios: No render-blocking warnings
 
 ---
