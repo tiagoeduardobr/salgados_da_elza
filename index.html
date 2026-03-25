@@ -36,23 +36,14 @@
         <!-- PWA: manifest para experiência app-like e cor da barra de status mobile -->
         <link rel="manifest" href="manifest.json">
         <meta name="theme-color" content="#8b7355">
-        <!-- Fontes: preload dos arquivos críticos woff2 (TODO-PERF-08) -->
-        <link rel="preload" as="font" type="font/woff2" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/files/inter-latin-400-normal.woff2" crossorigin="anonymous">
-        <link rel="preload" as="font" type="font/woff2" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/files/playfair-display-latin-700-normal.woff2" crossorigin="anonymous">
+        <!-- Fontes: preconnect para Google Fonts original -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-        <!-- CSS das Fontes carregado de forma não bloqueante -->
-        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.min.css">
-        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/index.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.min.css" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/index.min.css" media="print" onload="this.media='all'">
-        
-        <noscript>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.21/index.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.22/index.min.css">
-        </noscript>
-        
         <!-- Preload do vídeo hero (TODO-PERF-07) -->
-        <link rel="preload" as="video" href="assets/videos/Video-Inicio-Site-otimizado.mp4" type="video/mp4" fetchpriority="high">
+        <link rel="preload" as="video" href="assets/videos/Video-Inicio-Site-otimizado.mp4" type="video/mp4"
+            fetchpriority="high">
 
         <!-- CSS Otimizado (TODO-PERF-08) -->
         <!-- Carregamento do CSS Crítico (Acima da Dobra) -->
@@ -61,14 +52,17 @@
         <!-- CSS Secundário (Abaixo da Dobra)
              Carregamento Assíncrono Movido para o assets/js/animations.js (Performance + CSP Safe).
              A tag abaixo atua como fallback para navegadores com JS desativado. -->
-        <noscript><link rel="stylesheet" href="styles/main.css"></noscript>
+        <noscript>
+            <link rel="stylesheet" href="styles/main.css">
+        </noscript>
     </head>
 
     <body>
         <!-- Header: cabeçalho semântico. Substituímos o texto por um logo profissional e um vídeo de fundo
              para aumentar o impacto visual e a autoridade da marca (TODO-FEAT-04). -->
         <header class="header">
-            <video class="header-video" autoplay muted loop playsinline poster="assets/images/assado-pizza-gourmet.jpeg" fetchpriority="high" preload="metadata">
+            <video class="header-video" autoplay muted loop playsinline poster="assets/images/assado-pizza-gourmet.jpeg"
+                fetchpriority="high" preload="metadata">
                 <source src="assets/videos/Video-Inicio-Site-otimizado.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos HTML5.
             </video>
@@ -76,7 +70,8 @@
             <div class="header-content">
                 <picture>
                     <source srcset="assets/images/Logo-Salgados-da-Elza.webp" type="image/webp">
-                    <img src="assets/images/Logo-Salgados-da-Elza.png" alt="SALGADOS DA ELZA — Logomarca" class="header-logo" width="400" height="400">
+                    <img src="assets/images/Logo-Salgados-da-Elza.png" alt="SALGADOS DA ELZA — Logomarca"
+                        class="header-logo" width="400" height="400">
                 </picture>
                 <p>Salgados assados artesanais, prontos para aquecer e saborear</p>
             </div>
@@ -103,8 +98,8 @@
                         <picture>
                             <source srcset="assets/images/assado-pizza-gourmet.webp" type="image/webp">
                             <img src="assets/images/assado-pizza-gourmet.jpeg"
-                                alt="Salgado Pizza Gourmet assado dourado com queijo, presunto e tomate seco" width="1220"
-                                height="896" decoding="async">
+                                alt="Salgado Pizza Gourmet assado dourado com queijo, presunto e tomate seco"
+                                width="1220" height="896" decoding="async">
                         </picture>
                     </div>
                     <div class="product-content">
@@ -122,8 +117,9 @@
                     <div class="product-image">
                         <picture>
                             <source srcset="assets/images/assado-de-frango.webp" type="image/webp">
-                            <img src="assets/images/assado-de-frango.jpeg" alt="Salgado de frango desfiado assado dourado"
-                                width="1220" height="902" decoding="async" loading="lazy">
+                            <img src="assets/images/assado-de-frango.jpeg"
+                                alt="Salgado de frango desfiado assado dourado" width="1220" height="902"
+                                decoding="async" loading="lazy">
                         </picture>
                     </div>
                     <div class="product-content">
@@ -141,8 +137,9 @@
                     <div class="product-image">
                         <picture>
                             <source srcset="assets/images/assado-de-calabresa.webp" type="image/webp">
-                            <img src="assets/images/assado-de-calabresa.jpeg" alt="Salgado assado de calabresa dourado e suculento"
-                                width="1220" height="915" decoding="async" loading="lazy">
+                            <img src="assets/images/assado-de-calabresa.jpeg"
+                                alt="Salgado assado de calabresa dourado e suculento" width="1220" height="915"
+                                decoding="async" loading="lazy">
                         </picture>
                     </div>
                     <div class="product-content">
@@ -180,8 +177,9 @@
                     <div class="product-image">
                         <picture>
                             <source srcset="assets/images/pastel-assado.webp" type="image/webp">
-                            <img src="assets/images/pastel-assado.jpeg" alt="Pastel assado crocante com recheio caprichado"
-                                width="1220" height="817" decoding="async" loading="lazy">
+                            <img src="assets/images/pastel-assado.jpeg"
+                                alt="Pastel assado crocante com recheio caprichado" width="1220" height="817"
+                                decoding="async" loading="lazy">
                         </picture>
                     </div>
                     <div class="product-content">
@@ -209,8 +207,9 @@
                     <div class="product-image">
                         <picture>
                             <source srcset="assets/images/croissant.webp" type="image/webp">
-                            <img src="assets/images/croissant.jpeg" alt="Croissant doce artesanal com massa folhada dourada"
-                                width="1220" height="1044" decoding="async" loading="lazy">
+                            <img src="assets/images/croissant.jpeg"
+                                alt="Croissant doce artesanal com massa folhada dourada" width="1220" height="1044"
+                                decoding="async" loading="lazy">
                         </picture>
                     </div>
                     <div class="product-content">
@@ -250,74 +249,75 @@
                     <a href="https://wa.me/5547992203893?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20dos%20Salgados%20da%20Elza!"
                         class="whatsapp-btn" target="_blank" rel="noopener noreferrer"
                         aria-label="Fazer pedido pelo WhatsApp">
-                    <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767-.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133-.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                    Pedir pelo WhatsApp
-                </a>
-                <p class="cta-phone">(47) 9 9220-3893</p>
+                        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                            role="img">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767-.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133-.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        Pedir pelo WhatsApp
+                    </a>
+                    <p class="cta-phone">(47) 9 9220-3893</p>
 
-                <!-- Divisor visual entre WhatsApp e Pix -->
-                <div class="cta-divider" aria-hidden="true"></div>
+                    <!-- Divisor visual entre WhatsApp e Pix -->
+                    <div class="cta-divider" aria-hidden="true"></div>
 
-                <!-- Card Pix: permite copiar a chave e exibe o QR Code para pagamento -->
-                <div class="pix-card" role="region" aria-label="Pagamento via Pix">
-                    <!-- Cabeçalho do card com logo e título Pix -->
-                    <div class="pix-card-header">
-                        <picture>
-                            <source srcset="assets/images/pix-logo.webp" type="image/webp">
-                            <img src="assets/images/pix-logo.png" alt="Logo Pix" class="pix-logo" width="64" height="64">
-                        </picture>
-                        <div class="pix-card-title">
-                            <span class="pix-label">Pague com Pix</span>
-                            <span class="pix-subtitle">Rápido, seguro e sem taxas</span>
-                        </div>
-                    </div>
-
-                    <!-- Área central: chave Pix + QR Code lado a lado -->
-                    <div class="pix-card-body">
-                        <!-- Coluna esquerda: chave para copiar -->
-                        <div class="pix-key-area">
-                            <p class="pix-key-type">Chave Pix (Telefone)</p>
-                            <!-- Exibe a chave Pix em destaque visual; o texto formatado é legível por leitores de tela -->
-                            <p class="pix-key-value" id="pix-key-display">
-                                +55 47 99220-3893
-                            </p>
-                            <!-- Botão que copia a chave para a área de transferência do dispositivo -->
-                            <button class="pix-copy-btn" id="pix-copy-btn"
-                                aria-label="Copiar chave Pix para a área de transferência"
-                                data-pix-key="+5547992203893">
-                                <!-- Ícone de copiar (SVG inline: não precisa de img-src) -->
-                                <svg class="pix-copy-icon" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" aria-hidden="true">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                                Copiar chave
-                            </button>
-                            <!-- Mensagem de feedback: aparece após a cópia bem-sucedida -->
-                            <p class="pix-copy-feedback" id="pix-copy-feedback" aria-live="polite" aria-atomic="true">
-                                ✅ Chave copiada!
-                            </p>
-                        </div>
-
-                        <!-- Coluna direita: QR Code Pix para escanear -->
-                        <div class="pix-qr-area">
-                            <p class="pix-qr-label">Escaneie com o app do banco</p>
-                            <!-- QR Code gerado localmente com o payload Pix EMV BR Code -->
+                    <!-- Card Pix: permite copiar a chave e exibe o QR Code para pagamento -->
+                    <div class="pix-card" role="region" aria-label="Pagamento via Pix">
+                        <!-- Cabeçalho do card com logo e título Pix -->
+                        <div class="pix-card-header">
                             <picture>
-                                <source srcset="assets/images/pix-qrcode.webp" type="image/webp">
-                                <img src="assets/images/pix-qrcode.png"
-                                    alt="QR Code Pix — escaneie com o aplicativo do seu banco para pagar"
-                                    class="pix-qrcode"
-                                    width="160" height="160"
-                                    loading="lazy" decoding="async">
+                                <source srcset="assets/images/pix-logo.webp" type="image/webp">
+                                <img src="assets/images/pix-logo.png" alt="Logo Pix" class="pix-logo" width="64"
+                                    height="64">
                             </picture>
+                            <div class="pix-card-title">
+                                <span class="pix-label">Pague com Pix</span>
+                                <span class="pix-subtitle">Rápido, seguro e sem taxas</span>
+                            </div>
+                        </div>
+
+                        <!-- Área central: chave Pix + QR Code lado a lado -->
+                        <div class="pix-card-body">
+                            <!-- Coluna esquerda: chave para copiar -->
+                            <div class="pix-key-area">
+                                <p class="pix-key-type">Chave Pix (Telefone)</p>
+                                <!-- Exibe a chave Pix em destaque visual; o texto formatado é legível por leitores de tela -->
+                                <p class="pix-key-value" id="pix-key-display">
+                                    +55 47 99220-3893
+                                </p>
+                                <!-- Botão que copia a chave para a área de transferência do dispositivo -->
+                                <button class="pix-copy-btn" id="pix-copy-btn"
+                                    aria-label="Copiar chave Pix para a área de transferência"
+                                    data-pix-key="+5547992203893">
+                                    <!-- Ícone de copiar (SVG inline: não precisa de img-src) -->
+                                    <svg class="pix-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                    Copiar chave
+                                </button>
+                                <!-- Mensagem de feedback: aparece após a cópia bem-sucedida -->
+                                <p class="pix-copy-feedback" id="pix-copy-feedback" aria-live="polite"
+                                    aria-atomic="true">
+                                    ✅ Chave copiada!
+                                </p>
+                            </div>
+
+                            <!-- Coluna direita: QR Code Pix para escanear -->
+                            <div class="pix-qr-area">
+                                <p class="pix-qr-label">Escaneie com o app do banco</p>
+                                <!-- QR Code gerado localmente com o payload Pix EMV BR Code -->
+                                <picture>
+                                    <source srcset="assets/images/pix-qrcode.webp" type="image/webp">
+                                    <img src="assets/images/pix-qrcode.png"
+                                        alt="QR Code Pix — escaneie com o aplicativo do seu banco para pagar"
+                                        class="pix-qrcode" width="160" height="160" loading="lazy" decoding="async">
+                                </picture>
+                            </div>
                         </div>
                     </div>
-                </div>
             </section>
         </main>
 
