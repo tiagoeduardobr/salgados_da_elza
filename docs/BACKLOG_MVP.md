@@ -482,9 +482,11 @@ salgados_da_elza/
 
 ### TODO-PERF-07 🟡 Otimizar imagens e vídeos para Lighthouse 100 (70→100)
 
+> ✅ **Concluído em:** 2026-03-24 às 21:13 (UTC-3)
+
 - [x] Compress todas `assets/images/*.jpeg` → <100KB (TinyPNG ou ImageOptim)
 - [x] Converter para WebP: `assets/images/*.webp` com fallback JPG (`picture` element)
-- [ ] Vídeos MP4: Handbrake H.264 CRF 23, <1MB cada
+- [x] Vídeos MP4: Handbrake H.264 CRF 23, <1MB cada
 - [x] Adicionar `fetchpriority="high"` no vídeo hero e preload `as="video"`
 - [x] Critérios: Lighthouse Performance ≥98, Largest Contentful Paint ≤2.5s
 
