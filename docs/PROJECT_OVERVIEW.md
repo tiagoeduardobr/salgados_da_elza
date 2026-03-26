@@ -14,24 +14,26 @@ A versão atual do projeto **Salgados da Elza** é uma Landing Page estática al
 
 ---
 
-## 🚀 Próxima Evolução: Plataforma de E-commerce
+## 🚀 Próxima Evolução: Fase 2 (E-commerce Leve)
 
-O próximo passo para a Elza é transformar esta landing page estática em uma **plataforma completa de e-commerce e gestão de pedidos**. O sistema deixará de ser apenas um catálogo para se tornar um hub de vendas robusto.
+O próximo passo é transformar a landing page em um catálogo dinâmico com **Carrinho de Compras** no front-end, mantendo a finalização de checkout através do WhatsApp. Além disso, entregaremos ferramentas para conferir autonomia na gestão da loja pela Dona Elza sem custos altos em infraestrutura, utilizando **Firebase**.
 
-### Visão Funcional (App)
+### O que vem na Fase 2
 
-1. **Frontend Dinâmico:** SPA (Single Page Application) em framework moderno (React/Next.js).
-2. **Backend/API Segura:** Servidor REST ou GraphQL para gerenciar regras de negócios, integrando produtos, estoque e pagamentos.
-3. **Checkout Nativo:** Abandono da conversão estática do WhatsApp por um carrinho de compras completo com integração nativa do **Mercado Pago** (PIX, Cartão e Boleto).
+1. **Catálogo Dinâmico e Carrinho:** Frontend renderizando itens dinamicamente do Firebase, com seleção e cálculos de quantidade no client-side (Local Storage).
+2. **Backend Serverless (Firebase):** Configuração de banco de dados NoSQL e bucket de imagens hospedando todo o catálogo, substituindo as tags HTML hardcoded.
+3. **Painel Administrativo Restrito:** Setup simples de autenticação (Firebase Auth) e CRUD completo de gestão de estoque e horário de abertura.
 
-### Área Administrativa (Admin Dashboard)
+---
 
-A plataforma incluirá um painel seguro de administração exclusivo para a gestão da loja:
+## 🔮 Visão de Futuro: Plataforma E-commerce SaaS
 
-- **Dashboard Financeiro & Fluxo de Caixa:** Visão geral de vendas, lucros e métricas diárias.
-- **Gestão de Catálogo (CRUD):** Adição, edição e exclusão de salgados com upload de imagens, preços customizados e controle dinâmico de estoque.
-- **Configurações Globais CMS:** Área dedicada para modificar os textos institucionais do site e ajustar variáveis de estilo (como paleta de cores primárias) sem necessidade de re-deploy do código.
-- **Gestão de Pedidos:** Status de preparo (Recebido, Assando, Saiu para Entrega, Entregue) com notificação automatizada ao cliente.
+Após a implementação da Fase 2, uma visão de longo prazo prevê a adoção de um **E-commerce SaaS Multi-tenant completo** com:
+
+- Frontend Dinâmico nativo em React/Next.js (Servidor App Router).
+- Backend relacional Prisma ORM + PostgreSQL.
+- Checkout Nativo (Pagamentos instantâneos com Mercado Pago PIX, sem contato via WhatsApp).
+- Áreas Administrativas avançadas (Dashboard Financeiro).
 
 ## 👥 Público-Alvo e Personalização
 

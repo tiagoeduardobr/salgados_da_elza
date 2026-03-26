@@ -2,8 +2,10 @@
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Ativo-brightgreen?style=for-the-badge)](https://github.com/tiagoeduardobr/salgados_da_elza)
+[![Status](https://img.shields.io/badge/Status-Fase%202-brightgreen?style=for-the-badge)](https://github.com/tiagoeduardobr/salgados_da_elza)
 [![Made with ❤️](https://img.shields.io/badge/Feito%20com-❤️-red?style=for-the-badge)](https://github.com/tiagoeduardobr)
 
 **Cardápio digital dos Salgados da Elza — salgados assados artesanais feitos com carinho em Blumenau, SC.**
@@ -38,12 +40,13 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 
 ## 🛠️ Tecnologias Utilizadas
 
-|                                                    Tecnologia                                                     | Uso                                     |
-| :---------------------------------------------------------------------------------------------------------------: | :-------------------------------------- |
-|         ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)          | Estrutura e conteúdo semântico          |
-|           ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)           | Estilização, responsividade e animações |
-|  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)  | Interatividade e Lazy Loading visual    |
-| ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat-square&logo=github&logoColor=white) | Hospedagem estática                     |
+|                                                    Tecnologia                                                     | Uso                                                    |
+| :---------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------- |
+|         ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)          | Estrutura e conteúdo semântico                         |
+|           ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)           | Estilização, responsividade e animações                |
+|  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)  | Interatividade, Carrinho de Compras e lógica DOM       |
+|     ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)     | Banco de dados NoSQL e Storage (Fase 2)                |
+| ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat-square&logo=github&logoColor=white) | Hospedagem estática                                    |
 
 ## 📂 Estrutura do Projeto
 
@@ -66,15 +69,16 @@ salgados_da_elza/
 └── README.md               # Este arquivo de documentação
 ```
 
-## 🚀 Próximos Passos (Evolução para E-commerce)
+## 🚀 Próximos Passos (Fase 2)
 
-Este repositório atual contém a versão **MVP (Landing Page Estática)**. O projeto evoluirá em breve para uma Plataforma de E-commerce completa, incluindo:
+Este repositório atual contém a versão **MVP (Landing Page Estática)** concluída com sucesso. O projeto está evoluindo agora para a **Fase 2 (E-commerce Leve & Admin)**, que incluirá:
 
-- Integração nativa de pagamentos (_Mercado Pago_).
-- Painel Administrativo (_Dashboard_, Fluxo de Caixa, Controle de Estoque).
-- _CMS customizável_ (alteração de cores e textos sem precisar editar código).
+- Catálogo de Salgados renderizado dinamicamente.
+- Carrinho de Compras integrado e salvamento de pedidos (Local Storage).
+- Painel Administrativo Autônomo para a dona (Autenticação, CRUD).
+- Backend-as-a-service utilizando **Firebase** (Firestore e Storage).
 
-🔗 Veja mais detalhes técnicos no arquivo [PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) e o planejamento futuro no [BACKLOG.md](docs/BACKLOG.md).
+🔗 Veja mais detalhes técnicos no arquivo [PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) e o planejamento das tarefas no [BACKLOG_PHASE2.md](docs/BACKLOG_PHASE2.md).
 
 ## 🚀 Como Executar Localmente
 
