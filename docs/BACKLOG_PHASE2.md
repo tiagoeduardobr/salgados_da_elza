@@ -50,20 +50,22 @@
 
 ### TODO-FE-01 🔴 Renderização Dinâmica do Catálogo
 
+> ✅ **Concluído em:** 2026-03-26 às 21:50 (UTC-3)
+
 **Descrição:** Remover o HTML hardcoded dos produtos e criar um script JavaScript que renderiza os cards (*articles*) a partir de um array de objetos (JSON). Este é o passo preparatório fundamental antes de conectarmos o Firebase.
 
 **Critérios de aceitação detalhados (Passo-a-passo):**
 
-- [ ] Extrair todos os `<article class="product-section">` do `index.html` e anotá-los (eles serão o nosso template). Em seu lugar, deixar apenas uma `<div id="catalog-container"></div>`.
-- [ ] Em `assets/js/catalog.js` (a criar), definir um array constante `productsData` imitando a estrutura do Firebase, com propriedades: `id` (string/number), `name`, `description`, `price_cents` (int), `image_url`, `flavors` (array, opcional) e uma importantíssima flag **`is_active`** (boolean).
+- [x] Extrair todos os `<article class="product-section">` do `index.html` e anotá-los (eles serão o nosso template). Em seu lugar, deixar apenas uma `<div id="catalog-container"></div>`.
+- [x] Em `assets/js/catalog.js` (a criar), definir um array constante `productsData` imitando a estrutura do Firebase, com propriedades: `id` (string/number), `name`, `description`, `price_cents` (int), `image_url`, `flavors` (array, opcional) e uma importantíssima flag **`is_active`** (boolean).
   
   - *Dica Didática:* Guardar preço em centavos (`1200` em vez de `12.00`) evita bugs clássicos de arredondamento no JavaScript (IEEE 754). No HTML formatamos com `Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })`.
   
-- [ ] Criar função `renderCatalog(products)` que faz interações no array via `.filter(p => p.is_active)` e `.map()`, retornando uma String longa de HTML APENAS dos produtos ativos.
-- [ ] Injetar essa string no DOM (`document.getElementById('catalog-container').innerHTML = ...`).
-- [ ] **Auditoria de Segurança (OWASP A03/XSS):** Como usaremos `.innerHTML`, qualquer texto vindo do banco (nome, descrição) DEVE ser tratado/escapado, ou a injeção deve ser feita criando os nós via `document.createElement()` e `.textContent`, para impedir ataques de *Stored XSS* caso o banco seja comprometido.
-- [ ] Garantir que o JS mantenha as exatas classes de animação e estruturas semânticas, atributos `alt` de imagem e fallback `loading="lazy"`.
-- [ ] **Dependência Crítica de Animação:** O `assets/js/animations.js` atual usa `DOMContentLoaded` para escanear a classe `.product-section`. Como os produtos agora nascerão *depois* via JS, você precisará refatorar o `animations.js` exportando uma função (ex: `initScrollAnimations()`) e chamá-la **após** o `renderCatalog` finalizar as injeções no DOM.
+- [x] Criar função `renderCatalog(products)` que faz interações no array via `.filter(p => p.is_active)` e `.map()`, retornando uma String longa de HTML APENAS dos produtos ativos.
+- [x] Injetar essa string no DOM (`document.getElementById('catalog-container').innerHTML = ...`).
+- [x] **Auditoria de Segurança (OWASP A03/XSS):** Como usaremos `.innerHTML`, qualquer texto vindo do banco (nome, descrição) DEVE ser tratado/escapado, ou a injeção deve ser feita criando os nós via `document.createElement()` e `.textContent`, para impedir ataques de *Stored XSS* caso o banco seja comprometido.
+- [x] Garantir que o JS mantenha as exatas classes de animação e estruturas semânticas, atributos `alt` de imagem e fallback `loading="lazy"`.
+- [x] **Dependência Crítica de Animação:** O `assets/js/animations.js` atual usa `DOMContentLoaded` para escanear a classe `.product-section`. Como os produtos agora nascerão *depois* via JS, você precisará refatorar o `animations.js` exportando uma função (ex: `initScrollAnimations()`) e chamá-la **após** o `renderCatalog` finalizar as injeções no DOM.
 
 ---
 

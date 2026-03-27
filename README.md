@@ -25,6 +25,7 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 - 💬 **Integração com WhatsApp e Pix** — Botão de pedido integrado e card de pagamento instantâneo via Pix
 - ⚡ **Rápido e Leve** — Página única sem dependências externas, carregamento instantâneo
 - 🔍 **SEO Otimizado** — Meta tags e estrutura semântica em português
+- 📦 **Catálogo Dinâmico** — Produtos renderizados via JavaScript com proteção XSS (DOM API segura)
 
 ## 🍽️ Cardápio
 
@@ -53,31 +54,36 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 
 ```text
 salgados_da_elza/
-├── assets/                 # Arquivos estáticos
-│   ├── images/             # Imagens otimizadas dos produtos
-│   └── js/                 # Scripts auxiliares (Animations)
-├── docs/                   # Documentação detalhada
-│   ├── BACKLOG_MVP.md      # Histórico de entregas do MVP (Landing Page)
-│   ├── BACKLOG.md          # Planejamento da evolução para E-commerce
-│   └── PROJECT_OVERVIEW.md # Visão geral detalhada
-├── styles/                 # Folhas de estilo (Mobile-first, Premium UI)
-│   └── main.css
-├── index.html              # Página principal (cardápio)
-├── manifest.json           # Web App Manifest (PWA)
-├── robots.txt              # Diretivas para crawlers
-├── sitemap.xml             # Sitemap para indexação SEO
-├── AGENTS.md               # Diretrizes de contribuição IA
-└── README.md               # Este arquivo de documentação
+├── assets/                     # Arquivos estáticos
+│   ├── images/                 # Imagens otimizadas dos produtos (WebP + JPEG)
+│   ├── js/
+│   │   ├── animations.js       # IntersectionObserver e Pix copy
+│   │   └── catalog.js          # Renderização dinâmica do catálogo
+│   └── videos/                 # Vídeos do hero e WhatsApp
+├── docs/                       # Documentação detalhada
+│   ├── BACKLOG_MVP.md          # Histórico de entregas do MVP (concluído)
+│   ├── BACKLOG_PHASE2.md       # Planejamento da Fase 2 (E-commerce + Admin)
+│   ├── BACKLOG_SAAS.md         # Planejamento da Fase 3 (SaaS)
+│   └── PROJECT_OVERVIEW.md     # Visão geral detalhada
+├── styles/                     # Folhas de estilo (Mobile-first, Premium UI)
+│   ├── critical.css            # CSS acima da dobra (render-blocking)
+│   └── main.css                # CSS completo (carregamento assíncrono)
+├── index.html                  # Página principal (cardápio)
+├── manifest.json               # Web App Manifest (PWA)
+├── robots.txt                  # Diretivas para crawlers
+├── sitemap.xml                 # Sitemap para indexação SEO
+├── AGENTS.md                   # Diretrizes de contribuição IA
+└── README.md                   # Este arquivo de documentação
 ```
 
 ## 🚀 Próximos Passos (Fase 2)
 
-Este repositório atual contém a versão **MVP (Landing Page Estática)** concluída com sucesso. O projeto está evoluindo agora para a **Fase 2 (E-commerce Leve & Admin)**, que incluirá:
+O **MVP (Landing Page)** foi concluído com sucesso. A **Fase 2 (E-commerce Leve & Admin)** está em andamento:
 
-- Catálogo de Salgados renderizado dinamicamente.
-- Carrinho de Compras integrado e salvamento de pedidos (Local Storage).
-- Painel Administrativo Autônomo para a dona (Autenticação, CRUD).
-- Backend-as-a-service utilizando **Firebase** (Firestore e Storage).
+- ✅ ~~Catálogo de Salgados renderizado dinamicamente~~ *(concluído)*
+- ⬜ Carrinho de Compras integrado e salvamento de pedidos (Local Storage).
+- ⬜ Painel Administrativo Autônomo para a dona (Autenticação, CRUD).
+- ⬜ Backend-as-a-service utilizando **Firebase** (Firestore e Storage).
 
 🔗 Veja mais detalhes técnicos no arquivo [PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) e o planejamento das tarefas no [BACKLOG_PHASE2.md](docs/BACKLOG_PHASE2.md).
 
@@ -95,9 +101,15 @@ Este repositório atual contém a versão **MVP (Landing Page Estática)** concl
    cd salgados_da_elza
    ```
 
-3. **Abra o arquivo `index.html`** no seu navegador preferido — e pronto! 🎉
+3. **Inicie um servidor local** (necessário por causa da CSP e dos scripts JS):
 
-> 💡 **Dica:** Você também pode usar a extensão **Live Server** no VS Code para recarregamento automático durante o desenvolvimento.
+   ```bash
+   python -m http.server 8080
+   ```
+
+4. **Acesse no navegador:** [http://localhost:8080](http://localhost:8080) — e pronto! 🎉
+
+> ⚠️ **Importante:** Não abra o `index.html` via `file://`. O protocolo local bloqueia scripts e fontes por causa da Content Security Policy (CSP) do projeto.
 
 ## 📱 Preview
 
