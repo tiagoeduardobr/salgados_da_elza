@@ -11,12 +11,18 @@
 })();
 
 /**
- * Intersection Observer para animações de scroll (TODO-UI-05)
+ * Intersection Observer para animações de scroll (TODO-UI-05 + TODO-FE-01)
+ *
+ * REFATORAÇÃO (TODO-FE-01): Antes, esta lógica rodava no DOMContentLoaded.
+ * Com a renderização dinâmica do catálogo, os elementos .product-section
+ * são injetados DEPOIS do DOMContentLoaded pelo catalog.js.
+ * Por isso, a função foi extraída para window.initScrollAnimations(),
+ * que é chamada pelo catalog.js após a injeção dos cards no DOM.
+ *
  * Oculta os itens inicialmente (via CSS `.product-section`, `.intro`, etc.)
  * e adiciona a classe `.animate-in` quando entrarem no viewport.
  */
-
-document.addEventListener("DOMContentLoaded", () => {
+window.initScrollAnimations = function initScrollAnimations() {
   // 1. Seleciona todos os elementos que devem ser animados
   const animatedElements = document.querySelectorAll(
     ".intro, .product-section, .cta-section",
@@ -40,20 +46,20 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0.15, // 15% do elemento precisa estar visível
   };
 
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Adiciona a classe que engatilha o fade-in-up
         entry.target.classList.add("animate-in");
         // Para de observar este elemento para performar melhor
-        observer.unobserve(entry.target);
+        obs.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
   // 4. Inicia a observação de cada elemento
   animatedElements.forEach((el) => observer.observe(el));
-});
+};
 
 /**
  * Funcionalidade Pix: copia a chave Pix para a área de transferência do dispositivo.

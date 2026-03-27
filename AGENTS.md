@@ -27,6 +27,7 @@ Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribu
 - **Escopo e Granularidade (Regra de Ouro da IA):** NUNCA agrupe múltiplos TODOs ou tarefas em uma mesma execução de contexto ou branch (ex: tentar resolver 4 TODOs de uma vez). Sempre aja sobre a MENOR unidade de trabalho possível — focando rigorosamente em UM TODO por vez. Isso garante que a janela de contexto da IA não quebre e impede alucinações de completude.
 - **Gestão de Backlog e Validação Cruzada:** A IA JAMAIS deve assumir macro-tarefas como concluídas indiscriminadamente. ANTES de marcar um sub-item como concluído (`[x]`) em qualquer Backlog, a IA deve fazer a validação cruzada **empírica** no código fonte buscando a implementação real e literal daquele requisito específico. O que não foi estritamente codificado deve permanecer como pendente (`[ ]`).
 - **Justificativas Técnicas:** Toda alteração de código ou setup de arquitetura deve ser embasada e previamente decidida/acordada.
+- **Testes Locais (Servidor):** SEMPRE utilize `python -m http.server` para criar um servidor local ao testar o site no browser. JAMAIS abra arquivos via protocolo `file://`, pois ele causa bloqueios de CORS/CSP e comportamentos inconsistentes com produção.
 
 ## 📌 REGRAS DE VERSIONAMENTO (GIT)
 
