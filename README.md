@@ -28,13 +28,14 @@ Landing page responsiva criada para exibir o cardápio dos **Salgados da Elza**,
 
 ## 🍽️ Cardápio
 
-| Produto             | Preço    | Sabores                                                  |
-| ------------------- | -------- | -------------------------------------------------------- |
-| 🍕 Pizza Gourmet    | R$ 12,00 | Queijo, presunto, tomate seco e orégano                  |
-| 🍗 Assado de Frango | R$ 10,00 | Frango desfiado temperado                                |
-| 🌭 Dogão Assado     | R$ 10,00 | Salsicha, queijo e molho especial                        |
-| 🥟 Pastel Assado    | R$ 8,00  | 4 Queijos, Calabresa, Carne, Carne c/ Ovo, Frango, Pizza |
-| 🥐 Croissants       | R$ 10,00 | Chocolate, Coco, Frango                                  |
+| Produto                | Preço    | Sabores                                                  |
+| ---------------------- | -------- | -------------------------------------------------------- |
+| 🍕 Pizza Gourmet       | R$ 12,00 | Queijo, presunto, tomate seco e orégano                  |
+| 🍗 Assado de Frango    | R$ 10,00 | Frango desfiado temperado                                |
+| 🔥 Assado de Calabresa | R$ 10,00 | Calabresa moída com tempero especial                     |
+| 🌭 Dogão Assado        | R$ 10,00 | Salsicha, queijo e molho especial                        |
+| 🥟 Pastel Assado       | R$ 8,00  | 4 Queijos, Calabresa, Carne, Carne c/ Ovo, Frango, Pizza |
+| 🥐 Croissants          | R$ 10,00 | Chocolate, Coco, Frango                                  |
 
 > Todos os salgados vêm **embalados individualmente**, prontos para aquecer no micro-ondas ou na Airfryer.
 

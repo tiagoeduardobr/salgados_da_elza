@@ -27,16 +27,20 @@
 - [ ] Estilo: herda `main.css`, footer-like, mobile-first.
 - [ ] Critérios: ✓ Arquivo criado, ✓ Link no footer, ✓ Texto cobre MVP + Fase 2, ✓ Sem trackers/cookies.
 
-### TODO-SEC-PD-02 🔴 Hardening HSTS no MVP
+### TODO-SEC-PD-02 🔴 Validar HTTPS Forçado no GitHub Pages
 
-- [ ] Adicionar meta tag no `<head>` de `index.html`: `<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">`
-- [ ] Critérios: ✓ Meta adicionada, ✓ GitHub Pages HTTPS forçado validado.
+- [ ] Validar no repositório GitHub que a opção "Enforce HTTPS" está ativa em *Settings → Pages*.
+- [ ] Documentar em comentário HTML no `<head>` que o HSTS é gerenciado pelo GitHub Pages (meta tag `Strict-Transport-Security` é ignorada por navegadores quando servida via HTML; o header real é entregue pela infraestrutura do GitHub).
+- [ ] Critérios: ✓ HTTPS forçado validado, ✓ Documentação adicionada.
 
 ### TODO-SEC-PD-03 🔴 Preparar CSP para Firebase Fase 2
 
-- [ ] Atualizar CSP em `index.html`: `connect-src` adicionar `https://*.firebaseio.com https://*.googleapis.com https://*.googleusercontent.com`
-- [ ] Manter resto rígido. Testar com devtools CSP reports.
-- [ ] Critérios: ✓ CSP expandida sem quebrar fonts/WhatsApp, ✓ Nenhum `unsafe-inline` adicionado.
+- [ ] Atualizar CSP em `index.html`: `connect-src` mudar de `'none'` para `'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com`. Usar domínios explícitos — evitar wildcards como `*.googleapis.com` que são excessivamente permissivos.
+- [ ] Adicionar também `script-src` para as CDNs do Firebase SDK se utilizar importação via CDN.
+- [ ] Manter resto rígido. Testar com DevTools → Console (violações CSP) e Network (requests bloqueados).
+- [ ] Critérios: ✓ CSP expandida sem quebrar fonts/WhatsApp, ✓ Nenhum `unsafe-inline` adicionado, ✓ Nenhum wildcard `*` nos domínios.
+
+> ⚠️ **Nota:** Este TODO unifica a configuração de CSP para toda a Fase 2. O TODO-BaaS-01 referencia esta configuração em vez de duplicá-la.
 
 ---
 
@@ -112,7 +116,7 @@
 
 **Critérios de aceitação detalhados (Passo-a-passo):**
 
-- [ ] Criar função isolada em `js/status.js` chamada `isStoreOpen()` que faz `new Date()` e checa o `getHours()` limitando aos dias úteis e fuso de Brasília (`UTC-3`). Exemplo base: ter-sáb, 08h às 19h (Vamos mapear os horários).
+- [ ] Criar função isolada em `js/status.js` chamada `isStoreOpen()` que utiliza `new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', hour: 'numeric', weekday: 'short' })` para extrair hora e dia da semana com fuso correto (sem hardcodar `UTC-3`, pois a API IANA resolve automaticamente eventuais ajustes futuros). Exemplo base: ter-sáb, 08h às 19h (mapear os horários com a Elza).
 - [ ] No Header (junto a logo), injetar a UI:
   
   - Uma bolinha HTML div redonda (`background: #4ade80` ou `#f87171`) para aberto e fechado.
@@ -137,7 +141,7 @@
 - [ ] Exportar as credenciais (`firebaseConfig` object contendo `apiKey`, `projectId`, `appId`).
 - [ ] Criar um pacote base em JS  `assets/js/firebase-init.js` importando as dependências Firebase V9 (SDK modular) usando as CDNs públicas ou pacote Local.
 - [ ] Aplicar no Firebase as proteções de domínios: Configurar `apiKey` nas Restrições de API do Google Cloud para aceitar request somente do GitHub Pages (`tiagoeduardobr.github.io`) e localhost.
-- [ ] **Auditoria de Segurança (CSP):** No `index.html`, a meta-tag `Content-Security-Policy` no atributo `connect-src` deve mudar de `'none'` para `connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com`. Isso bloqueará conexões não desejadas e permitirá somente Firebase Authentication e Firewall Database, barrando XSS e exfiltração de dados (OWASP Top 10 - A03).
+- [ ] **Auditoria de Segurança (CSP):** Validar que a configuração CSP feita no TODO-SEC-PD-03 cobre todos os domínios necessários para o Firebase funcionar corretamente. Testar com DevTools que nenhum request é bloqueado.
 
 ---
 
@@ -150,10 +154,10 @@
 - [ ] Entrar no Painel do Firebase Database, iniciar a coleção raiz `products`, preencher com documentos idênticos às propriedades de objeto feitas no TODO-FE-01.
 - [ ] No JS do front-end original (`assets/js/catalog.js`), utilizar os métodos do Firebase `getDocs()` ou `onSnapshot()` conectando-se na coleção `products`.
   
-  - *Dica Didática:* `onSnapshot()` permite que ser houver edição na Nuvem, o site dos usuários em tempo real vai atualizar dados instantaneamente, é "mágico", mas gasta "reads" (Leituras faturadas) toda hora. O mais pragmático como é uma padaria local é o `getDocs()` que roda 1x por página.
+  - *Dica Didática:* `onSnapshot()` permite que, se houver edição na Nuvem, o site dos usuários em tempo real atualize dados instantaneamente — é "mágico", mas gasta "reads" (Leituras faturadas) toda hora. O mais pragmático, como é uma padaria local, é o `getDocs()` que roda 1x por página.
   
 - [ ] Aplicar UI de feedback: Quando abrir o site, `document.innerHTML` no componente de listagem deve ter classe `<div class="skeleton"></div>` ou `<em>Carregando o forno...</em>` visível até o banco dar resposta (Aguardar a Promise do `getDocs()` finalizar) para depois injetar os cartões HTML.
-- [ ] **Auditoria de SEO (Rich Results):** Remover a tag `<script type="application/ld+json">` estática do `index.html`. No final da Promessa que baixou o array de produtos, criar o payload JSON-schema programaticamente com `JSON.stringify` e inseri-lo no `<head>` injetando o novo script de dados. Isso mantém os WebBots enxergando o `Menu` completo em conformidade ao Google Standards sem necessidade de renderização SSR pesada.
+- [ ] **Auditoria de SEO (Rich Results):** Manter a tag `<script type="application/ld+json">` estática no `index.html` como **fallback** (caso o JS falhe ou o bot não renderize o script). No final da Promise que baixou o array de produtos, **sobrescrever** o conteúdo do JSON-LD existente com o payload atualizado via `JSON.stringify`, garantindo que os dados estejam sempre em sincronia com o Firebase sem perder cobertura se o JS não executar.
 
 ---
 
@@ -171,17 +175,18 @@
 - [ ] Na página de admin, haverá `div#login-view` e `div#dashboard-view` escondido com CSS nativo (`display: none`).
 - [ ] Utilizar o pacote de Firebase Auth: `signInWithEmailAndPassword(auth, email, password)`.
 - [ ] Implementar fluxo no JS em `assets/js/admin.js` interceptando o state: `onAuthStateChanged()`. Se existir um usuário autenticado e ativo na máquina (Sessão viva salva no cache), o Login é escondido, e a Dashboard aparece, bloqueando o visual do painel público. Caso não haja usuário, vice-versa.
+- [ ] **Proteção Anti-Brute-Force (UX):** Após 5 tentativas falhadas consecutivas, desabilitar o botão de login por 60 segundos e exibir mensagem: *"Muitas tentativas. Aguarde 1 minuto."* A mensagem de erro em caso de falha deve ser genérica: *"Credenciais inválidas."* — nunca diferenciar se o e-mail existe ou não (OWASP A07).
 - [ ] Implementar um botão limpo "Fazer Logoff" com `signOut(auth)` simples.
-- [ ] (Server Side security): Firestore Database Security Rules. Modificar regras padrão no painel pra que APENAS usuários autenticados via Auth consigam escrever/deletar na tabela de `products`:
+- [ ] (Server Side security): Firestore Database Security Rules. Modificar regras padrão no painel pra que APENAS o UID específico da Dona Elza consiga escrever/deletar na tabela de `products`:
 
   ```ruby
   match /products/{document=**} {
      allow read: if true;
-     allow write: if request.auth != null;
+     allow write: if request.auth != null && request.auth.uid == 'UID_DA_ELZA';
   }
   ```
 
-  Isso protege o banco que seria público. Conquistei assim o conceito C de Cryptography do CIA da segurança.
+  *Dica Didática:* Restringir por UID (em vez de apenas `request.auth != null`) impede que qualquer pessoa que crie uma conta no Firebase Auth consiga escrever no banco. Isso garante o pilar de **Confidencialidade (C)** da tríade CIA da segurança da informação.
 
 ---
 
@@ -209,10 +214,11 @@
 **Critérios de aceitação detalhados (Passo-a-passo):**
 
 - [ ] Ativar *Firebase Storage* no painel Google, habilitando as **Security Rules** para `write: request.auth != null`.
-- [ ] No Formulário (Adição/Edição de produto), criar um input puro do HTML `type="file" accept="image/png, image/jpeg, image/webp"`.
+- [ ] No Formulário (Adição/Edição de produto), criar um input puro do HTML `type="file" accept="image/png, image/jpeg, image/webp"`. Limitar tamanho máximo a **5 MB**.
+- [ ] **Auditoria de Segurança (OWASP A08 — Data Integrity):** Validar o tipo MIME real do arquivo no JavaScript antes do upload, lendo os *magic bytes* do cabeçalho via `FileReader` (o atributo `accept` do input é apenas uma sugestão para o navegador e pode ser burlado). Rejeitar qualquer arquivo que não seja imagem válida.
 - [ ] Lógica para UX performática: ao arrastar a foto pra área (File reader nativo), rodar JS que extrai object e pré-visualiza na tela pra ela aprovar se cortou certo/viu a foto antes, não subindo cegamente (Melhor visibilidade).
-- [ ] Submissão do Firebase SDK Storage V9 (`uploadBytes` + `getDownloadURL`). Essa promessa gerará uma link web absoluta e pública. Inseri-lo no campo de banco de dados `image_url` lá na etapa (BaaS-02/Admin-02).
-- [ ] Se um produto for apagado no CRUD Administrador (Delete), engatar uma segunda Promise no Storage (`deleteObject`) que procura no Folder pelo path do salgado e apaga o arquivo junto com o produto! Se não fizermos isso, vai virilizar muito "lixo" caro sem uso num bucket de imagens do GCP.
+- [ ] Submissão do Firebase SDK Storage V9 (`uploadBytes` + `getDownloadURL`). Essa promessa gerará um link web absoluto e público. Inseri-lo no campo de banco de dados `image_url` lá na etapa (BaaS-02/Admin-02).
+- [ ] Se um produto for apagado no CRUD Administrador (Delete), engatar uma segunda Promise no Storage (`deleteObject`) que procura no Folder pelo path do salgado e apaga o arquivo junto com o produto! Se não fizermos isso, vai acumular muito "lixo" caro sem uso num bucket de imagens do GCP.
 
 ---
 
