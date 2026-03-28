@@ -87,28 +87,26 @@
 
 ---
 
-### TODO-FE-03 🟡 Checkout Estruturado via WhatsApp
+### TODO-FE-03 🟡 Preparação do Checkout (Carrinho)
 
-**Descrição:** Evoluir o CTA principal interligando-o com o carrinho de compras.
+**Descrição:** Evoluir o CTA principal interligando-o com o carrinho de compras, fazendo a validação de dados antes de acionar a camada de pagamento.
 
 **Critérios de aceitação detalhados (Passo-a-passo):**
 
-- [ ] Modificar o botão "Fazer Pedido" (aquele que já existe na `<section class="cta-section">`) para, no clique (evento `addEventListener`), processar os dados do carrinho, e PREVENIR sua funcionalidade base padrão caso o carrinho esteja vazio (`preventDefault`).
-- [ ] **Integração de UX:** Fazer com que o clique no **Floating Cart** (criado no TODO-FE-02) execute a mesma função de Checkout do CTA principal da página.
-- [ ] Se carrinho vazio: Mostrar um "SweetAlert" simples ou um Toast dizendo: *"Seu carrinho está vazio! Selecione os deliciosos salgados acima."* (Melhoria visível de UX).
-- [ ] Se houver carrinho: a lógica JS irá fazer um "`.reduce()`" no carrinho montando um text-block formatado:
+- [ ] Modificar o botão "Fazer Pedido" (aquele que já existe na `<section class="cta-section">`) para, no clique (evento `addEventListener`), processar os dados do carrinho, e PREVENIR sua funcionalidade base padrão (`preventDefault`).
+- [ ] **Integração de UX:** Fazer com que o clique no **Floating Cart** (criado no TODO-FE-02) execute a mesma rotina de Checkout do CTA principal da página.
+- [ ] Se carrinho vazio: Mostrar um "SweetAlert" simples ou um Toast de feedback nativo dizendo: *"Seu carrinho está vazio! Selecione os deliciosos salgados acima."* (Prevenção de conversão fantasma).
+- [ ] Se houver carrinho cheio: a lógica JS irá fazer um "`.reduce()`" no array de produtos em memória, montando um text-block formatado puro (sem enviá-lo imediatamente).
 
   ```text
-  Olá! Gostaria de fazer o seguinte pedido:
+  Detalhes do pedido:
   - 2x Assado de Calabresa (R$ 20,00)
   - 1x Pastel Assado Sabor Frango (R$ 8,00)
   ---
   *Total:* R$ 28,00
   ```
 
-- [ ] Criar a URL com `encodeURIComponent()` (Para transformar espaços em `%20`, novas linhas em `%0A`, garantido que todo Zap web e App vai abrir as quebras de linha corretas).
-- [ ] Fazer o redirecionamento com `window.open(url, '_blank')`.
-- [ ] Limpar o Carrinho pós-checkout: `localStorage.removeItem('elzaCart')` depois de redirecionar para a Elza começar com carrinho limpo se voltar à página.
+- [ ] Deixar essa Data String e os totais prontos e encapsulados em memória para que o Modal do **TODO-PAY-02** os consuma para gerar a cobrança e conduzir o fluxo final do WhatsApp visando evitar redundâncias de redirecionamento.
 
 ---
 
@@ -231,15 +229,111 @@
 **Critérios de aceitação detalhados (Passo-a-passo):**
 
 - [ ] Criar coleção simples de nome fixo no Firestore chamada: `storeSettings` e criamos o documento hardcoded chamado `config`. (Ninguém gera doc novo, é uma tabela de 1 linha de Database).
-- [ ] Campos de texto gerados no doc Firestore: `whatsapp_number_raw` e `pix_key` `pix_copy_bank`. E Campos Objetos/Array para o controle do relógio como `opening_hours: { weekday_open: 8, weekday_close:18 }`.
-- [ ] Admin HTML deve possuir a aba *"🔧 Ajustes do Site"*. Que mapeará os 4 valores descritos e usará do SDK o método de Database `updateDoc()` em cima desse documento base `config`.
+- [ ] Campos de texto gerados no doc Firestore: `whatsapp_number_raw`, `pix_key`, `merchant_name` (Ex: "Elza Salgados"), `merchant_city` (Ex: "Blumenau"). E Campos Objetos/Array para o controle do relógio como `opening_hours: { weekday_open: 8, weekday_close: 18 }`.
+- [ ] Admin HTML deve possuir a aba *"🔧 Ajustes do Site"*. Que mapeará os valores descritos e usará do SDK o método de Database `updateDoc()` em cima desse documento base `config`.
 - [ ] Modificar o código do front (`index.html` e `js/status.js`) que validava chaves hardcoded e puxar direto do Firebase. É preciso remapear a injeção da Chave Pix no atributo `data-pix-key` do botão de cópia atual, e atualizar o `href` do botão principal do WhatsApp com o número dinâmico do banco.
+
+---
+
+## Epic 4 — Central de Pagamentos (Frontend & Pix)
+
+> Evolucionar a landing page do MVP substituindo a ida cega ao WhatsApp por um Checkout seguro focado na experiência Pix com valor automático.
+
+### TODO-PAY-01 🟡 Gerador de Payload Pix EMV (Módulo Core)
+
+**Descrição:** Criar módulo JavaScript isolado e testável que receba parâmetros base (chave, valor) e gere um payload Pix estático compatível com a norma EMV do BACEN.
+
+**Critérios de aceitação detalhados (Passo-a-passo):**
+
+- [ ] Criar o arquivo `assets/js/pix-payload.js` para isolar estritamente a lógica criptográfica e financeira.
+- [ ] Implementar a concatenação rigorosa dos campos EMV (00, 01, 26, 52, 53, 54, 58, 59, 60, 63) conforme manual do Banco Central.
+- [ ] Desenvolver função em JavaScript puro para o cálculo de `CRC16-CCITT` (Polinômio `0x1021`), obrigatória na assinatura do BR Code.
+- [ ] A função exportada (`generatePixPayload`) deve receber o valor do carrinho sanitizado (convertendo a string monetária para cents/inteiro visando segurança float em JS) e retornar a string correspondente ao "Pix Copia e Cola".
+- [ ] **Auditoria de Segurança (OWASP A03 / XSS):** Adicionar função sanitizadora interna que trate Inputs (nome da cidade, beneficiário), removendo acentuação e limitando tamanho restrito em caracteres, o que previne corrupções na leitura do QRCode por aplicativos bancários rígidos.
+
+---
+
+### TODO-PAY-02 🟡 Modal de Checkout com Pix + Workflow WhatsApp
+
+**Descrição:** Modificar o fluxo do Carrinho. Em vez de ir cego para o WhatsApp, abrir um Modal de Pagamento Interativo que propõe o pagamento PIX, e guia o usuário no Workflow de envio anexado via Zap. E introduz o espaço para Mercado Pago (*Placeholder* para escalarem os passos seguintes).
+
+**Critérios de aceitação detalhados (Passo-a-passo):**
+
+- [ ] Integrar no `assets/js/catalog.js` (ou CTA principal): ao fechar o carrinho, prevenir redirect padrão (`e.preventDefault()`) e invocar um Modal Acessível (`role="dialog"`, tag `aria-modal="true"`, escopo de foco focado e suporte de teclado nativo ESC).
+- [ ] O Modal exibe o Resumo da Compra e lê o Valor do Cart/BD para invocar e plotar UI do gerador nativo em `pix-payload.js`.
+- [ ] Exibir UI nativa completa e conversiva do Pix: Ícone Pix/Banco Central, Botão "Copiar Chave", Input tipo *readonly* com o texto Copia-e-Cola gerado, e renderização visual do QR Code Canvas via CDN segura leve (ex: `.qrcode` ou lib própria de HTML5).
+- [ ] **Fluxo Operacional de Pós-Pagamento e UX (Core Task):** Abaixo da área do Pix, preposicionar o botão fundamental primário do sistema que leva para atendimento fechado: *"🔴 Já paguei! Enviar Comprovante para o WhatsApp"*.
+- [ ] Ao trigar (*click*) no referido CTA Pós-Pagamento Pix, usar o URI Component de escape gerando mensagem formal e montando o Array (`encodeURIComponent` do text). Ex: *"Olá Dona Elza! Realizei o pagamento PIX de R$ XX,XX. Segue o comprovante em anexo! Detalhes do pedido: [array-loop-text]"*. Logo após, engatilhar liberação / limpeza do cache front-end (localStorage do Carrinho varrido para vazio).
+- [ ] **UX Fluída e Governança:** No final absoluto do Modal, colocar um botão fantasma secundário *"Mercado Pago / Cartões [Em Breve]"* engessando seu uso via estado de código HTML nativo (`disabled="true"`). Tooltip informativo justificando o estado e acalmando UX para implantações vindouras.
+
+---
+
+### TODO-PAY-03 🟡 Página Autônoma de Pagamento (`payment.html`)
+
+**Descrição:** Renderização independente e pública num ambiente seguro voltada especificamente em resolver e finalizar Pagamentos sob Demanda e Cobranças customizadas originadas do Link da Cliente Elza.
+
+**Critérios de aceitação detalhados (Passo-a-passo):**
+
+- [ ] Iniciar na raiz arquivo HTML estrutural (`payment.html`). Reaproveitando header e folha local referenciada (`main.css`). Declarar index blocks visando impedir motores de busca de poluir tráfego (`<meta name="robots" content="noindex, nofollow">`).
+- [ ] **Fluxo Fechado Dinâmico (Via Wizzard/Query Param):** Validar Fetch Backend/Firestore nativamente via ID: Se endereço do browser invocar `?order=XYZ123`, bater e requerer na base `payment_links` referenciado. Imprimir Card com a Listagem Dinâmica dos itens escolhidos ("*Recibo: 2x Assado, 1x Croissant - Total: R$ 28,00*") travando a edição de campos (`disabled input`).
+- [ ] **Fluxo Aberto Manual (Fallback):** Sem query params inseridos pelo User no Request original — Exibir UI limpa contendo um único Field Monetário (`<input type="text" inputmode="numeric">`). Proteger JS bloqueando `< 0`, submetendo o dado apenas ao clique e invocando o respectivo processamento da `class PixPayload`. Modela texto limpo pra BRL (`R$ XX,XX`).
+- [ ] Herda identicamente as funções e templates de interface de UX idealizados e fechados no TODO-PAY-02, a saber: Card QRCode PIX, CTA de Confirmação pelo Workflow do WhatsApp resgatado pro contexto ("Enviar Comprovante de Pagamento"), e a flag visual suspensa `disabled` indicadora de opção no MP/Cartão.
+
+---
+
+## Epic 5 — Ferramentas Financeiras Admin e Gateways
+
+> Expandir a retaguarda com painéis para controle avançado à Elza e linkagem criptografada via Serverless para Checkouts.
+
+### TODO-PAY-04 🟢 Ferramenta Admin: Gerador Inteligente e Controle UI
+
+**Descrição:** Integrar na interface de Admin protegida a capacidade geradora orgânica de links fechados associados nativamente à Cloud Base, sem necessidade da Dona Elza escrever links massivos em barras do navegador.
+
+**Critérios de aceitação detalhados (Passo-a-passo):**
+
+- [ ] Criar divisão visual de bloco em `admin.html`: aba gerencial nomeada "🔗 Links de Pagamento", separando form Wizzard de Tabela logística (`table`).
+- [ ] No form, criar CTA Primário: *"Criar Link para Cobrança"*. Ao clickar, Modal/Drawer abre a relação dos Itens da loja num painel tipo Checkout de Point-of-Sale. Elza insere a numeração iterativamente. Frontend computa matematicamente sub-totals bloqueando intervenção de erros numéricos e floats descompassados na tela total de centavos.
+- [ ] Disparar promise Firebase Cloud SDK `addDoc()/setDoc()` à *Collection* `payment_links` com objeto contendo json string do Payload dos Produtos e Status Flag ativa "Pendente/Aguardando".
+- [ ] Responder ao Frontend após resposta (HTTP 200/Firebase): Imprimir visualmente e gerar string short `https://site.com/payment.html?order=[CHAVE_ALEATORIA_ENCRIPTADA]`.
+- [ ] **Auditoria de Capacidades UX (Web Share API Native):** Providenciar botoeiras contíguas e úteis à visualização do link entregue e renderizado:
+  - Botão Icon Copy local (`navigator.clipboard.writeText(url)`) devolvendo notificação silenciosa ("Link copiado!").
+  - Botão Icon Compartilhar API Nativa Browser (`navigator.share({ title: 'Pagamento - Salgados da Elza', url: url })`) provocando abertura de interface em nível do Sistema Operacional (iOS, Android, Windows) contendo App Connecters (Ex: Compartilhar no Zap via Botão Direto). Fallbacks defensivos (`try/catch`) aplicados onde for web-view morta limitadora ou browser Desktop antigo, retrocedendo para "Copy" natural se der fail no share call em ambiente web.
+- [ ] Embutir visualmente no design macro da aba um botão solitário: *"Gerar Link sem valor"* que joga no Output diretamente a Path absoluta padrão `/payment.html`. (Funciona igual máquina Mercado Pago).
+- [ ] Na área administrativa, Tabela histórica renderizando ID Curto de Pedido, Data da Emissão, Valor Base Integral, Tag de Cor (Status: Aberto / Confirmed), e Action Column.
+
+---
+
+### TODO-PAY-05 🔵 Integração Mercado Pago Node Engine (Checkout Pro Endpoint)
+
+**Descrição:** Implementação arquitetural escalável server-side faturando Cartões com alto índice de segurança protegida da exposição Front End, provendo Workflow reverso limpo Pós-Pagamento.
+
+**Critérios de aceitação detalhados (Passo-a-passo):**
+
+- [ ] Alocar, através de Setup Node e Server Firebase-CLI, arquivo executor de Runtime (`function/createPreference`), alinhando o App com o pacote base NPM `mercadopago` (SDK v2 version).
+- [ ] Escrever API/Função de nuvem formatícia da *Preference*. A mesma tranca a key `Access Token` estritamente nas Environments (Firebase Secrets Manager A02 Shield). Processa body param do Web, e devolve Object `preferenceId`. Amarra Endpoints de Failure/Success (Callbacks HTTP).
+- [ ] Injetar Redirection JS: Call Fetch em `catalog.js/payment.html` capturando retorno da function. Ligar motor via MP Frontend Pack (Via Public Key que não impõe perigo de vulnerabilidade), abrindo janelagem pro URL/Domain do Gateway nativo no Checkout nativo deles (`window.location = MP_URL`).
+- [ ] **Callback Return UI / Fluxo Pós-Cartão:** Criação do ambiente `payment-success.html`. Focado 100% em confirmar visualização base Approval e provendo Button primário Call to Action: *"🔴 Pagamento Aprovado (ID). Finalizar Pedido pelo WhatsApp!"* — disparador da macro textual do Whatsapp que consolida aprovação mecânica da bandeira perante base empírica com o vendedor (Zap elza).
+- [ ] **Auditoria de Segurança (CSP):** Atualizar a Restrição Strict CSP autorizando os end-points dinâmicos do payment provider: Habilitar diretiva `script-src` para `https://sdk.mercadopago.com` e `connect-src` integrando `https://api.mercadopago.com` prevenindo quebras em transações reais (OWASP A05 mitigations).
+- [ ] **Limpeza Técnica Sistêmica:** Empreender exclusão compulsória geral de qualquer classe tag/button contendo o estado textual `[Em Breve]` ou os hardcoded disabled states postos nas atividades PAY-02, PAY-03 que eram marcadores temporários para tal gateway.
+
+---
+
+### TODO-PAY-06 🔵 Watcher Webhooks IPN (Optional Admin Tools)
+
+**Descrição:** Monitorar pagers automáticos e Webhook Pushes externos engajadamente em real-time e marcar no banco.
+
+**Critérios de aceitação detalhados (Passo-a-passo):**
+
+- [ ] Firebase Edge Function API Node (`mpWebhook`) expondo Rota acessível Server2Server, pronta a engajar notificações de Update Request MP (HTTP Trigger Change IPNs).
+- [ ] Read and Update da *Collection* original referenciada `payment_links` convertendo state do Payment de Array status "Aberto/Pendente" para "Pago (Credited / Approved)".
+- [ ] Executar check sum Hash (x-signature via Secret Mercado Pago Webhook App Tool) isolando payloads de bots, web scrapers ou spam injection visando corrompimento logístico (Owasp Fraud).
+- [ ] Confirmação de coloração limpa/sincronia nativa da Tab Histórica do Admin em conformidade com Tabela e status do Firebase Live Watcher.
 
 ---
 
 ## Resumo Arquitetural
 
-- **Front-end:** HTML Semântico, Vanilla JavaScript, CSS Puro (mantendo a essência do MVP).
-- **Database & Storage:** Firebase Cloud Firestore + Firebase Storage.
-- **Autenticação Admin:** Firebase Auth.
-- **Infraestrutura Exigida:** Nenhuma gestão de servidor e zero custo fixo pra a cliente (Free Tier do Firebase sobra para este tráfego).
+- **Front-end:** HTML Semântico, Vanilla JavaScript, CSS Puro (mantendo a essência do MVP). Web Share API base UI e QR Canvas rendering.
+- **Database & Storage & API Engine Serverless:** Firebase Cloud Firestore (NoSQL), Cloud Functions GCP (Node.js SDK Provider Runtime) + Firebase Storage.
+- **Autenticação Admin e Gateways Checkout:** Firebase Auth Client e Mercado Pago V2 SDK Pro.
+- **Ecossistema:** Otimizado, serverless e modular. Funcional do Free Tier base até escalar Cloud Computing pay-as-you-go em produção com UX contínua.
