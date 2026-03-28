@@ -1,0 +1,5 @@
+# Normalização de fim de linha (EOL)
+# Garante que todos os arquivos de texto usem LF (Line Feed) no repositório,
+# independente do sistema operacional. Alinhado com a configuração do workspace
+# (files.eol: "\n").
+* text=auto eol=lf

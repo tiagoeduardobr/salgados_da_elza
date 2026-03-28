@@ -6,18 +6,6 @@
 
 Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribuir ou dar manutenção neste repositório.
 
-## 📌 PERFIL DO USUÁRIO E DIDÁTICA
-
-- O usuário principal está aprendendo programação; logo, este projeto tem um teor acadêmico aliado ao uso pessoal real.
-- **Sempre explique O PORQUÊ** de cada decisão técnica e implementação.
-- Adicione **comentários didáticos e detalhados** no código para facilitar o aprendizado (explique o que faz, por que faz, e como funciona).
-
-## 📌 CONVENÇÕES DE IDIOMA
-
-- **Documentação e planejamento estrutural:** pt-BR (Português do Brasil).
-- **Código-fonte:** Nomes de variáveis, funções, classes CSS e termos técnicos abstratos **devem ser em inglês**.
-- **Comentários no código:** pt-BR (para manter o foco no aspecto didático).
-
 ## 📌 DIRETRIZES DE DESENVOLVIMENTO
 
 - **Segurança:** O projeto segue e respeita rigorosamente o **OWASP Top 10** e boas práticas de segurança web. Nomes de usuário não devem trafegar em claro, proteções de força bruta, CSRF e CSP fortes devem ser mantidas.
@@ -28,6 +16,12 @@ Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribu
 - **Gestão de Backlog e Validação Cruzada:** A IA JAMAIS deve assumir macro-tarefas como concluídas indiscriminadamente. ANTES de marcar um sub-item como concluído (`[x]`) em qualquer Backlog, a IA deve fazer a validação cruzada **empírica** no código fonte buscando a implementação real e literal daquele requisito específico. O que não foi estritamente codificado deve permanecer como pendente (`[ ]`).
 - **Justificativas Técnicas:** Toda alteração de código ou setup de arquitetura deve ser embasada e previamente decidida/acordada.
 - **Testes Locais (Servidor):** SEMPRE utilize `python -m http.server` para criar um servidor local ao testar o site no browser. JAMAIS abra arquivos via protocolo `file://`, pois ele causa bloqueios de CORS/CSP e comportamentos inconsistentes com produção.
+
+## 📌 CONVENÇÕES DE IDIOMA
+
+- **Documentação e planejamento estrutural:** pt-BR (Português do Brasil).
+- **Código-fonte:** Nomes de variáveis, funções, classes CSS e termos técnicos abstratos **devem ser em inglês**.
+- **Comentários no código:** pt-BR (para manter o foco no aspecto didático).
 
 ## 📌 REGRAS DE VERSIONAMENTO (GIT)
 
@@ -48,6 +42,12 @@ Este arquivo contém as diretrizes que **todas as IAs** devem seguir ao contribu
 - **Listas e Sublistas:** SEMPRE insira uma linha em branco (blank line) ao redor de listas e aninhamentos (nested lists) para evitar erros de linting MD032.
 - **Ênfase (Itálico):** SEMPRE use um único asterisco para itálico (`*texto*`). JAMAIS use underscore (`_texto_`), para evitar o erro MD049.
 - **Revisão Ortográfica:** Cuidado com typos e erros de grafia ao gerar o documento (ex: raízes, schemas, usuário). Preste atenção na gramática e não crie jargões quebrados.
+
+## 📌 PERFIL DO USUÁRIO E DIDÁTICA
+
+- O usuário principal está aprendendo programação; logo, este projeto tem um teor acadêmico aliado ao uso pessoal real.
+- **Sempre explique O PORQUÊ** de cada decisão técnica e implementação.
+- Adicione **comentários didáticos e detalhados** no código para facilitar o aprendizado (explique o que faz, por que faz, e como funciona).
 
 ---
 
