@@ -63,7 +63,7 @@ const productsData = [
     name: "Assado de Frango",
     description:
       "Recheio generoso de frango desfiado temperado com temperos selecionados, envolto em massa leve e dourada. Suculento e irresistível!",
-    price_cents: 1000,
+    price_cents: 1200,
     image_webp: "assets/images/assado-de-frango.webp",
     image_fallback: "assets/images/assado-de-frango.jpeg",
     image_alt: "Salgado de frango desfiado assado dourado",
@@ -84,14 +84,14 @@ const productsData = [
     image_width: 1220,
     image_height: 915,
     flavors: [],
-    is_active: true,
+    is_active: false,
   },
   {
     id: "dogao-assado",
     name: "Dogão Assado",
     description:
       "Salsicha premium, queijo derretido e molho especial, tudo envolvido em massa assada. Perfeito para um lanche rápido e saboroso!",
-    price_cents: 1000,
+    price_cents: 1200,
     image_webp: "assets/images/dogao.webp",
     image_fallback: "assets/images/dogao.jpeg",
     image_alt: "Dogão assado com salsicha, queijo derretido e molho especial",
