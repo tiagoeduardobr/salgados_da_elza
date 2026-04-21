@@ -111,7 +111,7 @@ const productsData = [
     image_alt: "Pastel assado crocante com recheio caprichado",
     image_width: 1220,
     image_height: 817,
-    flavors: ["4 Queijos", "Calabresa", "Carne", "Frango", "Pizza"],
+    flavors: ["Carne", "Frango"],
     is_active: true,
   },
   {
